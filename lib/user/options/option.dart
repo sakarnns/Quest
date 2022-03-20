@@ -23,125 +23,127 @@ class _OptionPageState extends State<OptionPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
-          appBar: AppBar(
-            // title: const Text('', style: TextStyle(color: Colors.black)),
-            backgroundColor: Colors.transparent,
-            elevation: 0.0,
-            leading: BackButton(
-              color: Colors.black,
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+        appBar: AppBar(
+          // title: const Text('', style: TextStyle(color: Colors.black)),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          leading: BackButton(
+            color: Colors.black,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          body: ListView(
-            children: <Widget>[
-              ListTile(
-                contentPadding: EdgeInsets.only(left: 32.0),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ProfilePage()));
+        ),
+        body: ListView(
+          children: <Widget>[
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 32.0),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
 
-                  print("into Profile");
-                },
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
-                    maxWidth: 28,
-                    maxHeight: 28,
-                  ),
-                  child: SvgPicture.asset('assets/icons/profile_option.svg'),
+                print("into Profile");
+              },
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 28,
+                  minHeight: 28,
+                  maxWidth: 28,
+                  maxHeight: 28,
                 ),
-                title: Text(
-                  'Profile',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.normal,
-                  ),
+                child: SvgPicture.asset('assets/icons/profile_option.svg'),
+              ),
+              title: Text(
+                'Profile',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
-              ListTile(
-                contentPadding: EdgeInsets.only(left: 32.0),
-                onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => VerifyPage()));
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 32.0),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => VerifyPage()));
 
-                  print("into Verify");
-                },
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
-                    maxWidth: 28,
-                    maxHeight: 28,
-                  ),
-                  child: SvgPicture.asset('assets/icons/verify_option.svg'),
+                print("into Verify");
+              },
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 28,
+                  minHeight: 28,
+                  maxWidth: 28,
+                  maxHeight: 28,
                 ),
-                title: Text(
-                  'Verify',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.normal,
-                  ),
+                child: SvgPicture.asset('assets/icons/verify_option.svg'),
+              ),
+              title: Text(
+                'Verify',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
-              ListTile(
-                contentPadding: EdgeInsets.only(left: 32.0),
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => PendingRewadUserPage()));
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 32.0),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PendingRewadUserPage()));
 
-                  print("into PendingRewad");
-                },
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
-                    maxWidth: 28,
-                    maxHeight: 28,
-                  ),
-                  child: SvgPicture.asset('assets/icons/reward_pending.svg'),
+                print("into PendingRewad");
+              },
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 28,
+                  minHeight: 28,
+                  maxWidth: 28,
+                  maxHeight: 28,
                 ),
-                title: Text(
-                  'Pending Reward',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.normal,
-                  ),
+                child: SvgPicture.asset('assets/icons/reward_pending.svg'),
+              ),
+              title: Text(
+                'Pending Reward',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
-              ListTile(
-                contentPadding: EdgeInsets.only(left: 32.0),
-                onTap: () {
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => LoginPage()),
-                      (Route<dynamic> route) => false);
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 32.0),
+              onTap: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => LoginPage()),
+                    (Route<dynamic> route) => false);
 
-                  print("into Logout");
-                },
-                leading: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minWidth: 28,
-                    minHeight: 28,
-                    maxWidth: 28,
-                    maxHeight: 28,
-                  ),
-                  child: SvgPicture.asset('assets/icons/logout_option.svg'),
+                print("into Logout");
+              },
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 28,
+                  minHeight: 28,
+                  maxWidth: 28,
+                  maxHeight: 28,
                 ),
-                title: Text(
-                  'Logout',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.normal,
-                  ),
+                child: SvgPicture.asset('assets/icons/logout_option.svg'),
+              ),
+              title: Text(
+                'Logout',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
                 ),
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
+// ActivityLocationMapPage

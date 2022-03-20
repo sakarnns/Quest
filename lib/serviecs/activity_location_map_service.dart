@@ -52,14 +52,20 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Locations',
-            style: TextStyle(fontSize: 32.0, color: Colors.black)),
+        title: Text(
+          'Location',
+          style: TextStyle(
+            fontSize: 32.0,
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        backgroundColor: Color(0xFFEBEDF2),
+        // backgroundColor: Color(0xFFEBEDF2),
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: BackButton(
-          color: Colors.black,
+          color: Color(0xFF6F2DA8),
           onPressed: () {
             eventlocation = "";
             latitude = 0;
@@ -87,9 +93,6 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
       ),
       body: Column(
         children: [
-          SizedBox(
-            height: height(context: context) / 100,
-          ),
           Padding(
             padding: EdgeInsets.symmetric(
               horizontal: width(context: context) / 50,
@@ -113,10 +116,11 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
                       border: outlineInputBorder(),
                       contentPadding: EdgeInsets.all(8.0),
                       hintText: 'Enter your Location...',
-                      prefixIcon: Icon(Icons.search),
-                      // suffixIcon: Icon(Icons.clear),
+                      prefixIcon: Icon(Icons.search, color: Color(0xFF6F2DA8)),
                       suffixIcon: IconButton(
-                        icon: Icon(Icons.clear),
+                        icon: Icon(
+                          Icons.clear,
+                        ),
                         onPressed: () {
                           _searchController.clear();
                         },

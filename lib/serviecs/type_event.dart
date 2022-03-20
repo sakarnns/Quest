@@ -61,7 +61,12 @@ class _TypeEventWidgetState extends State<TypeEventWidget> {
                     builder: (context) => CupertinoActionSheet(
                       actions: [buildPickerType()],
                       cancelButton: CupertinoActionSheetAction(
-                        child: Text('Done'),
+                        child: Text(
+                          'Done',
+                          style: TextStyle(
+                            color: Color(0xFF0180F8),
+                          ),
+                        ),
                         onPressed: () => Navigator.pop(context),
                       ),
                     ),

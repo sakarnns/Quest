@@ -67,6 +67,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
     activity.eventquantity.clear();
     activity.eventpointquantity.clear();
     activity.eventdetial.clear();
+    activity.eventtierpoint.clear();
     // imageFile!.delete();
     dateTimeDayStart = getDayTimeStart();
     dateTimeDayEnd = getDayTimeEnd();
@@ -106,17 +107,24 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Create Activity',
-                style: TextStyle(fontSize: 32.0, color: Colors.black)),
+            title: Text(
+              'Create Activity',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            backgroundColor: Color(0xFFEBEDF2),
+            // backgroundColor: Color(0xFFEBEDF2),
             // backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {});
@@ -130,6 +138,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
               ),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: height(context: context) / 8,
+                  ),
 /*=="Event Name"==============================================================*/
                   SizedBox(
                     height: height(context: context) / 100,
@@ -216,9 +227,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/date_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
-                            width: width(context: context) / 100,
+                            width: width(context: context) / 50,
                           ),
                           Text(
                             getDateStartTime(),
@@ -228,31 +239,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ),
                   ),
-
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventstartdate,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'YYYY-MM-DD',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventstartdatecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event Start Time"========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -298,9 +284,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/time_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
-                            width: width(context: context) / 100,
+                            width: width(context: context) / 50,
                           ),
                           Text(
                             getTimeStart(),
@@ -310,28 +296,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ),
                   ),
-
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventstarttime,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'HH:MM',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventstarttimecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event End Date"==========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -376,9 +340,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/date_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
-                            width: width(context: context) / 100,
+                            width: width(context: context) / 50,
                           ),
                           Text(
                             getDateEndTime(),
@@ -388,27 +352,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventenddate,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'YYYY-MM-DD',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventenddatecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event End Time"==========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -449,9 +392,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/time_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
-                            width: width(context: context) / 100,
+                            width: width(context: context) / 50,
                           ),
                           Text(
                             getTimeEnd(),
@@ -487,7 +430,10 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                         builder: (context) => CupertinoActionSheet(
                           actions: [buildPickerType()],
                           cancelButton: CupertinoActionSheetAction(
-                            child: Text('Done'),
+                            child: Text('Done',
+                                style: TextStyle(
+                                  color: Color(0xFF007AFF),
+                                )),
                             onPressed: () => Navigator.pop(context),
                           ),
                         ),
@@ -503,9 +449,9 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/type_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
-                            width: width(context: context) / 100,
+                            width: width(context: context) / 50,
                           ),
                           Text(
                             items[index],
@@ -519,31 +465,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ),
                   ),
-
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventtype,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         // hintText: '...',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventtypecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Participants Quantity"===================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -569,7 +490,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       vertical: height(context: context) / 500,
                     ),
                     child: TextField(
-                      // controller: activity.eventquantity,
+                      controller: activity.eventquantity,
                       inputFormatters: [LengthLimitingTextInputFormatter(1)],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
@@ -609,7 +530,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       vertical: height(context: context) / 500,
                     ),
                     child: TextField(
-                      // controller: activity.eventpointquantity,
+                      controller: activity.eventpointquantity,
                       keyboardType: TextInputType.number,
                       inputFormatters: [LengthLimitingTextInputFormatter(2)],
                       decoration: InputDecoration(
@@ -648,7 +569,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       vertical: height(context: context) / 500,
                     ),
                     child: TextField(
-                      // controller: activity.eventpointquantity,
+                      controller: activity.eventtierpoint,
                       keyboardType: TextInputType.number,
                       inputFormatters: [LengthLimitingTextInputFormatter(2)],
                       decoration: InputDecoration(
@@ -682,9 +603,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: height(context: context) / 500,
@@ -694,7 +612,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       minLines: 3,
                       maxLines: null,
                       maxLength: 100,
-                      // controller: activity.eventdetial,
+                      controller: activity.eventdetial,
                       decoration: InputDecoration(
                         focusedBorder: outlineInputBorder(),
                         filled: true,
@@ -710,10 +628,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       },
                     ),
                   ),
-/*=="Select location"===========================================================*/
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
+/*=="Select location"==========================================================*/
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
@@ -753,6 +668,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                             padding: const EdgeInsets.only(right: 16.0),
                             child: SvgPicture.asset(
                                 'assets/icons/forward_activity.svg',
+                                color: Color(0xFF6F2DA8),
                                 fit: BoxFit.cover),
                           ), // use Spacer
                         ],
@@ -776,9 +692,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: height(context: context) / 500,
@@ -804,7 +717,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       },
                     ),
                   ),
-
 /*=="Please upload photo about your Event."===================================*/
                   SizedBox(
                     height: height(context: context) / 500,
@@ -830,10 +742,10 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                           _pickImage(ImageSource.gallery);
                         },
                         child: Text(
-                          "Upload Photo",
+                          "Upload Cover",
                           style: TextStyle(
-                              color: Color(0xFFAEAEB2),
-                              decoration: TextDecoration.underline),
+                            color: Color(0xFF6F2DA8),
+                          ),
                         ),
                       ),
                     ],
@@ -855,11 +767,11 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                           print('Contact to admin');
                         },
                         child: Text(
-                          "You need to create more huge event or you are official organizer.  ",
+                          "Create more huge event or You are official organizer.  ",
                           style: TextStyle(
-                              fontSize: 13,
-                              color: Color(0xFFAEAEB2),
-                              decoration: TextDecoration.underline),
+                            fontSize: 16,
+                            color: Color(0xFF6F2DA8),
+                          ),
                         ),
                       ),
                     ],
@@ -869,7 +781,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     height: height(context: context) / 50,
                   ),
                   MaterialButton(
-                    color: Colors.black,
+                    color: Color(0xFF6F2DA8),
                     disabledColor: Colors.grey,
                     minWidth: 163,
                     height: 40,

@@ -90,16 +90,23 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text('Preview Activity',
-              style: TextStyle(fontSize: 28, color: Colors.black)),
+          title: Text(
+            'Preview Activity',
+            style: TextStyle(
+              fontSize: 24.0,
+              color: Color(0xFF6F2DA8),
+            ),
+          ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          backgroundColor: Color(0xFFEBEDF2),
+          // backgroundColor: Color(0xFFEBEDF2),
           // backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -112,455 +119,25 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
             ),
             child: Column(
               children: [
-/*=="Event Name"==============================================================*/
                 SizedBox(
-                  height: height(context: context) / 100,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Name",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        activity.eventname.text,
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event Organizer."========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Organizer",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${UserData.userProfile?.username}",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event Start Date"========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Start Date",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        eventstartdatecheck.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event Start Time"========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Start Time",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        eventstarttimecheck.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event End Date"==========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event End Date",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        eventenddatecheck.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event End Time"==========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event End Time",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        eventendtimecheck.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event Type"==============================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Type",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        eventtypecheck.toString(),
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Participants Quantity"===================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Participants Quantity",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        activity.eventquantity.text,
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Piont/Participants"======================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Require Tier-Points",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 16.0, bottom: 16.0, top: 16.0),
-                  decoration: BoxDecoration(
-                      color: Color(0xFFE5E5EA),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        activity.eventpointquantity.text,
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                ),
-/*=="Event Detials"===========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Detials",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 80,
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                      decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(8.0))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            activity.eventdetial.text,
-                            style: TextStyle(color: Colors.black, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-/*=="Location"===========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Location",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 80,
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                      decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(8.0))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            eventlocation,
-                            style: TextStyle(color: Colors.black, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-/*=="Location Details"===========================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Location Detials",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      height: 80,
-                      padding: const EdgeInsets.only(
-                          left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                      decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
-                          borderRadius:
-                              new BorderRadius.all(Radius.circular(8.0))),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: [
-                          Text(
-                            locationdetialcheck!,
-                            style: TextStyle(color: Colors.black, fontSize: 16),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-/*=="Photo about your Event."=================================================*/
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Event Photo",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                  ],
+                  height: height(context: context) / 8,
                 ),
                 SizedBox(
                   height: height(context: context) / 100,
                 ),
                 Container(
-                  height: 200,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8.0),
-                      image: DecorationImage(
-                          image: FileImage(imageFile!), fit: BoxFit.cover)),
+                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+                  child: covereventarea(),
                 ),
                 SizedBox(
-                  height: height(context: context) / 20,
+                  height: height(context: context) / 50,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xFFf0eff5),
+                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+                  child: detailsarea(),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -579,7 +156,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                               }),
                         ),
                         Text(
-                          'I have read and agreed to the ',
+                          'I have read and agreed with ',
                           style: TextStyle(fontSize: 13.0),
                         ),
                         InkWell(
@@ -594,63 +171,425 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                           child: Text(
                             "terms and conditions",
                             style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontSize: 13.0),
+                                color: Color(0xFF6F2DA8), fontSize: 13.0),
                           ),
                         )
                       ],
                     ),
                   ],
                 ),
-/*=="Function on Button"======================================================*/
+                submitbtn(),
                 SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                MaterialButton(
-                  color: Colors.black,
-                  disabledColor: Colors.grey,
-                  minWidth: 163,
-                  height: 40,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(8)),
-                  onPressed: agreedterm != false
-                      ? () {
-                          createActivity(
-                              eventnamecheck!,
-                              eventstartdatecheck!.toString(),
-                              eventstarttimecheck!.toString(),
-                              eventenddatecheck!.toString(),
-                              eventendtimecheck!.toString(),
-                              eventtypecheck!,
-                              participantquantitycheck!,
-                              pointperpartcheck!,
-                              ("Event Detail : " +
-                                  eventdetialcheck! +
-                                  "\nLocation Detail : [" +
-                                  eventlocation +
-                                  "] " +
-                                  locationdetialcheck!),
-                              latitude!,
-                              longitude!);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      PreviewActivityUserPageDone()));
-                        }
-                      : null,
-                  child: Text(
-                    'Submit',
-                    style: TextStyle(color: Colors.white, fontSize: 16),
-                  ),
-                ),
-                SizedBox(
-                  height: height(context: context) / 40,
+                  height: height(context: context) / 20,
                 ),
               ],
             ),
           ),
         ));
+  }
+
+  Widget detailsarea() {
+    return Column(
+      children: [
+/*=="Event Name"==============================================================*/
+        SizedBox(
+          height: height(context: context) / 100,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Name",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                activity.eventname.text,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+/*=="Event Organizer."========================================================*/
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Organizer",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${UserData.userProfile?.username}",
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event Start Date"========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Start Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                eventstartdatecheck.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event Start Time"========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Start Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                eventstarttimecheck.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event End Date"==========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "End Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                eventenddatecheck.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event End Time"==========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "End Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                eventendtimecheck.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event Type"==============================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Type",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                eventtypecheck.toString(),
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+
+/*=="Participants Quantity"===================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Participants Quantity",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                activity.eventquantity.text,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Tier-Points"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Tier-Points",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                activity.eventtierpoint.text,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Event Detials"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Detail",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              activity.eventdetial.text,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+/*=="Location"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Location",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              eventlocation,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+          ),
+        ),
+/*=="Location Details"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(left: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Location Detial",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              locationdetialcheck!,
+              style: TextStyle(color: Colors.black, fontSize: 16),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget covereventarea() {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          image:
+              DecorationImage(image: FileImage(imageFile!), fit: BoxFit.cover)),
+    );
+  }
+
+  Widget submitbtn() {
+    return MaterialButton(
+      color: Color(0xFF6F2DA8),
+      disabledColor: Colors.grey,
+      minWidth: 163,
+      height: 40,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      onPressed: agreedterm != false
+          ? () {
+              createActivity(
+                  eventnamecheck!,
+                  eventstartdatecheck!.toString(),
+                  eventstarttimecheck!.toString(),
+                  eventenddatecheck!.toString(),
+                  eventendtimecheck!.toString(),
+                  eventtypecheck!,
+                  participantquantitycheck!,
+                  pointperpartcheck!,
+                  ("Event Detail : " +
+                      eventdetialcheck! +
+                      "\nLocation Detail : [" +
+                      eventlocation +
+                      "] " +
+                      locationdetialcheck!),
+                  latitude!,
+                  longitude!);
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          PreviewActivityUserPageDone()),
+                  (Route<dynamic> route) => false);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => PreviewActivityUserPageDone()));
+            }
+          : null,
+      child: Text(
+        'Submit',
+        style: TextStyle(color: Colors.white, fontSize: 16),
+      ),
+    );
   }
 }
 
@@ -666,6 +605,7 @@ class Activity {
   TextEditingController eventtype = TextEditingController();
   TextEditingController eventquantity = TextEditingController();
   TextEditingController eventpointquantity = TextEditingController();
+  TextEditingController eventtierpoint = TextEditingController();
   TextEditingController eventdetial = TextEditingController();
   TextEditingController eventlocationdetail = TextEditingController();
   TextEditingController eventlocation = TextEditingController();
