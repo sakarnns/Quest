@@ -107,12 +107,17 @@ class _GeneratorQRPageState extends State<GeneratorQRPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Generator QR',
-              style: TextStyle(fontSize: 28, color: Colors.black)),
+          title: Text(
+            'Your QR',
+            style: TextStyle(
+              fontSize: 24,
+              color: Color(0xFF6F2DA8),
+            ),
+          ),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: BackButton(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -178,7 +183,7 @@ class _GeneratorQRPageState extends State<GeneratorQRPage> {
     return Padding(
       padding: EdgeInsets.fromLTRB(40, 20, 40, 0),
       child: MaterialButton(
-        color: Colors.black,
+        color: Color(0xFF6F2DA8),
         minWidth: 163,
         height: 40,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

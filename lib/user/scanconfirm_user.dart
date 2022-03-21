@@ -88,7 +88,7 @@ class _ScanConfirmUserPage extends State<ScanConfirmUserPage> {
                   Text(
                     "Confirm Participant",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xFF6F2DA8),
                       fontSize: 32,
                     ),
                   ),
@@ -126,8 +126,8 @@ class _ScanConfirmUserPage extends State<ScanConfirmUserPage> {
 
   Widget cofirmEventButton() {
     return MaterialButton(
-      disabledColor: Colors.black,
-      color: Colors.black,
+      disabledColor: Colors.grey,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

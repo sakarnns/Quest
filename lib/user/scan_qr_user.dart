@@ -86,13 +86,19 @@ class _ScanQrUserPageState extends State<ScanQrUserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Scan QR',
-            style: TextStyle(fontSize: 28, color: Colors.black)),
+        title: Text(
+          'Scan QR',
+          style: TextStyle(
+            fontSize: 24,
+            color: Colors.white,
+          ),
+        ),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: BackButton(
-          color: Colors.black,
+          color: Colors.white,
           onPressed: () {
             Navigator.pop(context);
           },
@@ -135,7 +141,7 @@ class _ScanQrUserPageState extends State<ScanQrUserPage> {
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: Color(0xFF007AFF),
+          borderColor: Color(0xFF6F2DA8),
           borderRadius: 8,
           borderLength: 25,
           borderWidth: 8,

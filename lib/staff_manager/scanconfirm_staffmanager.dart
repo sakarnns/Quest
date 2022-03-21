@@ -92,68 +92,28 @@ class _ScanConfirmStaffManagerPage extends State<ScanConfirmStaffManagerPage> {
                   Text(
                     "Confirm Participant",
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Color(0xFF6F2DA8),
                       fontSize: 32,
                     ),
                   ),
                 ],
               ),
               SizedBox(
-                height: height(context: context) / 50,
+                height: height(context: context) / 20,
               ),
               Container(
-                padding: const EdgeInsets.only(
-                    left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                // decoration: BoxDecoration(
-                //     color: Color(0xFFE5E5EA),
-                //     borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       responsebody,
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                      style: TextStyle(color: Colors.black, fontSize: 24),
                     ),
                   ],
                 ),
               ),
-              SizedBox(
-                height: height(context: context) / 50,
-              ),
-              // Container(
-              //   padding: const EdgeInsets.only(
-              //       left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-              //   decoration: BoxDecoration(
-              //       color: Color(0xFFE5E5EA),
-              //       borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         "Username : ${qrGenData.qrGen!.userName}",
-              //         style: TextStyle(color: Colors.black, fontSize: 16),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              SizedBox(
-                height: height(context: context) / 50,
-              ),
-              // Container(
-              //   padding: const EdgeInsets.only(
-              //       left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-              //   decoration: BoxDecoration(
-              //       color: Color(0xFFE5E5EA),
-              //       borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         "Point : ${qrGenData.qrGen!.points}",
-              //         style: TextStyle(color: Colors.black, fontSize: 16),
-              //       ),
-              //     ],
-              //   ),
-              // ),
               SizedBox(
                 height: height(context: context) / 2,
               ),
@@ -167,8 +127,8 @@ class _ScanConfirmStaffManagerPage extends State<ScanConfirmStaffManagerPage> {
 
   Widget cofirmEventButton() {
     return MaterialButton(
-      disabledColor: Colors.black,
-      color: Colors.black,
+      disabledColor: Colors.grey,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

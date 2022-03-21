@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'Quest',
       theme: ThemeData(
         fontFamily: 'SFPro',
-        primarySwatch: Colors.blueGrey,
+        primarySwatch: Colors.blue,
       ),
       home: LoginPage(),
     );
