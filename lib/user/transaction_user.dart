@@ -183,20 +183,40 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                 children: [
                   Row(
                     children: [
+                      transactionsData.transactions[index].type == "Reward" ?
                       Text(
-                        transactionsData.transactions[index].name,
+                        "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.black,
+                          color: Colors.red,
                           fontWeight: FontWeight.w700,
                         ),
-                      ),
+                      ) 
+                      :Text(
+                        "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color(0xFF6F2DA8),
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ) ,
                       Spacer(),
+                      transactionsData.transactions[index].type == "Reward" ?
                       Text(
                         "${transactionsData.transactions[index].points.toString()} Point(s)",
                         style: TextStyle(
+
                           fontSize: 16,
-                          color: Colors.black,
+                          color: Colors.red,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                      :Text(
+                        "${transactionsData.transactions[index].points.toString()} Point(s)",
+                        style: TextStyle(
+
+                          fontSize: 16,
+                          color: Color(0xFF6F2DA8),
                           fontWeight: FontWeight.w700,
                         ),
                       ),

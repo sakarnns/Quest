@@ -7,6 +7,7 @@ import 'package:quest_2/user/create_activity_user.dart';
 import 'package:quest_2/user/preview_activty_user_done.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:quest_2/initiate_app/terms_condition.dart';
+import 'package:quest_2/user/preview_activty_user_fail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/userdata.dart';
 
@@ -68,9 +69,14 @@ Future createActivity(
   request.headers.addAll(requestHeaders);
 
   http.StreamedResponse response = await request.send();
+  
+  status = response.statusCode;
 
   if (response.statusCode == 201) {
     print("ยิงละ");
+  }else{
+    print(response.statusCode);
+    print(response.stream);
   }
 }
 
@@ -85,6 +91,7 @@ class PreviewActivityUserPage extends StatefulWidget {
 
 bool? isvalid;
 bool agreedterm = false;
+int? status;
 
 class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
   @override
@@ -578,11 +585,17 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                       locationdetialcheck!),
                   latitude!,
                   longitude!);
+              status == 200 ?
               Navigator.of(context).pushAndRemoveUntil(
                   MaterialPageRoute(
                       builder: (BuildContext context) =>
                           PreviewActivityUserPageDone()),
-                  (Route<dynamic> route) => false);
+                  (Route<dynamic> route) => false) 
+              :Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (BuildContext context) =>
+                          PreviewActivityUserPageFail()),
+                  (Route<dynamic> route) => false) ;
               // Navigator.push(
               //     context,
               //     MaterialPageRoute(

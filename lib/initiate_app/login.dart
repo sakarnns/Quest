@@ -116,6 +116,12 @@ class _LoginPageState extends State<LoginPage> {
       });
       // print("Login fail");
     }
+    if (res.statusCode == 401) {
+      setState(() {
+        loginfail = true;
+      });
+      // print("Login fail");
+    }
   }
 
   setToken(String token) async {
