@@ -74,7 +74,8 @@ class _NavigationStaffState extends State<NavigationStaff> {
             showUnselectedLabels: true,
             backgroundColor: Color(0xFFf0eff5),
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.black,
+            unselectedItemColor: Colors.grey,
+            fixedColor: Color(0xFF6F2DA8),
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 // icon: Icon(Icons.home),
@@ -84,7 +85,7 @@ class _NavigationStaffState extends State<NavigationStaff> {
                   child: SvgPicture.asset(
                     'assets/icons/activity_active.svg',
                     color:
-                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Active',
@@ -96,7 +97,7 @@ class _NavigationStaffState extends State<NavigationStaff> {
                   child: SvgPicture.asset(
                     'assets/icons/setting_page.svg',
                     color:
-                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Setting',

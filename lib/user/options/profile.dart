@@ -127,6 +127,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 color: Color(0xFF6F2DA8),
               ),
             ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(16),
+              ),
+            ),
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(

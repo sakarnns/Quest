@@ -65,6 +65,8 @@ class _NavigationUserState extends State<NavigationUser> {
             showSelectedLabels: true,
             showUnselectedLabels: true,
             backgroundColor: Color(0xFFf0eff5),
+            unselectedItemColor: Colors.grey,
+            fixedColor: Color(0xFF6F2DA8),
             type: BottomNavigationBarType.fixed,
             // unselectedItemColor: Colors.black,
             items: <BottomNavigationBarItem>[
@@ -76,7 +78,7 @@ class _NavigationUserState extends State<NavigationUser> {
                   child: SvgPicture.asset(
                     'assets/icons/home_page.svg',
                     color:
-                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Home',
@@ -88,7 +90,7 @@ class _NavigationUserState extends State<NavigationUser> {
                   child: SvgPicture.asset(
                     'assets/icons/activitys_page.svg',
                     color:
-                        _selectedIndex == 1 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 1 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Activity',
@@ -100,7 +102,7 @@ class _NavigationUserState extends State<NavigationUser> {
                   child: SvgPicture.asset(
                     'assets/icons/create_page.svg',
                     color:
-                        _selectedIndex == 2 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 2 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Create',
@@ -112,7 +114,7 @@ class _NavigationUserState extends State<NavigationUser> {
                   child: SvgPicture.asset(
                     'assets/icons/reward_page.svg',
                     color:
-                        _selectedIndex == 3 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 3 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Reward',
@@ -124,7 +126,7 @@ class _NavigationUserState extends State<NavigationUser> {
                   child: SvgPicture.asset(
                     'assets/icons/setting_page.svg',
                     color:
-                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Setting',

@@ -70,7 +70,8 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
             showUnselectedLabels: true,
             backgroundColor: Color(0xFFf0eff5),
             type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.black,
+            unselectedItemColor: Colors.grey,
+            fixedColor: Color(0xFF6F2DA8),
             items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 // icon: Icon(Icons.home),
@@ -80,7 +81,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   child: SvgPicture.asset(
                     'assets/icons/activity_active.svg',
                     color:
-                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Active',
@@ -92,7 +93,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   child: SvgPicture.asset(
                     'assets/icons/activity_pending.svg',
                     color:
-                        _selectedIndex == 1 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 1 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Pending',
@@ -104,7 +105,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   child: SvgPicture.asset(
                     'assets/icons/create_page.svg',
                     color:
-                        _selectedIndex == 2 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 2 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Create',
@@ -116,7 +117,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   child: SvgPicture.asset(
                     'assets/icons/create_staff.svg',
                     color:
-                        _selectedIndex == 3 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 3 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Create Staff',
@@ -128,7 +129,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   child: SvgPicture.asset(
                     'assets/icons/setting_page.svg',
                     color:
-                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.black,
+                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
                 label: 'Setting',

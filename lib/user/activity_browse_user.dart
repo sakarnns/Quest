@@ -127,16 +127,23 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
-          title: Text('Activity',
-              style: TextStyle(fontSize: 28, color: Colors.black)),
+          title: Text(
+            'Activity',
+            style: TextStyle(
+              fontSize: 24,
+              color: Color(0xFF6F2DA8),
+            ),
+          ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          backgroundColor: Color(0xFFEBEDF2),
+          // backgroundColor: Color(0xFFEBEDF2),
           // backgroundColor: Colors.transparent,
+          backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -152,7 +159,7 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
                     ? Column(
                         children: [
                           SizedBox(
-                            height: height(context: context) / 50,
+                            height: height(context: context) / 7.5,
                           ),
                           Row(
                             children: [
@@ -212,14 +219,10 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
         border: outlineInputBorder(),
         contentPadding: EdgeInsets.all(8.0),
         hintText: 'Find your best activity...',
-        prefixIcon: Icon(Icons.search),
-        //  onFieldSubmitted: (){},
-        // suffixIcon: IconButton(
-        //   icon: Icon(Icons.clear),
-        //   onPressed: () {
-        //     _searchController.clear();
-        //   },
-        // ),
+        prefixIcon: Icon(
+          Icons.search,
+          color: Color(0xFF6F2DA8),
+        ),
       ),
       onChanged: (value) => _runFilter(value),
     );

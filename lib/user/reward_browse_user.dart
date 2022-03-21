@@ -175,14 +175,10 @@ class _RewardUserBrowsePageState extends State<RewardUserBrowsePage> {
           border: outlineInputBorder(),
           contentPadding: EdgeInsets.all(8.0),
           hintText: 'Find your best reward...',
-          prefixIcon: Icon(Icons.search),
-          //  onFieldSubmitted: (){},
-          // suffixIcon: IconButton(
-          //   icon: Icon(Icons.clear),
-          //   onPressed: () {
-          //     _searchController.clear();
-          //   },
-          // ),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Color(0xFF6F2DA8),
+          ),
         ),
         onChanged: (value) => _runFilter(value));
   }

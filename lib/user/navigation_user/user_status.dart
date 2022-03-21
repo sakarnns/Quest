@@ -106,11 +106,29 @@ class _StatusUserState extends State<StatusUser> {
                   height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width / 2.8,
                   margin: EdgeInsets.only(right: 8, bottom: 20),
-                  child: Text(
-                    " 99 T-points",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        "null*",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        " T-points",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF6F2DA8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -132,12 +150,27 @@ class _StatusUserState extends State<StatusUser> {
                           MaterialPageRoute(
                               builder: (context) => LogTransactionPage()));
                     },
-                    child: Text(
-                      "${UserData.userProfile?.points} points",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          "${UserData.userProfile?.points}",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                        Text(
+                          " points",
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFF6F2DA8),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
