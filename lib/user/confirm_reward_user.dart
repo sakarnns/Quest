@@ -94,17 +94,24 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Reward',
-                style: TextStyle(fontSize: 28, color: Colors.black)),
+            title: Text(
+              'Reward',
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
             // backgroundColor: Colors.transparent,
-            backgroundColor: Color(0xFFEBEDF2),
+            // backgroundColor: Color(0xFFEBEDF2),
+            backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -117,6 +124,9 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
               ),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: height(context: context) / 9,
+                  ),
                   SizedBox(
                     height: height(context: context) / 100,
                   ),
@@ -155,7 +165,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                         padding: const EdgeInsets.only(
                             left: 16.0, top: 8.0, right: 16.0),
                         decoration: BoxDecoration(
-                            color: Color(0xFFE5E5EA),
+                            color: Color(0xFFf0eff5),
                             borderRadius: new BorderRadius.only(
                               bottomLeft: const Radius.circular(8.0),
                               bottomRight: const Radius.circular(8.0),
@@ -189,7 +199,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                               ],
                             ),
                             Divider(
-                              color: Color(0xFFD1D1D6),
+                              color: Color(0xFF6F2DA8),
                               thickness: 1,
                               endIndent: 5,
                             ),
@@ -237,7 +247,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                     padding: const EdgeInsets.only(
                         left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
                     decoration: BoxDecoration(
-                        color: Color(0xFFE5E5EA),
+                        color: Color(0xFFf0eff5),
                         borderRadius:
                             new BorderRadius.all(Radius.circular(8.0))),
                     child: Row(
@@ -249,9 +259,9 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                         Text(
                           '  Points',
                           style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700),
+                            color: Colors.black,
+                            fontSize: 16,
+                          ),
                         ),
                       ],
                     ),
@@ -278,7 +288,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                         padding: const EdgeInsets.only(
                             left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
                         decoration: BoxDecoration(
-                            color: Color(0xFFE5E5EA),
+                            color: Color(0xFFf0eff5),
                             borderRadius:
                                 new BorderRadius.all(Radius.circular(8.0))),
                       ),
@@ -352,10 +362,15 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 },
               );
             },
-            activeColor: Colors.black,
+            activeColor: Color(0xFF6F2DA8),
             toggleable: true,
           ),
-          Text("Saved Address"),
+          Text(
+            "Saved Address",
+            style: TextStyle(
+              color: Color(0xFF6F2DA8),
+            ),
+          ),
           Radio<int>(
             value: 1,
             groupValue: _value,
@@ -373,10 +388,15 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 rewardpostalcodecheck = "";
               });
             },
-            activeColor: Colors.black,
+            activeColor: Color(0xFF6F2DA8),
             toggleable: true,
           ),
-          Text("New Address"),
+          Text(
+            "New Address",
+            style: TextStyle(
+              color: Color(0xFF6F2DA8),
+            ),
+          ),
         ],
       ),
     );
@@ -453,7 +473,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -490,7 +510,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -527,7 +547,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -568,7 +588,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -605,7 +625,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -643,7 +663,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -682,7 +702,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                 decoration: InputDecoration(
                   focusedBorder: outlineInputBorder(),
                   filled: true,
-                  fillColor: Color(0xFFE5E5EA),
+                  fillColor: Color(0xFFf0eff5),
                   contentPadding: EdgeInsets.all(8.0),
                   border: outlineInputBorder(),
                 ),
@@ -710,7 +730,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
   Widget confirmButtonnewdress() {
     return MaterialButton(
       disabledColor: Colors.grey,
-      color: Colors.black,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -763,7 +783,7 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
   Widget confirmButtonolddress() {
     return MaterialButton(
       disabledColor: Colors.grey,
-      color: Colors.black,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

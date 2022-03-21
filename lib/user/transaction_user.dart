@@ -78,16 +78,23 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Transactions',
-            style: TextStyle(fontSize: 28, color: Colors.black)),
+        title: Text(
+          'Transactions',
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
         // backgroundColor: Colors.transparent,
-        backgroundColor: Color(0xFFEBEDF2),
+        // backgroundColor: Color(0xFFEBEDF2),
+        backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
-          color: Colors.black,
+          color: Color(0xFF6F2DA8),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -100,6 +107,9 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
             ),
             child: Column(
               children: [
+                SizedBox(
+                  height: height(context: context) / 9,
+                ),
                 isLoading != true
                     ? (transactionsData.transactions.isEmpty
                         ? initiateFirst()
@@ -193,11 +203,8 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                     ],
                   ),
                   Divider(
-                    // color: Colors,
-                    color: Color(0xFFD1D1D6),
-                    // height: 25,
+                    color: Color(0xFF6F2DA8),
                     thickness: 1,
-                    // indent: 1,
                     endIndent: 5,
                   ),
                   Text(

@@ -150,9 +150,13 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
       isButtonInterestActiveAPI =
           eventDetailData.eventDetail!.eventCheckInterest;
     }
-    isLoading = false;
-    setState(() {});
-    print("fetch 2 ");
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        isLoading = false;
+        setState(() {});
+        print("fetch 2 ");
+      });
+    });
   }
 
   @override
@@ -163,17 +167,26 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
-            title: Text('Activity',
-                style: TextStyle(fontSize: 28, color: Colors.black)),
+            title: Text(
+              'Activity',
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             shape: RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(16))),
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(16),
+              ),
+            ),
             // backgroundColor: Colors.transparent,
-            backgroundColor: Color(0xFFEBEDF2),
+            // backgroundColor: Color(0xFFEBEDF2),
+            backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -190,9 +203,35 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
               horizontal: width(context: context) / 20,
             ),
             child: isLoading != true
-                ? activityDetailArea()
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: height(context: context) / 8,
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(8.0))),
+                        child: covereventarea(),
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 50,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xFFf0eff5),
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(8.0))),
+                        child: activityDetailArea(),
+                      ),
+                      functionbtn(),
+                    ],
+                  )
                 : Container(
-                    height: 633,
+                    height: 800,
                     alignment: Alignment.center,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -218,94 +257,73 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
         SizedBox(
           height: height(context: context) / 100,
         ),
-        SizedBox(
-          height: height(context: context) / 100,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Name",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventName}',
+                "Name",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventName}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Event Organizer."========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Organizer",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventPublisher}',
+                "Organizer",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventPublisher}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Event Start Date"========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Start Date",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Start Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 "${eventDetailData.eventDetail?.eventStartDate}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -314,30 +332,25 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           ),
         ),
 /*=="Event Start Time"========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Start Time",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Start Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 "${eventDetailData.eventDetail?.eventStartTime}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -346,62 +359,52 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           ),
         ),
 /*=="Event End Date"==========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event End Date",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventEndDate}',
+                "End Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventEndDate}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Event End Time"==========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event End Time",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "End Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 "${eventDetailData.eventDetail?.eventEndTime}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -410,218 +413,264 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           ),
         ),
 /*=="Event Type"==============================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Type",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventType}',
+                "Type",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventType}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
-/*=="Participants Quantity"===================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+/*=="Participants Limit"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Participants Quantity",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.participantLimit} People',
+                "Participants Limit",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.participantLimit}",
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Participants Limit"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Participants Joined",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventJoined}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Piont/Participants"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Point/Participant",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventPoints}  Points',
+                "Point/Participant",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventPoints} Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
-/*=="Tier Points"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+/*=="Tier-Points"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Require Tier-Points",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '${eventDetailData.eventDetail?.eventPoints}  Tier points',
+                "Tier-Points",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventPoints} Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Event Detials"===========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Details",
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Detail",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              '${eventDetailData.eventDetail?.eventDetail}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
-                fontWeight: FontWeight.w700,
               ),
             ),
-          ],
+          ),
         ),
-        Stack(
-          children: [
-            Container(
-              height: 172,
-              padding: const EdgeInsets.only(
-                  left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-              decoration: BoxDecoration(
-                  color: Color(0xFFE5E5EA),
-                  borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Text(
-                    //  rewardDetailData.rewardDetail!.rewardDetail,
-                    '${eventDetailData.eventDetail?.eventDetail}',
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ],
+/*=="Location"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Location",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            )
-          ],
+            ],
+          ),
         ),
-/*=="Photo about your Event."=================================================*/
         SizedBox(
-          height: height(context: context) / 50,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Photo",
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              '${eventDetailData.eventDetail?.eventLongitude}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
-                fontWeight: FontWeight.w700,
               ),
             ),
-          ],
+          ),
+        ),
+/*=="Location Details"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Location Detial",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              '${eventDetailData.eventDetail?.eventDetail}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+            ),
+          ),
         ),
         SizedBox(
           height: height(context: context) / 100,
         ),
-        Container(
-          height: 200,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
-                  fit: BoxFit.cover)),
-        ),
-/*=="Function on Button"======================================================*/
-        SizedBox(
-          height: height(context: context) / 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(padding: EdgeInsets.all(8.0), child: joinButton()),
-            Padding(padding: EdgeInsets.all(8.0), child: qrButton()),
-          ],
-        ),
-        SizedBox(
-          height: height(context: context) / 20,
-        ),
       ],
+    );
+  }
+
+  Widget covereventarea() {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          image: DecorationImage(
+              image: NetworkImage(
+                  "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
+              fit: BoxFit.cover)),
     );
   }
 
@@ -661,7 +710,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
   Widget joinButton() {
     return MaterialButton(
       disabledColor: Colors.grey,
-      color: Colors.black,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -696,7 +745,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
   Widget qrButton() {
     return MaterialButton(
       disabledColor: Colors.grey,
-      color: Colors.black,
+      color: Color(0xFF6F2DA8),
       minWidth: 150,
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -722,6 +771,26 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                         : "Paticipant's QR",
         style: TextStyle(color: Colors.white, fontSize: 16),
       ),
+    );
+  }
+
+  Widget functionbtn() {
+    return Column(
+      children: [
+        SizedBox(
+          height: height(context: context) / 50,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(padding: EdgeInsets.all(8.0), child: joinButton()),
+            Padding(padding: EdgeInsets.all(8.0), child: qrButton()),
+          ],
+        ),
+        SizedBox(
+          height: height(context: context) / 20,
+        ),
+      ],
     );
   }
 }

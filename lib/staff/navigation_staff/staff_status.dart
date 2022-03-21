@@ -63,7 +63,7 @@ class _StatusStaffState extends State<StatusStaff> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFEBEDF2),
+                  color: Color(0xFFf0eff5),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),

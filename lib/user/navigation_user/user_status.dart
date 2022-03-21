@@ -59,7 +59,7 @@ class _StatusUserState extends State<StatusUser> {
             children: [
               Container(
                 decoration: BoxDecoration(
-                  color: Color(0xFFEBEDF2),
+                  color: Color(0xFFf0eff5),
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(16.0),
                     bottomRight: Radius.circular(16.0),
@@ -67,29 +67,6 @@ class _StatusUserState extends State<StatusUser> {
                 ),
                 height: MediaQuery.of(context).size.height / 7.6,
               ),
-              // Container(
-              //   decoration: new BoxDecoration(
-              //     color: Colors.blue,
-              //   ),
-              //   padding: const EdgeInsets.all(4.0),
-              //   alignment: Alignment.bottomLeft,
-              //   height: MediaQuery.of(context).size.height / 8,
-              //   width: MediaQuery.of(context).size.width / 3.2,
-              //   // color: Colors.blue,
-              //   margin: EdgeInsets.only(
-              //     left: 8,
-              //   ),
-              //   // height: MediaQuery.of(context).size.height / ,
-              //   // child:
-              //   // FittedBox(
-              //   // fit: BoxFit.fill,
-              //   child: Text(
-              //     "${UserData.userProfile?.username}",
-              //     maxLines: 1,
-              //     overflow: TextOverflow.ellipsis,
-              //     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-              //   ),
-              // ),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Container(
@@ -129,20 +106,11 @@ class _StatusUserState extends State<StatusUser> {
                   height: MediaQuery.of(context).size.height / 8,
                   width: MediaQuery.of(context).size.width / 2.8,
                   margin: EdgeInsets.only(right: 8, bottom: 20),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LogTransactionPage()));
-                    },
-                    child: Text(
-                      " 99999 T-points",
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
-                    ),
+                  child: Text(
+                    " 99 T-points",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                   ),
                 ),
               ),
@@ -184,7 +152,7 @@ class _StatusUserState extends State<StatusUser> {
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Color(0xFFEBEDF2), shape: BoxShape.circle),
+                              color: Color(0xFFf0eff5), shape: BoxShape.circle),
                           height: MediaQuery.of(context).size.height / 9,
                           width: MediaQuery.of(context).size.width / 4,
                         ),

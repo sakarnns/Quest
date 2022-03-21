@@ -170,7 +170,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           // hintText: '...',
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
@@ -221,7 +221,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -278,7 +278,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -334,7 +334,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -386,7 +386,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -443,7 +443,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -482,9 +482,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: height(context: context) / 500,
@@ -496,7 +493,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           // hintText: '...',
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
@@ -536,7 +533,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
                       onChanged: (val) {
@@ -575,7 +572,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
                       onChanged: (val) {
@@ -616,7 +613,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                         focusedBorder: outlineInputBorder(),
                         filled: true,
-                        fillColor: Color(0xFFE5E5EA),
+                        fillColor: Color(0xFFf0eff5),
                         contentPadding: EdgeInsets.all(8.0),
                         border: outlineInputBorder(),
                       ),
@@ -653,7 +650,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -705,7 +702,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       decoration: InputDecoration(
                         focusedBorder: outlineInputBorder(),
                         filled: true,
-                        fillColor: Color(0xFFE5E5EA),
+                        fillColor: Color(0xFFf0eff5),
                         contentPadding: EdgeInsets.all(8.0),
                         border: outlineInputBorder(),
                       ),

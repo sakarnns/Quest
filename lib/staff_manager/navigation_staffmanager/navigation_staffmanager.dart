@@ -68,7 +68,7 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
         bottomNavigationBar: BottomNavigationBar(
             showSelectedLabels: true,
             showUnselectedLabels: true,
-            backgroundColor: Color(0xFFEBEDF2),
+            backgroundColor: Color(0xFFf0eff5),
             type: BottomNavigationBarType.fixed,
             unselectedItemColor: Colors.black,
             items: <BottomNavigationBarItem>[

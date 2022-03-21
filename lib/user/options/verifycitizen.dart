@@ -52,13 +52,19 @@ class _VerifyCitizenPageState extends State<VerifyCitizenPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Verify Citizen ID',
-                style: TextStyle(fontSize: 32.0, color: Colors.black)),
+            title: Text(
+              'Verify Citizen ID',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -72,6 +78,9 @@ class _VerifyCitizenPageState extends State<VerifyCitizenPage> {
               child: Column(
                 children: [
                   SizedBox(
+                    height: height(context: context) / 8,
+                  ),
+                  SizedBox(
                     height: height(context: context) / 100,
                   ),
                   Row(
@@ -79,7 +88,10 @@ class _VerifyCitizenPageState extends State<VerifyCitizenPage> {
                     children: [
                       Text(
                         "Citizen Number",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
                       ),
                     ],
                   ),
@@ -114,26 +126,11 @@ class _VerifyCitizenPageState extends State<VerifyCitizenPage> {
                   SizedBox(
                     height: height(context: context) / 100,
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   children: [
-                  //     InkWell(
-                  //       onTap: () {
-                  //         print('Photo');
-                  //       },
-                  //       child: Text(
-                  //         "Upload Citizen Card",
-                  //         style:
-                  //             TextStyle(decoration: TextDecoration.underline),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
                   SizedBox(
                     height: height(context: context) / 100,
                   ),
                   MaterialButton(
-                    color: Colors.black,
+                    color: Color(0xFF6F2DA8),
                     disabledColor: Colors.grey,
                     minWidth: 163,
                     height: 40,

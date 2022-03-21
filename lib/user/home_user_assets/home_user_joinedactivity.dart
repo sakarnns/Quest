@@ -65,24 +65,35 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
     isLoading = true;
     print("fetch 1 ");
     await getjoinedevent();
-    isLoading = false;
-    setState(() {});
-    print("fetch 2 ");
+    Future.delayed(Duration(milliseconds: 500), () {
+      setState(() {
+        isLoading = false;
+        setState(() {});
+        print("fetch 2 ");
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: Text('Joined Activity',
-            style: TextStyle(fontSize: 24, color: Colors.black)),
+        title: Text(
+          'Joined Activity',
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
         // backgroundColor: Color(0xFFEBEDF2),
-        backgroundColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
-          color: Colors.black,
+          color: Color(0xFF6F2DA8),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -95,6 +106,9 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
           ),
           child: Column(
             children: [
+              SizedBox(
+                height: height(context: context) / 9,
+              ),
               isLoading != true
                   ? (joinedEventData.joinedEvent.isEmpty
                       ? initiateSecond()

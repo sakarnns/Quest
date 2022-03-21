@@ -309,6 +309,7 @@ class _SignupPageState extends State<SignupPage> {
                       children: [
                         Checkbox(
                             value: agreedterm,
+                            activeColor: Color(0xFF6F2DA8),
                             onChanged: (val) {
                               setState(() {
                                 agreedterm = val!;

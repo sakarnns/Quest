@@ -118,13 +118,19 @@ class _ProfilePageState extends State<ProfilePage> {
         },
         behavior: HitTestBehavior.translucent,
         child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Profile',
-                style: TextStyle(fontSize: 32.0, color: Colors.black)),
+            title: Text(
+              'Profile',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {
@@ -163,6 +169,12 @@ class _ProfilePageState extends State<ProfilePage> {
               child: isLoading != true
                   ? Column(
                       children: [
+                        SizedBox(
+                          height: height(context: context) / 8,
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 100,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -202,8 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Text(
                             "Change Profile Photo",
                             style: TextStyle(
-                              color: Color(0xFFAEAEB2),
-                              decoration: TextDecoration.underline,
+                              color: Color(0xFF6F2DA8),
                               fontSize: 16,
                             ),
                           ),
@@ -270,7 +281,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Container(
           padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
           decoration: BoxDecoration(
-              color: Color(0xFFEBEDF2),
+              color: Color(0xFFf0eff5),
               borderRadius: new BorderRadius.only(
                   bottomLeft: const Radius.circular(8.0),
                   bottomRight: const Radius.circular(8.0),
@@ -287,11 +298,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
               Divider(
-                // color: Colors,
-                color: Color(0xFFD1D1D6),
-                // height: 25,
+                color: Color(0xFF6F2DA8),
                 thickness: 1,
-                // indent: 1,
                 endIndent: 5,
               ),
               Text(

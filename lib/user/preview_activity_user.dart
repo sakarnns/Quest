@@ -147,6 +147,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                         Transform.scale(
                           scale: 1.0,
                           child: Checkbox(
+                              activeColor: Color(0xFF6F2DA8),
                               value: agreedterm,
                               onChanged: (val) {
                                 setState(() {
@@ -533,6 +534,9 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
               style: TextStyle(color: Colors.black, fontSize: 16),
             ),
           ),
+        ),
+        SizedBox(
+          height: height(context: context) / 100,
         ),
       ],
     );

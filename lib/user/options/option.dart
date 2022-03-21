@@ -5,7 +5,7 @@ import 'package:quest_2/initiate_app/login.dart';
 import 'package:quest_2/user/options/profile.dart';
 import 'package:quest_2/user/options/verifyoption.dart';
 
-import '../pending_reward_user.dart';
+import 'pending_reward_user.dart';
 
 class OptionPage extends StatefulWidget {
   OptionPage({Key? key}) : super(key: key);

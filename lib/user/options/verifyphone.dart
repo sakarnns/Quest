@@ -52,110 +52,105 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Verify Phone Number',
-                style: TextStyle(fontSize: 32.0, color: Colors.black)),
+            title: Text(
+              'Verify Phone Number',
+              style: TextStyle(
+                fontSize: 24.0,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
           ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width(context: context) / 20,
-              ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Phone Number",
-                        style: TextStyle(color: Colors.black, fontSize: 16),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: height(context: context) / 500,
+          body: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width(context: context) / 20,
+            ),
+            child: Column(
+              children: [
+                SizedBox(
+                  height: height(context: context) / 8,
+                ),
+                SizedBox(
+                  height: height(context: context) / 100,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Phone Number",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700),
                     ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.phone,
-                      inputFormatters: [LengthLimitingTextInputFormatter(10)],
-                      decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.phone),
-                          focusedBorder: outlineInputBorder(),
-                          filled: true,
-                          fillColor: Colors.transparent,
-                          hintText: 'Phone Number',
-                          contentPadding: EdgeInsets.all(8.0),
-                          border: outlineInputBorder()),
-                      onChanged: (val) {
-                        setState(() {
-                          verifyphonenumberyes = val;
-                          isvalid = true;
-                        });
-                      },
-                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height(context: context) / 100,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    vertical: height(context: context) / 500,
                   ),
-                  SizedBox(
-                    height: height(context: context) / 100,
+                  child: TextFormField(
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [LengthLimitingTextInputFormatter(10)],
+                    decoration: InputDecoration(
+                        prefixIcon: Icon(
+                          Icons.phone,
+                          color: Color(0xFF6F2DA8),
+                        ),
+                        focusedBorder: outlineInputBorder(),
+                        filled: true,
+                        fillColor: Colors.transparent,
+                        hintText: 'Phone Number',
+                        contentPadding: EdgeInsets.all(8.0),
+                        border: outlineInputBorder()),
+                    onChanged: (val) {
+                      setState(() {
+                        verifyphonenumberyes = val;
+                        isvalid = true;
+                      });
+                    },
                   ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.start,
-                  //   children: [
-                  //     InkWell(
-                  //       onTap: () {
-                  //         print('Photo');
-                  //       },
-                  //       child: Text(
-                  //         "Upload Citizen Card",
-                  //         style:
-                  //             TextStyle(decoration: TextDecoration.underline),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  MaterialButton(
-                    color: Colors.black,
-                    disabledColor: Colors.grey,
-                    minWidth: 163,
-                    height: 40,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8)),
-                    onPressed: verifyphonenumberyes != null &&
-                            verifyphonenumberyes != ""
-                        ? () {
-                            Navigator.pop(context);
-                            verifyphonenumber(verifyphonenumberyes!);
-                            // Navigator.of(context).pushAndRemoveUntil(
-                            //     MaterialPageRoute(
-                            //         builder: (context) => OptionPage()),
-                            //     (Route<dynamic> route) => true);
-                            print(verifyphonenumberyes);
-                          }
-                        : null,
-                    child: Text(
-                      'Save',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
+                ),
+                SizedBox(
+                  height: height(context: context) / 100,
+                ),
+                MaterialButton(
+                  color: Color(0xFF6F2DA8),
+                  disabledColor: Colors.grey,
+                  minWidth: 163,
+                  height: 40,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8)),
+                  onPressed:
+                      verifyphonenumberyes != null && verifyphonenumberyes != ""
+                          ? () {
+                              Navigator.pop(context);
+                              verifyphonenumber(verifyphonenumberyes!);
+                              // Navigator.of(context).pushAndRemoveUntil(
+                              //     MaterialPageRoute(
+                              //         builder: (context) => OptionPage()),
+                              //     (Route<dynamic> route) => true);
+                              print(verifyphonenumberyes);
+                            }
+                          : null,
+                  child: Text(
+                    'Save',
+                    style: TextStyle(color: Colors.white, fontSize: 16),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           )),
     );
