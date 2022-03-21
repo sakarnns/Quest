@@ -12,8 +12,6 @@ class PreviewActivityStaffManagerPageDone extends StatefulWidget {
       _PreviewActivityStaffManagerPageDoneState();
 }
 
-bool agreedterm = false;
-
 class _PreviewActivityStaffManagerPageDoneState
     extends State<PreviewActivityStaffManagerPageDone> {
   @override
@@ -30,7 +28,7 @@ class _PreviewActivityStaffManagerPageDoneState
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: height(context: context) / 2,
+                height: height(context: context) / 2.5,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -42,24 +40,22 @@ class _PreviewActivityStaffManagerPageDoneState
                 ],
               ),
               SizedBox(
-                height: height(context: context) / 20,
+                height: height(context: context) / 40,
               ),
               MaterialButton(
-                color: Colors.black,
+                color: Color(0xFF6F2DA8),
                 disabledColor: Colors.grey,
                 minWidth: 163,
                 height: 40,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8)),
-                onPressed: agreedterm != true
-                    ? () {
-                        Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    NavigationStaffmanager()),
-                            (Route<dynamic> route) => false);
-                      }
-                    : null,
+                onPressed: () {
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              NavigationStaffmanager()),
+                      (Route<dynamic> route) => false);
+                },
                 child: Text(
                   'Done',
                   style: TextStyle(color: Colors.white, fontSize: 16),

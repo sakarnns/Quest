@@ -84,16 +84,21 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
             title: Text('Event',
-                style: TextStyle(fontSize: 32, color: Colors.black)),
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Color(0xFF6F2DA8),
+                )),
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            backgroundColor: Color(0xFFEBEDF2),
+            // backgroundColor: Color(0xFFEBEDF2),
+            backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -111,7 +116,35 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
                 horizontal: width(context: context) / 20,
               ),
               child: isLoading != true
-                  ? staffDetailArea()
+                  ? Column(
+                      children: [
+                        SizedBox(
+                          height: height(context: context) / 8,
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 100,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                                  new BorderRadius.all(Radius.circular(8.0))),
+                          child: covereventarea(),
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 50,
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              color: Color(0xFFf0eff5),
+                              borderRadius:
+                                  new BorderRadius.all(Radius.circular(8.0))),
+                          child: staffDetailArea(),
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 20,
+                        ),
+                      ],
+                    )
                   : Container(
                       height: 633,
                       alignment: Alignment.center,
@@ -135,33 +168,19 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
     return Column(
       children: [
 /*=="Event Name"==============================================================*/
-        SizedBox(
-          height: height(context: context) / 100,
-        ),
-        SizedBox(
-          height: height(context: context) / 100,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Name",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Name",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventName,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -170,30 +189,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event Organizer."========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Organizer",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Organizer",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventPublisher,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -202,30 +216,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event Start Date"========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Start Date",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Start Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventStartDate,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -234,30 +243,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event Start Time"========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Start Time",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Start Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventStartTime,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -266,30 +270,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event End Date"==========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event End Date",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Event End Date",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventEndDate,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -298,30 +297,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event End Time"==========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event End Time",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Event End Time",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventEndTime,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -330,30 +324,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Event Type"==============================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Type",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Event Type",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventType,
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -362,30 +351,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Participants Limit"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Participants Limit",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Participants Limit",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.participantLimit.toString(),
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -394,30 +378,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Participants Joined"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Participants Joined",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Participants Joined",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 eventDetailData.eventDetail!.eventJoined.toString(),
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -426,30 +405,25 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Piont/Participants"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Point/Participant",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                "Point/Participant",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
               Text(
                 "${eventDetailData.eventDetail!.eventPoints} Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
@@ -458,119 +432,90 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
           ),
         ),
 /*=="Piont/Participants"======================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Require Tier-Points",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, bottom: 16.0, top: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFE5E5EA),
-              borderRadius: new BorderRadius.all(Radius.circular(8.0))),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${eventDetailData.eventDetail!.eventPoints} Tier-Points",
+                "Require Tier-Points",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "null* Tier-Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
 /*=="Event Detials"===========================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Detials",
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Event Detials",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              eventDetailData.eventDetail!.eventDetail,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
-                fontWeight: FontWeight.w700,
               ),
             ),
-          ],
-        ),
-        Stack(
-          children: [
-            Container(
-              height: 172,
-              padding: const EdgeInsets.only(
-                  left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-              decoration: BoxDecoration(
-                  color: Color(0xFFE5E5EA),
-                  borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  Text(
-                    eventDetailData.eventDetail!.eventDetail,
-                    style: TextStyle(color: Colors.black, fontSize: 16),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
-/*=="Photo about your Event."=================================================*/
-        SizedBox(
-          height: height(context: context) / 50,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Text(
-              "Event Photo",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(
-          height: height(context: context) / 100,
-        ),
-        Container(
-          height: 200,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8.0),
-              image: DecorationImage(
-                  image:
-                      // AssetImage('assets/images/Beach_4.jpg')
-                      NetworkImage(
-                          "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
-                  fit: BoxFit.cover)),
-        ),
-        SizedBox(
-          height: height(context: context) / 20,
+          ),
         ),
       ],
+    );
+  }
+
+  Widget covereventarea() {
+    return Container(
+      height: 200,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8.0),
+          image: DecorationImage(
+              image:
+                  // AssetImage('assets/images/Beach_4.jpg')
+                  NetworkImage(
+                      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
+              fit: BoxFit.cover)),
     );
   }
 
   Widget qrButton() {
     return MaterialButton(
       disabledColor: Colors.grey,
-      color: Colors.black,
+      color: Colors.white,
       minWidth: 30,
       // height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -584,7 +529,7 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
         child: SvgPicture.asset(
           'assets/icons/readerQR.svg',
           fit: BoxFit.fill,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
       // child: Text(

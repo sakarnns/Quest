@@ -139,7 +139,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: height(context: context) / 8,
+                    height: height(context: context) / 9,
                   ),
 /*=="Event Name"==============================================================*/
                   SizedBox(
@@ -148,7 +148,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                   Row(
                     children: [
                       Text(
-                        "Event Name",
+                        "Event Name*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -189,7 +189,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                   Row(
                     children: [
                       Text(
-                        "Event Start Date",
+                        "Event Start Date*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -246,7 +246,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                   Row(
                     children: [
                       Text(
-                        "Event Start Time",
+                        "Event Start Time*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -303,7 +303,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                   Row(
                     children: [
                       Text(
-                        "Event End Date",
+                        "Event End Date*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -360,7 +360,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Event End Time",
+                        "Event End Time*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -411,7 +411,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                   Row(
                     children: [
                       Text(
-                        "Event Type",
+                        "Event Type*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -473,7 +473,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Participants Quantity",
+                        "Participants Quantity*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -513,7 +513,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Point / Participants",
+                        "Point / Participants*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -552,7 +552,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        " Tier-Points Require",
+                        " Tier-Points Require*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -591,7 +591,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Event Detail",
+                        "Event Detail*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -630,7 +630,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Select location",
+                        "Select location*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -680,7 +680,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Location Detail",
+                        "Location Detail*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -722,7 +722,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Please upload photo about your Event.",
+                        "Please upload photo about your Event.*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,

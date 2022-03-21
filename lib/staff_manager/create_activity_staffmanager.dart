@@ -71,6 +71,7 @@ class _CreateActivityStaffManagerPageState
     activitystaffmanager.eventtierpoint.clear();
     activitystaffmanager.eventdetial.clear();
     activitystaffmanager.eventpointquantity.clear();
+    activity.eventtierpoint.clear();
     // imageFile!.delete();
     dateTimeDayStart = getDayTimeStart();
     dateTimeDayEnd = getDayTimeEnd();
@@ -110,17 +111,22 @@ class _CreateActivityStaffManagerPageState
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+          extendBodyBehindAppBar: true,
           appBar: AppBar(
             title: Text('Create Activity',
-                style: TextStyle(fontSize: 32.0, color: Colors.black)),
+                style: TextStyle(
+                  fontSize: 24.0,
+                  color: Color(0xFF6F2DA8),
+                )),
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            backgroundColor: Color(0xFFEBEDF2),
+            // backgroundColor: Color(0xFFEBEDF2),
             // backgroundColor: Colors.transparent,
+            backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
                 setState(() {});
@@ -134,6 +140,9 @@ class _CreateActivityStaffManagerPageState
               ),
               child: Column(
                 children: [
+                  SizedBox(
+                    height: height(context: context) / 9,
+                  ),
 /*=="Event Name"==============================================================*/
                   SizedBox(
                     height: height(context: context) / 100,
@@ -141,7 +150,7 @@ class _CreateActivityStaffManagerPageState
                   Row(
                     children: [
                       Text(
-                        "Event Name",
+                        "Event Name*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -163,7 +172,7 @@ class _CreateActivityStaffManagerPageState
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           // hintText: '...',
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
@@ -182,7 +191,7 @@ class _CreateActivityStaffManagerPageState
                   Row(
                     children: [
                       Text(
-                        "Event Start Date",
+                        "Event Start Date*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -214,13 +223,13 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/date_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
                             width: width(context: context) / 100,
                           ),
@@ -232,30 +241,6 @@ class _CreateActivityStaffManagerPageState
                       ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventstartdate,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'YYYY-MM-DD',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventstartdatecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event Start Time"========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -263,7 +248,7 @@ class _CreateActivityStaffManagerPageState
                   Row(
                     children: [
                       Text(
-                        "Event Start Time",
+                        "Event Start Time*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -295,13 +280,13 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/time_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
                             width: width(context: context) / 100,
                           ),
@@ -313,28 +298,6 @@ class _CreateActivityStaffManagerPageState
                       ),
                     ),
                   ),
-
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventstarttime,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'HH:MM',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventstarttimecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event End Date"==========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -342,7 +305,7 @@ class _CreateActivityStaffManagerPageState
                   Row(
                     children: [
                       Text(
-                        "Event End Date",
+                        "Event End Date*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -373,13 +336,13 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/date_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
                             width: width(context: context) / 100,
                           ),
@@ -391,27 +354,6 @@ class _CreateActivityStaffManagerPageState
                       ),
                     ),
                   ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventenddate,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'YYYY-MM-DD',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventenddatecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event End Time"==========================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -420,7 +362,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Event End Time",
+                        "Event End Time*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -446,13 +388,13 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/time_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
                             width: width(context: context) / 100,
                           ),
@@ -464,30 +406,6 @@ class _CreateActivityStaffManagerPageState
                       ),
                     ),
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventendtime,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         hintText: 'HH:MM',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventendtimecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Event Type"==============================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -495,7 +413,7 @@ class _CreateActivityStaffManagerPageState
                   Row(
                     children: [
                       Text(
-                        "Event Type",
+                        "Event Type*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -524,13 +442,13 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
                         children: [
                           SvgPicture.asset('assets/icons/type_create.svg',
-                              fit: BoxFit.cover),
+                              color: Color(0xFF6F2DA8), fit: BoxFit.cover),
                           SizedBox(
                             width: width(context: context) / 100,
                           ),
@@ -546,31 +464,6 @@ class _CreateActivityStaffManagerPageState
                       ),
                     ),
                   ),
-
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
-                  // Padding(
-                  //   padding: EdgeInsets.symmetric(
-                  //     vertical: height(context: context) / 500,
-                  //   ),
-                  //   child: TextField(
-                  //     controller: activity.eventtype,
-                  //     decoration: InputDecoration(
-                  //         focusedBorder: outlineInputBorder(),
-                  //         filled: true,
-                  //         fillColor: Colors.transparent,
-                  //         // hintText: '...',
-                  //         contentPadding: EdgeInsets.all(8.0),
-                  //         border: outlineInputBorder()),
-                  //     onChanged: (val) {
-                  //       setState(() {
-                  //         eventtypecheck = val;
-                  //         isvalid = true;
-                  //       });
-                  //     },
-                  //   ),
-                  // ),
 /*=="Participants Quantity"===================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
@@ -579,7 +472,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Participants Quantity",
+                        "Participants Quantity*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -602,7 +495,7 @@ class _CreateActivityStaffManagerPageState
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           // hintText: '...',
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
@@ -622,7 +515,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Point / Participants",
+                        "Point / Participants*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -642,7 +535,7 @@ class _CreateActivityStaffManagerPageState
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
                       onChanged: (val) {
@@ -661,7 +554,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        " Tier-Points Require",
+                        " Tier-Points Require*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -681,7 +574,7 @@ class _CreateActivityStaffManagerPageState
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
                           filled: true,
-                          fillColor: Color(0xFFE5E5EA),
+                          fillColor: Color(0xFFf0eff5),
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
                       onChanged: (val) {
@@ -700,7 +593,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Event Detials",
+                        "Event Detail*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -721,11 +614,11 @@ class _CreateActivityStaffManagerPageState
                       minLines: 3,
                       maxLines: null,
                       maxLength: 100,
-                      controller: activity.eventdetial,
+                      controller: activitystaffmanager.eventdetial,
                       decoration: InputDecoration(
                         focusedBorder: outlineInputBorder(),
                         filled: true,
-                        fillColor: Color(0xFFE5E5EA),
+                        fillColor: Color(0xFFf0eff5),
                         contentPadding: EdgeInsets.all(8.0),
                         border: outlineInputBorder(),
                       ),
@@ -745,7 +638,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Select location",
+                        "Select location*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -765,7 +658,7 @@ class _CreateActivityStaffManagerPageState
                       padding: const EdgeInsets.only(
                           left: 16.0, bottom: 16.0, top: 16.0),
                       decoration: BoxDecoration(
-                          color: Color(0xFFE5E5EA),
+                          color: Color(0xFFf0eff5),
                           borderRadius:
                               new BorderRadius.all(Radius.circular(8.0))),
                       child: Row(
@@ -780,6 +673,7 @@ class _CreateActivityStaffManagerPageState
                             padding: const EdgeInsets.only(right: 16.0),
                             child: SvgPicture.asset(
                                 'assets/icons/forward_activity.svg',
+                                color: Color(0xFF6F2DA8),
                                 fit: BoxFit.cover),
                           ), // use Spacer
                         ],
@@ -794,7 +688,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Location Detials",
+                        "Location Detail*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -819,7 +713,7 @@ class _CreateActivityStaffManagerPageState
                       decoration: InputDecoration(
                         focusedBorder: outlineInputBorder(),
                         filled: true,
-                        fillColor: Color(0xFFE5E5EA),
+                        fillColor: Color(0xFFf0eff5),
                         contentPadding: EdgeInsets.all(8.0),
                         border: outlineInputBorder(),
                       ),
@@ -840,7 +734,7 @@ class _CreateActivityStaffManagerPageState
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "Please upload photo about your Event.",
+                        "Please upload photo about your Event.*",
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
@@ -859,8 +753,8 @@ class _CreateActivityStaffManagerPageState
                         child: Text(
                           "Upload Photo",
                           style: TextStyle(
-                              color: Color(0xFFAEAEB2),
-                              decoration: TextDecoration.underline),
+                            color: Color(0xFF6F2DA8),
+                          ),
                         ),
                       ),
                     ],
@@ -871,32 +765,12 @@ class _CreateActivityStaffManagerPageState
                   imageFile == null
                       ? activitycovertemp()
                       : activitycover(imageFile!),
-                  SizedBox(
-                    height: height(context: context) / 20,
-                  ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: [
-                  //     InkWell(
-                  //       onTap: () {
-                  //         print('Contact to admin');
-                  //       },
-                  //       child: Text(
-                  //         "You need to create more huge Event or you are official organizer.  ",
-                  //         style: TextStyle(
-                  //             fontSize: 13,
-                  //             color: Color(0xFFAEAEB2),
-                  //             decoration: TextDecoration.underline),
-                  //       ),
-                  //     ),
-                  //   ],
-                  // ),
 /*=="Function on Button"======================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
                   ),
                   MaterialButton(
-                    color: Colors.black,
+                    color: Color(0xFF6F2DA8),
                     disabledColor: Colors.grey,
                     minWidth: 163,
                     height: 40,

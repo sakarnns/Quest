@@ -74,16 +74,24 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text('Create Staff',
-              style: TextStyle(fontSize: 28, color: Colors.black)),
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xFF6F2DA8),
+              )),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          backgroundColor: Color(0xFFEBEDF2),
+          // backgroundColor: Color(0xFFEBEDF2),
+          backgroundColor: Colors.white.withOpacity(0.1),
           leading: BackButton(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             onPressed: () {
               Navigator.pop(context);
+              setState(() {
+                agreedterm = false;
+              });
             },
           ),
           elevation: 0.0,
@@ -96,14 +104,15 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
             child: Column(
               children: [
                 SizedBox(
-                  height: height(context: context) / 20,
+                  height: height(context: context) / 7,
                 ),
                 Container(
                   height: 48,
                   width: 48,
                   child: SvgPicture.asset(
                     'assets/icons/create_staff.svg',
-                    fit: BoxFit.fill,
+                    color: Color(0xFF6F2DA8),
+                    fit: BoxFit.contain,
                   ),
                 ),
                 Padding(
@@ -315,7 +324,7 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
                   height: height(context: context) / 100,
                 ),
                 MaterialButton(
-                  color: Colors.black,
+                  color: Color(0xFF6F2DA8),
                   disabledColor: Colors.grey,
                   minWidth: 163,
                   height: 40,

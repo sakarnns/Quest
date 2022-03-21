@@ -387,7 +387,10 @@ class _ActivityUserHomePageState extends State<ActivityUserHomePage> {
                             Text(
                               "See more",
                               style: TextStyle(
-                                  fontSize: 12.0, fontWeight: FontWeight.w500),
+                                fontSize: 12.0,
+                                fontWeight: FontWeight.w500,
+                                color: Color(0xFF6F2DA8),
+                              ),
                             ),
                             SizedBox(
                               width: width(context: context) / 100,
