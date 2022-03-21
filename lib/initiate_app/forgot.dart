@@ -142,7 +142,8 @@ class _ForgotPageState extends State<ForgotPage> {
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: isvalid != false &&
                           emailaddress != null &&
-                          emailaddress != ""
+                          emailaddress != "" &&
+                          emailaddress != " "
                       ? () {
                           forgetpass(emailaddress!);
                           print(emailaddress);

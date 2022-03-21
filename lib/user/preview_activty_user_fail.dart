@@ -32,7 +32,7 @@ class _PreviewActivityUserPageFailState
               Column(
                 children: [
                   Text(
-                    "Fail on retrievering data please try again later \n                      or contact Help Center.",
+                    "Failed on retrievering data please try again later \n                      or contact Help Center.",
                     style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ],

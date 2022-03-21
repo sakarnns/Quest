@@ -12,6 +12,7 @@ import '../timeout.dart';
 
 bool isLoading = true;
 int? tokenexpire;
+bool saved = false;
 
 class ProfilePage extends StatefulWidget {
   ProfilePage({Key? key}) : super(key: key);
@@ -56,7 +57,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
       final imageTemporary = File(image.path);
 
-      setState(() => this.imageFile = imageTemporary);
+      setState(() {
+        this.imageFile = imageTemporary;
+        saved = false;
+      });
     } on Exception catch (e) {
       print('Failed to pick image: $e');
     }
@@ -147,21 +151,32 @@ class _ProfilePageState extends State<ProfilePage> {
               Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: InkWell(
-                  onTap: () {
-                    setState(() async {
-                      await saveRecentProfile();
-                      imageFile!.delete();
-                      fectc();
-                      setuserStatus();
-                    });
-                  },
-                  child: Text(
-                    "Save",
-                    style: TextStyle(
-                        color: Color(0xFF007AFF),
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                  ),
+                  onTap: imageFile != null && saved == false
+                      ? () {
+                          setState(() async {
+                            await saveRecentProfile();
+                            imageFile!.delete();
+                            fectc();
+                            setuserStatus();
+                            saved = true;
+                          });
+                        }
+                      : null,
+                  child: imageFile != null && saved == false
+                      ? Text(
+                          "Save",
+                          style: TextStyle(
+                              color: Color(0xFF007AFF),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        )
+                      : Text(
+                          "Save",
+                          style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        ),
                 ),
               )
             ],
@@ -213,8 +228,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         InkWell(
                           onTap: () {
                             _pickImage(ImageSource.gallery);
-                            print('into gallery');
-                            print('Photo has been changed');
                           },
                           child: Text(
                             "Change Profile Photo",

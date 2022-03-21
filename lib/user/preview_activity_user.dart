@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:quest_2/models/event_all.dart';
 import 'package:quest_2/serviecs/activity_location_map_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -69,12 +70,12 @@ Future createActivity(
   request.headers.addAll(requestHeaders);
 
   http.StreamedResponse response = await request.send();
-  
+
   status = response.statusCode;
 
   if (response.statusCode == 201) {
     print("ยิงละ");
-  }else{
+  } else {
     print(response.statusCode);
     print(response.stream);
   }
@@ -413,6 +414,33 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
             ],
           ),
         ),
+/*=="Point/Participants"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Point/Participant",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                activity.eventpointquantity.text,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
 /*=="Tier-Points"======================================================*/
         Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -503,9 +531,21 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              eventlocation,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+            child: Row(
+              children: [
+                Text(
+                  eventlocation,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                Text(
+                  "lat : ${latitude.toString()}",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                Text(
+                  "long :${longitude.toString()}",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ],
             ),
           ),
         ),
@@ -585,17 +625,19 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                       locationdetialcheck!),
                   latitude!,
                   longitude!);
-              status == 200 ?
-              Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          PreviewActivityUserPageDone()),
-                  (Route<dynamic> route) => false) 
-              :Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(
-                      builder: (BuildContext context) =>
-                          PreviewActivityUserPageFail()),
-                  (Route<dynamic> route) => false) ;
+              // imageFile = null;
+              eventlocation = "";
+              status == 200
+                  ? Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              PreviewActivityUserPageDone()),
+                      (Route<dynamic> route) => false)
+                  : Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              PreviewActivityUserPageFail()),
+                      (Route<dynamic> route) => false);
               // Navigator.push(
               //     context,
               //     MaterialPageRoute(

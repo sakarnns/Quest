@@ -350,17 +350,22 @@ class _SignupPageState extends State<SignupPage> {
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: usernameOnSignup != null &&
                           usernameOnSignup != "" &&
+                          usernameOnSignup != " " &&
                           firstnameOnSignup != null &&
                           firstnameOnSignup != "" &&
+                          firstnameOnSignup != " " &&
                           lastnameOnSignup != null &&
                           lastnameOnSignup != "" &&
+                          lastnameOnSignup != " " &&
                           emailOnSignup != null &&
                           emailOnSignup != "" &&
+                          emailOnSignup != " " &&
                           isvalid != false &&
                           isPasswordMatch != null &&
                           isPasswordMatch! &&
-                          agreedterm != false &&
-                          passOnSignup != ""
+                          passOnSignup != "" &&
+                          passOnSignup != " " &&
+                          agreedterm != false
                       ? () {
                           signUp(usernameOnSignup!, firstnameOnSignup!,
                               lastnameOnSignup!, emailOnSignup!, passOnSignup!);

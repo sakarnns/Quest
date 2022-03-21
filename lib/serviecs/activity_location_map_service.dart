@@ -14,6 +14,7 @@ class ActivityLocationMapPage extends StatefulWidget {
       _ActivityLocationMapPageState();
 }
 
+bool gotlocation = false;
 String eventlocation = "";
 double? latitude;
 double? longitude;
@@ -29,8 +30,12 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
   @override
   void initState() {
     super.initState();
-
-    // _setMarker(LatLng(13.736717, 100.523186));
+    gotlocation = false;
+    latitude != null && longitude != null
+        ? _setMarker(
+            LatLng(latitude!, longitude!),
+          )
+        : null;
   }
 
   void _setMarker(LatLng point) {
@@ -41,12 +46,6 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
       ));
     });
   }
-
-  // static final CameraPosition _kLake = CameraPosition(
-  //     bearing: 192.8334901395799,
-  //     target: LatLng(37.43296265331129, -122.08832357078792),
-  //     tilt: 59.440717697143555,
-  //     zoom: 19.151926040649414);
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +60,12 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Color(0xFFEBEDF2),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         leading: BackButton(
           color: Color(0xFF6F2DA8),
           onPressed: () {
-            eventlocation = "";
-            latitude = 0;
-            longitude = 0;
+            setState(() {});
             Navigator.pop(context);
           },
         ),
@@ -77,16 +73,26 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: InkWell(
-              onTap: () {
-                Navigator.pop(context);
-              },
-              child: Text(
-                "Done",
-                style: TextStyle(
-                    color: Color(0xFF007AFF),
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700),
-              ),
+              onTap: gotlocation == true
+                  ? () {
+                      Navigator.pop(context);
+                    }
+                  : null,
+              child: gotlocation == true
+                  ? Text(
+                      "Done",
+                      style: TextStyle(
+                          color: Color(0xFF007AFF),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700),
+                    )
+                  : Text(
+                      "Done",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700),
+                    ),
             ),
           )
         ],
@@ -144,10 +150,10 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
               myLocationButtonEnabled: true,
               mapToolbarEnabled: true,
               tiltGesturesEnabled: true,
+              buildingsEnabled: true,
               mapType: MapType.normal,
               markers: _markers,
               polygons: _polygons,
-              // initialCameraPosition: _kGooglePlex,
               initialCameraPosition: CameraPosition(
                   target: LatLng(
                     13.736717,
@@ -161,12 +167,6 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
           ),
         ],
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: _goToTheLake,
-      //   label: Text('Confirm location'),
-      //   icon: Icon(Icons.push_pin),
-      //   backgroundColor: Colors.black,
-      // ),
     );
   }
 
@@ -174,18 +174,17 @@ class _ActivityLocationMapPageState extends State<ActivityLocationMapPage> {
     final double lat = place['geometry']['location']['lat'];
     final double lng = place['geometry']['location']['lng'];
     final GoogleMapController controller = await _controller.future;
-    controller.animateCamera(CameraUpdate.newCameraPosition(
-      CameraPosition(target: LatLng(lat, lng), zoom: 16),
-    ));
+    controller.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(target: LatLng(lat, lng), zoom: 16),
+      ),
+    );
 
-    _setMarker(LatLng(lat, lng));
-
+    _setMarker(
+      LatLng(lat, lng),
+    );
+    gotlocation = true;
     latitude = lat;
     longitude = lng;
   }
-
-  // Future<void> _goToTheLake() async {
-  //   final GoogleMapController controller = await _controller.future;
-  //   controller.animateCamera(CameraUpdate.newCameraPosition(_kLake));
-  // }
 }
