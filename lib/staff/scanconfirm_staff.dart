@@ -38,6 +38,8 @@ Future scanconfirm() async {
   print(res.body);
   if (res.statusCode == 201) {
     responsebody = "Success";
+  } else if (res.statusCode == 400) {
+    responsebody = ("Your QR code is invilid");
   } else {
     var resdecode = json.decode(res.body);
     responsebody = resdecode['message'];

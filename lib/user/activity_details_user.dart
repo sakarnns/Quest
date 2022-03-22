@@ -140,23 +140,38 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
     super.initState();
   }
 
+  // void fectc() async {
+  //   isLoading = true;
+  //   print("fetch 1 ");
+  //   await getactivitydetail();
+  //   if (eventDetailData.eventDetail != null) {
+  //     isButtonActiveAPI = eventDetailData.eventDetail!.eventCheckJoin;
+  //     isButtonQRActive = eventDetailData.eventDetail!.eventCheckJoined;
+  //     isButtonInterestActiveAPI =
+  //         eventDetailData.eventDetail!.eventCheckInterest;
+  //   }
+  //   Future.delayed(Duration(milliseconds: 300), () {
+  //     setState(() {
+  //       isLoading = false;
+  //       setState(() {});
+  //       print("fetch 2 ");
+  //     });
+  //   });
+  // }
+
   void fectc() async {
     isLoading = true;
     print("fetch 1 ");
-    await getactivitydetail();
+    await getactivitydetail().then((value) => isLoading = true);
     if (eventDetailData.eventDetail != null) {
       isButtonActiveAPI = eventDetailData.eventDetail!.eventCheckJoin;
       isButtonQRActive = eventDetailData.eventDetail!.eventCheckJoined;
       isButtonInterestActiveAPI =
           eventDetailData.eventDetail!.eventCheckInterest;
     }
-    Future.delayed(Duration(milliseconds: 300), () {
-      setState(() {
-        isLoading = false;
-        setState(() {});
-        print("fetch 2 ");
-      });
-    });
+    isLoading = false;
+    setState(() {});
+    print("fetch 2 ");
   }
 
   @override
@@ -514,7 +529,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                 ),
               ),
               Text(
-                "${eventDetailData.eventDetail?.eventPoints} Points",
+                "${eventDetailData.eventDetail?.eventPoints}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -541,7 +556,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                 ),
               ),
               Text(
-                "${eventDetailData.eventDetail?.eventPoints} Points",
+                "${eventDetailData.eventDetail?.eventPoints}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],

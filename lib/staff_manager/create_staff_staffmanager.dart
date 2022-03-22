@@ -40,6 +40,12 @@ Future createstaff(String username, String firstname, String lastname,
   print(res.body);
   print("===============");
 
+  // if (res.statusCode == 200) {
+  //   jsonResponse = json.decode(res.body);
+  //   print("Response status; ${res.statusCode}");
+  //   print("already have this username");
+  //   return jsonResponse;
+  // }
   if (res.statusCode == 201) {
     jsonResponse = json.decode(res.body);
     print("Response status; ${res.statusCode}");
@@ -83,7 +89,6 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
               )),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          // backgroundColor: Color(0xFFEBEDF2),
           backgroundColor: Colors.white.withOpacity(0.1),
           leading: BackButton(
             color: Color(0xFF6F2DA8),
@@ -332,16 +337,21 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
                       borderRadius: BorderRadius.circular(8)),
                   onPressed: usernameOnSignup != null &&
                           usernameOnSignup != "" &&
+                          usernameOnSignup != " " &&
                           firstnameOnSignup != null &&
                           firstnameOnSignup != "" &&
+                          firstnameOnSignup != " " &&
                           lastnameOnSignup != null &&
                           lastnameOnSignup != "" &&
+                          lastnameOnSignup != " " &&
                           emailOnSignup != null &&
                           emailOnSignup != "" &&
+                          emailOnSignup != " " &&
                           isPasswordMatch != null &&
                           isPasswordMatch! &&
                           agreedterm != false &&
-                          passOnSignup != ""
+                          passOnSignup != "" &&
+                          passOnSignup != " "
                       ? () {
                           print(usernameOnSignup);
                           print(firstnameOnSignup!);
@@ -350,6 +360,7 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
                           print(passOnSignup!);
                           createstaff(usernameOnSignup!, firstnameOnSignup!,
                               lastnameOnSignup!, emailOnSignup!, passOnSignup!);
+                          agreedterm = false;
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
