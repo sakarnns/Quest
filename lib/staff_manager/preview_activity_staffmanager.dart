@@ -20,6 +20,8 @@ Future createActivity(
     String eventpaticipant,
     String eventpoint,
     String eventdetail,
+    String eventlocation,
+    String eventtier,
     double la,
     double ln) async {
   final prefs = await SharedPreferences.getInstance();
@@ -53,10 +55,12 @@ Future createActivity(
   request.fields.addAll({
     'Event_Name': eventname,
     'Event_Detail': eventdetail,
+    'Event_Location': eventlocation,
     'Event_Start_Date': eventstartdate,
     'Event_Start_Time': eventstarttime,
     'Event_End_Date': eventenddate,
     'Event_End_Time': eventendtime,
+    'Event_Tier_Points_Require': eventtier,
     'Event_Type': eventtype,
     'Participant_Limit': eventpaticipant,
     'Event_Points': eventpoint,
@@ -578,11 +582,13 @@ class _PreviewActivityStaffManagerPageState
                   participantquantitycheck!,
                   pointperpartcheck!,
                   ("Event Detail : " +
-                      eventdetialcheck! +
-                      "\nLocation Detail : [" +
+                      eventdetialcheck!)
+                      ,
+                      (
                       eventlocation +
-                      "] " +
+                      "\n" +
                       locationdetialcheck!),
+                  tierpointscheck!,
                   latitude!,
                   longitude!);
               Navigator.push(
