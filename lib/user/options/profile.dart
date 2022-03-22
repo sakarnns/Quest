@@ -232,9 +232,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Text(
                             "Change Profile Photo",
                             style: TextStyle(
-                              color: Color(0xFF6F2DA8),
-                              fontSize: 16,
-                            ),
+                                color: Color(0xFF6F2DA8),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700),
                           ),
                         ),
                         SizedBox(
@@ -305,7 +305,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   bottomRight: const Radius.circular(8.0),
                   topLeft: const Radius.circular(8.0),
                   topRight: const Radius.circular(8.0))),
-          width: 343,
+          width: width(context: context) * 0.9,
           height: 80,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

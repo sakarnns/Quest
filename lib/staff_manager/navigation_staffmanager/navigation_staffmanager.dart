@@ -7,6 +7,7 @@ import 'package:quest_2/styles/size.dart';
 
 import '../create_activity_staffmanager.dart';
 import '../home_staffmanager.dart';
+import '../incoming_staffmanager.dart';
 import '../options_staffmanager.dart';
 import '../pending_staffmanager.dart';
 
@@ -23,15 +24,12 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     StaffManagerHomePage(),
+    StaffManagerIncomingPage(),
+    Text(
+      '',
+      style: optionStyle,
+    ),
     StaffManagerPendingPage(),
-    Text(
-      '',
-      style: optionStyle,
-    ),
-    Text(
-      '',
-      style: optionStyle,
-    ),
     Text(
       '',
       style: optionStyle,
@@ -91,12 +89,12 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   height: 28,
                   width: 28,
                   child: SvgPicture.asset(
-                    'assets/icons/activity_pending.svg',
+                    'assets/icons/activity_incoming.svg',
                     color:
                         _selectedIndex == 1 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
-                label: 'Pending',
+                label: 'Incoming',
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -115,12 +113,12 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                   height: 28,
                   width: 28,
                   child: SvgPicture.asset(
-                    'assets/icons/create_staff.svg',
+                    'assets/icons/activity_pending.svg',
                     color:
                         _selectedIndex == 3 ? Color(0xFF6F2DA8) : Colors.grey,
                   ),
                 ),
-                label: 'Create Staff',
+                label: 'Pending',
               ),
               BottomNavigationBarItem(
                 icon: Container(
@@ -138,13 +136,6 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
             currentIndex: _selectedIndex,
             // selectedItemColor: Color(0xFF307BF6),
             onTap: (int index) {
-              // if (index == 1) {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => ActivityUserBrowsePage()));
-              //   index = 0;
-              // }
               if (index == 2) {
                 Navigator.push(
                     context,
@@ -153,15 +144,6 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                             CreateActivityStaffManagerPage()));
                 index = 0;
               }
-
-              if (index == 3) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CreateStaffManagerPage()));
-                index = 0;
-              }
-
               if (index == 4) {
                 Navigator.push(
                     context,

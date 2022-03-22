@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'checkout_reward_user.dart';
 
 int? tokenexpire;
+bool isLoading = true;
 
 Future getsavedaddress() async {
   print("getsaved activate!");
@@ -74,13 +75,15 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
   }
 
   void fectc() async {
+    isLoading = true;
     print("fetch 1 ");
-    await getsavedaddress();
+    await getsavedaddress().then((value) => isLoading = true);
     if (tokenexpire == 401) {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (BuildContext context) => TimeOutPage()),
           (Route<dynamic> route) => false);
     }
+    isLoading = false;
     setState(() {});
     print(savedaddr);
     print("fetch 2 ");
@@ -122,210 +125,232 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
               padding: EdgeInsets.symmetric(
                 horizontal: width(context: context) / 20,
               ),
-              child: Column(
-                children: [
-                  SizedBox(
-                    height: height(context: context) / 9,
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        rewardDetailData.rewardDetail!.rewardName,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                        borderRadius: new BorderRadius.only(
-                          // bottomLeft: const Radius.circular(8.0),
-                          // bottomRight: const Radius.circular(8.0),
-                          topLeft: const Radius.circular(8.0),
-                          topRight: const Radius.circular(8.0),
-                        ),
-                        image: DecorationImage(
-                            image: NetworkImage(
-                                "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${rewardDetailData.rewardDetail!.rewardImage}"),
-                            fit: BoxFit.cover)),
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(
-                            left: 16.0, top: 8.0, right: 16.0),
-                        decoration: BoxDecoration(
-                            color: Color(0xFFf0eff5),
-                            borderRadius: new BorderRadius.only(
-                              bottomLeft: const Radius.circular(8.0),
-                              bottomRight: const Radius.circular(8.0),
-                            )),
-                        width: MediaQuery.of(context).size.width * 0.9,
-                        height: 64,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  "Valid Date ",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  rewardDetailData.rewardDetail!.rewardEndDate
-                                      .toIso8601String()
-                                      .replaceAll("T", " ")
-                                      .substring(0, 19),
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Divider(
-                              color: Color(0xFF6F2DA8),
-                              thickness: 1,
-                              endIndent: 5,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  "Remain ",
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                                Text(
-                                  rewardDetailData.rewardDetail!.rewardRemain
-                                      .toString(),
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Price",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                    decoration: BoxDecoration(
-                        color: Color(0xFFf0eff5),
-                        borderRadius:
-                            new BorderRadius.all(Radius.circular(8.0))),
-                    child: Row(
+              child: isLoading != true
+                  ? Column(
                       children: [
-                        Text(
-                          rewardDetailData.rewardDetail!.rewardPrice.toString(),
-                          style: TextStyle(color: Colors.black, fontSize: 16),
+                        SizedBox(
+                          height: height(context: context) / 9,
                         ),
-                        Text(
-                          '  Points',
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                          ),
+                        SizedBox(
+                          height: height(context: context) / 100,
                         ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 100,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Reward Detail",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      Container(
-                        height: 172,
-                        padding: const EdgeInsets.only(
-                            left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
-                        decoration: BoxDecoration(
-                            color: Color(0xFFf0eff5),
-                            borderRadius:
-                                new BorderRadius.all(Radius.circular(8.0))),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              rewardDetailData.rewardDetail!.rewardDetail,
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 16),
+                              rewardDetailData.rewardDetail!.rewardName,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.w700),
                             ),
                           ],
                         ),
-                      )
-                    ],
-                  ),
-                  SizedBox(
-                    height: height(context: context) / 25,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Address for shiping",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700),
+                        SizedBox(
+                          height: height(context: context) / 100,
+                        ),
+                        Container(
+                          height: 200,
+                          decoration: BoxDecoration(
+                              borderRadius: new BorderRadius.only(
+                                // bottomLeft: const Radius.circular(8.0),
+                                // bottomRight: const Radius.circular(8.0),
+                                topLeft: const Radius.circular(8.0),
+                                topRight: const Radius.circular(8.0),
+                              ),
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${rewardDetailData.rewardDetail!.rewardImage}"),
+                                  fit: BoxFit.cover)),
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.only(
+                                  left: 16.0, top: 8.0, right: 16.0),
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFf0eff5),
+                                  borderRadius: new BorderRadius.only(
+                                    bottomLeft: const Radius.circular(8.0),
+                                    bottomRight: const Radius.circular(8.0),
+                                  )),
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 64,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Valid Date ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        rewardDetailData
+                                            .rewardDetail!.rewardEndDate
+                                            .toIso8601String()
+                                            .replaceAll("T", " ")
+                                            .substring(0, 19),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Divider(
+                                    color: Color(0xFF6F2DA8),
+                                    thickness: 1,
+                                    endIndent: 5,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Remain ",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                      Text(
+                                        rewardDetailData
+                                            .rewardDetail!.rewardRemain
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 100,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Price",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16.0, bottom: 16.0, top: 16.0),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFf0eff5),
+                              borderRadius:
+                                  new BorderRadius.all(Radius.circular(8.0))),
+                          child: Row(
+                            children: [
+                              Text(
+                                rewardDetailData.rewardDetail!.rewardPrice
+                                    .toString(),
+                                style: TextStyle(
+                                    color: Colors.black, fontSize: 16),
+                              ),
+                              Text(
+                                '  Points',
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 100,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Reward Detail",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            Container(
+                              height: 172,
+                              padding: const EdgeInsets.only(
+                                  left: 16.0,
+                                  right: 16.0,
+                                  bottom: 16.0,
+                                  top: 16.0),
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFf0eff5),
+                                  borderRadius: new BorderRadius.all(
+                                      Radius.circular(8.0))),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    rewardDetailData.rewardDetail!.rewardDetail,
+                                    style: TextStyle(
+                                        color: Colors.black, fontSize: 16),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        SizedBox(
+                          height: height(context: context) / 25,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Address for shiping",
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ],
+                        ),
+                        selectedAddress(),
+                        widgetnewadress(),
+                        widgetoldadress(),
+                      ],
+                    )
+                  : Container(
+                      height: 800,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CupertinoActivityIndicator(),
+                          Text(
+                            "LOADING",
+                            style: TextStyle(fontSize: 12.0),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  selectedAddress(),
-                  widgetnewadress(),
-                  widgetoldadress(),
-                ],
-              ),
+                    ),
             ),
           )),
     );

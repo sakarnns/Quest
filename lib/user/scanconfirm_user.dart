@@ -38,6 +38,8 @@ Future scanconfirm() async {
   print(res.body);
   if (res.statusCode == 201) {
     responsebody = "Success";
+  } else if (res.statusCode == 400) {
+    responsebody = ("Your QR code is invilid");
   } else {
     var resdecode = json.decode(res.body);
     responsebody = resdecode['message'];
@@ -106,7 +108,6 @@ class _ScanConfirmUserPage extends State<ScanConfirmUserPage> {
                     children: [
                       Text(
                         responsebody,
-                        // "Wrong Location",
                         style: TextStyle(color: Colors.black, fontSize: 24),
                       ),
                     ],
