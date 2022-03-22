@@ -4,6 +4,7 @@ import 'package:quest_2/data/staffdata.dart';
 import 'package:quest_2/initiate_app/terms_condition.dart';
 import 'package:quest_2/serviecs/activity_location_map_service.dart';
 import 'package:quest_2/staff_manager/preview_act_staffmanager_done.dart';
+import 'package:quest_2/staff_manager/preview_act_staffmanager_fail.dart';
 import 'package:quest_2/styles/size.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -88,6 +89,7 @@ class PreviewActivityStaffManagerPage extends StatefulWidget {
 
 bool? isvalid;
 bool agreedterm = false;
+int? status;
 
 class _PreviewActivityStaffManagerPageState
     extends State<PreviewActivityStaffManagerPage> {
@@ -417,6 +419,33 @@ class _PreviewActivityStaffManagerPageState
             ],
           ),
         ),
+/*=="Point/Participants"===================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Point/Participants",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                activitystaffmanager.eventpointquantity.text,
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
 /*=="Tier-Points"======================================================*/
         Padding(
           padding: const EdgeInsets.only(left: 16),
@@ -507,9 +536,21 @@ class _PreviewActivityStaffManagerPageState
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-              eventlocation,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+            child: Row(
+              children: [
+                Text(
+                  eventlocation,
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                Text(
+                  "lat : ${latitude.toString()}",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                Text(
+                  "long :${longitude.toString()}",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+              ],
             ),
           ),
         ),
@@ -591,11 +632,18 @@ class _PreviewActivityStaffManagerPageState
                   tierpointscheck!,
                   latitude!,
                   longitude!);
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          PreviewActivityStaffManagerPageDone()));
+              eventlocation = "";
+              status == 200
+                  ? Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PreviewActivityStaffManagerPageDone()))
+                  : Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              PreviewActivityStaffManagerPageFail()));
             }
           : null,
       child: Text(

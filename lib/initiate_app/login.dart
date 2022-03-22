@@ -299,7 +299,9 @@ class _LoginPageState extends State<LoginPage> {
                   onPressed: usernameOnlogin != null &&
                           passOnlogin != null &&
                           usernameOnlogin != "" &&
-                          passOnlogin != ""
+                          passOnlogin != "" &&
+                          usernameOnlogin != " " &&
+                          passOnlogin != " "
                       ? () {
                           signIn(usernameOnlogin!, passOnlogin!);
                           usernameOnlogin = "";
@@ -326,8 +328,8 @@ class _LoginPageState extends State<LoginPage> {
                     InkWell(
                       onTap: () {
                         setState(() {
-                          usernameOnlogin = "";
-                          passOnlogin = "";
+                          usernameOnlogin = " ";
+                          passOnlogin = " ";
                         });
                         Navigator.push(
                             context,

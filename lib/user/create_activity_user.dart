@@ -1,4 +1,3 @@
-// import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -68,9 +67,12 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
     activity.eventpointquantity.clear();
     activity.eventdetial.clear();
     activity.eventtierpoint.clear();
-    // imageFile!.delete();
+    eventlocation = "";
+    imageFile = null;
     dateTimeDayStart = getDayTimeStart();
     dateTimeDayEnd = getDayTimeEnd();
+    latitude = null;
+    longitude = null;
   }
 
 //Time Start Picker
@@ -505,7 +507,7 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       },
                     ),
                   ),
-/*=="Piont/Participants"======================================================*/
+/*=="Point/Participants"======================================================*/
                   SizedBox(
                     height: height(context: context) / 50,
                   ),
@@ -786,8 +788,10 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                         borderRadius: BorderRadius.circular(8)),
                     onPressed: eventnamecheck != null &&
                             eventnamecheck != "" &&
+                            eventnamecheck != " " &&
                             participantquantitycheck != null &&
                             participantquantitycheck != "" &&
+                            participantquantitycheck != " " &&
                             eventstartdatecheck != null &&
                             eventstarttimecheck != null &&
                             eventenddatecheck != null &&
@@ -795,14 +799,18 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                             eventtypecheck != null &&
                             // eventtypecheck != "Select" &&
                             eventlocation != "" &&
+                            eventlocation != " " &&
                             pointperpartcheck != null &&
                             pointperpartcheck != "" &&
+                            pointperpartcheck != " " &&
                             tierpointscheck != null &&
                             tierpointscheck != "" &&
+                            tierpointscheck != " " &&
                             eventdetialcheck != null &&
-                            eventdetialcheck != "" &&
+                            eventdetialcheck != " " &&
                             locationdetialcheck != null &&
                             locationdetialcheck != "" &&
+                            locationdetialcheck != " " &&
                             imageFile != null
                         ? () {
                             print(eventnamecheck);
@@ -814,8 +822,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                             print(participantquantitycheck);
                             print(pointperpartcheck);
                             print(eventdetialcheck);
-                            // activity.names.text = "5555555555";
-                            // activity.eventname = eventnamecheck!;
 
                             Navigator.push(
                                 context,
@@ -945,22 +951,23 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
 
   Widget activitycovertemp() {
     return Container(
-        height: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          image: DecorationImage(
-            image: AssetImage('assets/images/Activity_Cover.jpg'),
-          ),
-        ));
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        image: DecorationImage(
+          image: AssetImage('assets/images/Activity_Cover.jpg'),
+        ),
+      ),
+    );
   }
 
   Widget activitycover(File imagefile) {
     return Container(
-        height: 200,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8.0),
-          image:
-              DecorationImage(image: FileImage(imagefile), fit: BoxFit.cover),
-        ));
+      height: 200,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8.0),
+        image: DecorationImage(image: FileImage(imagefile), fit: BoxFit.cover),
+      ),
+    );
   }
 }
