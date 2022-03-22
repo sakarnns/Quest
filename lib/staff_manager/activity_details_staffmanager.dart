@@ -71,10 +71,14 @@ class _ActivityDetailsStaffManagerPageState
           MaterialPageRoute(builder: (BuildContext context) => TimeOutPage()),
           (Route<dynamic> route) => false);
     }
-    isLoading = false;
-    isBTNActive = false;
-    setState(() {});
-    print("fetch 2 ");
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        isLoading = false;
+        isBTNActive = false;
+        setState(() {});
+        print("fetch 2 ");
+      });
+    });
   }
 
   @override
@@ -107,12 +111,7 @@ class _ActivityDetailsStaffManagerPageState
                   Navigator.pop(context);
                 },
               ),
-              actions: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: qrButton(),
-                )
-              ],
+              actions: <Widget>[qrScanButton()],
             ),
             body: SingleChildScrollView(
               child: Padding(
@@ -150,7 +149,7 @@ class _ActivityDetailsStaffManagerPageState
                         ],
                       )
                     : Container(
-                        height: 633,
+                        height: 833,
                         alignment: Alignment.center,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -516,14 +515,9 @@ class _ActivityDetailsStaffManagerPageState
     );
   }
 
-  Widget qrButton() {
-    return MaterialButton(
-      disabledColor: Colors.grey,
-      color: Colors.white,
-      minWidth: 30,
-      // height: 40,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      onPressed: isBTNActive != true
+  Widget qrScanButton() {
+    return InkWell(
+      onTap: isBTNActive != true
           ? () {
               Navigator.push(
                   context,
@@ -532,16 +526,43 @@ class _ActivityDetailsStaffManagerPageState
             }
           : null,
       child: Container(
+        width: 28,
+        margin: const EdgeInsets.only(right: 16),
         child: SvgPicture.asset(
           'assets/icons/readerQR.svg',
-          fit: BoxFit.fill,
-          color: Colors.black,
+          fit: BoxFit.contain,
+          color: Color(0xFF6F2DA8),
         ),
       ),
-      // child: Text(
-      //   "Scan QR",
-      //   style: TextStyle(color: Colors.white, fontSize: 16),
-      // ),
     );
   }
+  // Widget qrButton() {
+  //   return MaterialButton(
+  //     disabledColor: Colors.grey,
+  //     color: Colors.white,
+  //     minWidth: 30,
+  //     // height: 40,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //     onPressed: isBTNActive != true
+  //         ? () {
+  //             Navigator.push(
+  //                 context,
+  //                 MaterialPageRoute(
+  //                     builder: (context) => ScanQrStaffManagerPage()));
+  //           }
+  //         : null,
+  //     child: Container(
+  //       child: SvgPicture.asset(
+  //         'assets/icons/readerQR.svg',
+  //         fit: BoxFit.fill,
+  //         color: Colors.black,
+  //       ),
+  //     ),
+  //     // child: Text(
+  //     //   "Scan QR",
+  //     //   style: TextStyle(color: Colors.white, fontSize: 16),
+  //     // ),
+  //   );
+  // }
+
 }

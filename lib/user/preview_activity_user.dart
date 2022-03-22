@@ -625,7 +625,6 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                       locationdetialcheck!),
                   latitude!,
                   longitude!);
-              // imageFile = null;
               eventlocation = "";
               status == 200
                   ? Navigator.of(context).pushAndRemoveUntil(
@@ -638,10 +637,6 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                           builder: (BuildContext context) =>
                               PreviewActivityUserPageFail()),
                       (Route<dynamic> route) => false);
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => PreviewActivityUserPageDone()));
             }
           : null,
       child: Text(

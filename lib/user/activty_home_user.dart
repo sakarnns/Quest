@@ -397,6 +397,7 @@ class _ActivityUserHomePageState extends State<ActivityUserHomePage> {
                             ),
                             SvgPicture.asset(
                                 'assets/icons/forward_activity.svg',
+                                color: Color(0xFF6F2DA8),
                                 fit: BoxFit.cover), // use Spacer
                           ],
                         )),

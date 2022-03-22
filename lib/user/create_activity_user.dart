@@ -1,4 +1,3 @@
-// import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -823,8 +822,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                             print(participantquantitycheck);
                             print(pointperpartcheck);
                             print(eventdetialcheck);
-                            // activity.names.text = "5555555555";
-                            // activity.eventname = eventnamecheck!;
 
                             Navigator.push(
                                 context,

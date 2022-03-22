@@ -72,9 +72,12 @@ class _CreateActivityStaffManagerPageState
     activitystaffmanager.eventdetial.clear();
     activitystaffmanager.eventpointquantity.clear();
     activity.eventtierpoint.clear();
-    // imageFile!.delete();
+    eventlocation = "";
+    imageFile = null;
     dateTimeDayStart = getDayTimeStart();
     dateTimeDayEnd = getDayTimeEnd();
+    latitude = null;
+    longitude = null;
   }
 
   //Time Start Picker
@@ -490,7 +493,7 @@ class _CreateActivityStaffManagerPageState
                     ),
                     child: TextField(
                       controller: activitystaffmanager.eventquantity,
-                      inputFormatters: [LengthLimitingTextInputFormatter(1)],
+                      inputFormatters: [LengthLimitingTextInputFormatter(3)],
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                           focusedBorder: outlineInputBorder(),
@@ -725,7 +728,6 @@ class _CreateActivityStaffManagerPageState
                       },
                     ),
                   ),
-
 /*=="Please upload photo about your Event."===================================*/
                   SizedBox(
                     height: height(context: context) / 500,
@@ -778,8 +780,10 @@ class _CreateActivityStaffManagerPageState
                         borderRadius: BorderRadius.circular(8)),
                     onPressed: eventnamecheck != null &&
                             eventnamecheck != "" &&
+                            eventnamecheck != " " &&
                             participantquantitycheck != null &&
                             participantquantitycheck != "" &&
+                            participantquantitycheck != " " &&
                             eventstartdatecheck != null &&
                             eventstarttimecheck != null &&
                             eventenddatecheck != null &&
@@ -787,12 +791,16 @@ class _CreateActivityStaffManagerPageState
                             eventtypecheck != null &&
                             // eventtypecheck != "Select" &&
                             eventlocation != "" &&
+                            eventlocation != " " &&
                             pointperpartcheck != null &&
                             pointperpartcheck != "" &&
+                            pointperpartcheck != " " &&
                             eventdetialcheck != null &&
                             eventdetialcheck != "" &&
+                            eventdetialcheck != " " &&
                             locationdetialcheck != null &&
                             locationdetialcheck != "" &&
+                            locationdetialcheck != " " &&
                             imageFile != null
                         ? () {
                             print(eventnamecheck);
@@ -804,8 +812,6 @@ class _CreateActivityStaffManagerPageState
                             print(participantquantitycheck);
                             print(pointperpartcheck);
                             print(eventdetialcheck);
-                            // activity.names.text = "5555555555";
-                            // activity.eventname = eventnamecheck!;
 
                             Navigator.push(
                                 context,
@@ -954,5 +960,3 @@ class _CreateActivityStaffManagerPageState
         ));
   }
 }
-
-class PreviewActivityStaffManagerPag {}

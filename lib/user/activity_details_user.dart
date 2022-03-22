@@ -150,7 +150,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
       isButtonInterestActiveAPI =
           eventDetailData.eventDetail!.eventCheckInterest;
     }
-    Future.delayed(Duration(milliseconds: 500), () {
+    Future.delayed(Duration(milliseconds: 300), () {
       setState(() {
         isLoading = false;
         setState(() {});

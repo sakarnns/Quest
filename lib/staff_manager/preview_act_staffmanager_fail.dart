@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quest_2/styles/size.dart';
-import 'navigation_user/navigation_user.dart';
+import 'navigation_staffmanager/navigation_staffmanager.dart';
 
-class PreviewActivityUserPageFail extends StatefulWidget {
-  PreviewActivityUserPageFail({Key? key}) : super(key: key);
+class PreviewActivityStaffManagerPageFail extends StatefulWidget {
+  PreviewActivityStaffManagerPageFail({Key? key}) : super(key: key);
 
   @override
-  _PreviewActivityUserPageFailState createState() =>
-      _PreviewActivityUserPageFailState();
+  State<PreviewActivityStaffManagerPageFail> createState() =>
+      _PreviewActivityStaffManagerPageFailState();
 }
 
-class _PreviewActivityUserPageFailState
-    extends State<PreviewActivityUserPageFail> {
+class _PreviewActivityStaffManagerPageFailState
+    extends State<PreviewActivityStaffManagerPageFail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,8 @@ class _PreviewActivityUserPageFailState
               SizedBox(
                 height: height(context: context) / 2.5,
               ),
-              Column(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "Failed on retrievering data please try again later. \n                                     [Error 200]",
@@ -50,7 +51,8 @@ class _PreviewActivityUserPageFailState
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (BuildContext context) => NavigationUser()),
+                          builder: (BuildContext context) =>
+                              NavigationStaffmanager()),
                       (Route<dynamic> route) => false);
                 },
                 child: Text(

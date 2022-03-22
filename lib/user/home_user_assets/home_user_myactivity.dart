@@ -73,13 +73,9 @@ class _MyActivityUserPageState extends State<MyActivityUserPage> {
     isLoading = true;
     print("fetch 1 ");
     await getmyevent();
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        isLoading = false;
-        setState(() {});
-        print("fetch 2 ");
-      });
-    });
+    isLoading = false;
+    setState(() {});
+    print("fetch 2 ");
   }
 
   @override

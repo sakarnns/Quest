@@ -80,13 +80,9 @@ class _UserHomePageState extends State<UserHomePage> {
           MaterialPageRoute(builder: (BuildContext context) => TimeOutPage()),
           (Route<dynamic> route) => false);
     }
-    Future.delayed(Duration(milliseconds: 500), () {
-      setState(() {
-        isLoading = false;
-        setState(() {});
-        print("fetch 2 ");
-      });
-    });
+    isLoading = false;
+    setState(() {});
+    print("fetch 2 ");
   }
 
   @override
