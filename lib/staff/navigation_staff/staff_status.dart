@@ -71,28 +71,6 @@ class _StatusStaffState extends State<StatusStaff> {
                 ),
                 height: MediaQuery.of(context).size.height / 7.6,
               ),
-              // Container(
-              //   padding: const EdgeInsets.all(4.0),
-              //   alignment: Alignment.bottomLeft,
-              //   height: MediaQuery.of(context).size.height / 8,
-              //   width: MediaQuery.of(context).size.width / 3.2,
-              //   // color: Colors.blue,
-              //   margin: EdgeInsets.only(left: 20),
-              //   // height: MediaQuery.of(context).size.height / ,
-              //   // child:
-              //   // FittedBox(
-              //   // fit: BoxFit.fill,
-              //   child: Text(
-              //     "${UserData.userProfile?.username}",
-              //     maxLines: 1,
-              //     overflow: TextOverflow.ellipsis,
-              //     style: TextStyle(
-              //       fontSize: 18,
-              //       fontWeight: FontWeight.w700,
-              //     ),
-              //     // ),
-              //   ),
-              // ),
               Align(
                 alignment: Alignment.bottomLeft,
                 child: Container(
@@ -102,16 +80,16 @@ class _StatusStaffState extends State<StatusStaff> {
                   padding: const EdgeInsets.all(4.0),
                   alignment: Alignment.bottomLeft,
                   height: MediaQuery.of(context).size.height / 8,
-                  width: MediaQuery.of(context).size.width / 2,
-                  margin: EdgeInsets.only(left: 8, bottom: 32),
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  margin: EdgeInsets.only(left: 16, bottom: 24),
                   child: Text(
                     "${StaffData.staffProfile?.username}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF007AFF),
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -122,19 +100,18 @@ class _StatusStaffState extends State<StatusStaff> {
                   // decoration: new BoxDecoration(
                   //   color: Colors.blue,
                   // ),
-                  padding: const EdgeInsets.all(4.0),
                   alignment: Alignment.bottomRight,
                   height: MediaQuery.of(context).size.height / 8,
-                  width: MediaQuery.of(context).size.width / 2,
+                  width: MediaQuery.of(context).size.width / 2.5,
                   margin: EdgeInsets.only(right: 8),
                   child: Text(
                     "${StaffData.staffProfile?.company}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      fontSize: 16,
+                      fontSize: 18,
                       fontWeight: FontWeight.w700,
-                      color: Color(0xFF007AFF),
+                      color: Colors.black,
                     ),
                   ),
                 ),
@@ -145,20 +122,24 @@ class _StatusStaffState extends State<StatusStaff> {
                   // decoration: new BoxDecoration(
                   //   color: Colors.green,
                   // ),
-                  padding: const EdgeInsets.all(4.0),
                   alignment: Alignment.bottomRight,
                   height: MediaQuery.of(context).size.height / 8,
-                  width: MediaQuery.of(context).size.width / 2.8,
-                  margin: EdgeInsets.only(right: 8, bottom: 50),
-                  child: Text(
-                    "Staff",
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w700,
-                      color: Color(0xFF6F2DA8),
-                    ),
+                  width: MediaQuery.of(context).size.width / 3,
+                  margin: EdgeInsets.only(right: 130, bottom: 60),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Staff",
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Color(0xFF6F2DA8),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),

@@ -128,7 +128,7 @@ class _UserHomePageState extends State<UserHomePage> {
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              height: 100,
+                              height: height(context: context) / 1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
                                 color: Color.fromRGBO(0, 0, 0, 0.4),
@@ -261,7 +261,7 @@ class _UserHomePageState extends State<UserHomePage> {
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              height: 100,
+                              height: height(context: context) / 1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
                                 color: Color.fromRGBO(0, 0, 0, 0.4),
