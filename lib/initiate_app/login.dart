@@ -24,12 +24,26 @@ class LoginPage extends StatefulWidget {
 bool? isvalid;
 bool loginfail = false;
 bool remembermecheck = false;
-String? usernameOnlogin;
-String? passOnlogin;
+String usernameOnlogin = "";
+String passOnlogin = "";
 
 class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
 
+  void fectc() async {
+    isLoading = true;
+    print("fetch 1 ");
+    usernameOnlogin = "";
+    passOnlogin = "";
+    setState(() {});
+    print("fetch 2 ");
+  }
+
+
+  void initState() {
+    fectc();
+    super.initState();
+  }
   //API-Login Function//
   Future signIn(String username, String pass) async {
     String url =
@@ -296,18 +310,15 @@ class _LoginPageState extends State<LoginPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: usernameOnlogin != null &&
-                          passOnlogin != null &&
+                  onPressed: 
+                          // usernameOnlogin != null ||
+                          // passOnlogin != null 
                           usernameOnlogin != "" &&
-                          passOnlogin != "" &&
-                          usernameOnlogin != " " &&
-                          passOnlogin != " "
+                          passOnlogin != "" 
+                          // usernameOnlogin != " " ||
+                          // passOnlogin != " "
                       ? () {
-                          signIn(usernameOnlogin!, passOnlogin!);
-                          usernameOnlogin = "";
-                          passOnlogin = "";
-                          // print(usernameOnlogin);
-                          // print(passOnlogin);
+                          signIn(usernameOnlogin, passOnlogin);
                         }
                       : null,
                   child: Text(
