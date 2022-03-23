@@ -117,225 +117,207 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-        onTap: () {
-          FocusScope.of(context).requestFocus(FocusNode());
-        },
-        behavior: HitTestBehavior.translucent,
-        child: Scaffold(
-          extendBodyBehindAppBar: true,
-          appBar: AppBar(
-            title: Text(
-              'Profile',
-              style: TextStyle(
-                fontSize: 24.0,
-                color: Color(0xFF6F2DA8),
-              ),
-            ),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(16),
-              ),
-            ),
-            backgroundColor: Colors.white.withOpacity(0.8),
-            elevation: 0.0,
-            leading: BackButton(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      behavior: HitTestBehavior.translucent,
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          title: Text(
+            'Profile',
+            style: TextStyle(
+              fontSize: 24.0,
               color: Color(0xFF6F2DA8),
-              onPressed: () {
-                Navigator.pop(context);
-                setState(() {
-                  setuserStatus();
-                });
-              },
             ),
-            actions: <Widget>[
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: InkWell(
-                  onTap: imageFile != null && saved == false
-                      ? () {
-                          setState(() async {
-                            await saveRecentProfile();
-                            imageFile!.delete();
-                            fectc();
-                            setuserStatus();
-                            saved = true;
-                          });
-                        }
-                      : null,
-                  child: imageFile != null && saved == false
-                      ? Text(
-                          "Save",
-                          style: TextStyle(
-                              color: Color(0xFF007AFF),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700),
-                        )
-                      : Text(
-                          "Save",
-                          style: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700),
-                        ),
-                ),
-              )
-            ],
           ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: width(context: context) / 20,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
+          backgroundColor: Colors.white.withOpacity(0.8),
+          elevation: 0.0,
+          leading: BackButton(
+            color: Color(0xFF6F2DA8),
+            onPressed: () {
+              Navigator.pop(context);
+              setState(() {
+                setuserStatus();
+              });
+            },
+          ),
+          actions: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: InkWell(
+                onTap: imageFile != null && saved == false
+                    ? () {
+                        setState(() async {
+                          await saveRecentProfile();
+                          imageFile!.delete();
+                          fectc();
+                          setuserStatus();
+                          saved = true;
+                        });
+                      }
+                    : null,
+                child: imageFile != null && saved == false
+                    ? Text(
+                        "Save",
+                        style: TextStyle(
+                            color: Color(0xFF007AFF),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
+                      )
+                    : Text(
+                        "Save",
+                        style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
+                      ),
               ),
-              child: isLoading != true
-                  ? Column(
-                      children: [
-                        SizedBox(
-                          height: height(context: context) / 8,
-                        ),
-                        SizedBox(
-                          height: height(context: context) / 100,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Column(
-                              children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(1000),
-                                    child: imageFile != null
-                                        ? Image.file(
-                                            imageFile!,
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height /
-                                                6.5,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width /
-                                                3,
-                                            fit: BoxFit.cover,
-                                          )
-                                        : UserData.userProfile!.image != "0"
-                                            ? imageprofilezero()
-                                            : imageprofileone()),
-                              ],
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: height(context: context) / 100,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            _pickImage(ImageSource.gallery);
-                          },
-                          child: Text(
-                            "Change Profile Photo",
-                            style: TextStyle(
-                                color: Color(0xFF6F2DA8),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700),
-                          ),
-                        ),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox(
-                            "Username", "${UserData.userProfile?.username}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox(
-                            "First Name", "${UserData.userProfile?.name}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox(
-                            "Last Name", "${UserData.userProfile?.surname}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox("Email", "${UserData.userProfile?.email}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox(
-                            "Phone Number", "${UserData.userProfile?.phone}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        profilebox(
-                            "Citizen ID", "${UserData.userProfile?.ctzid}"),
-                        SizedBox(
-                          height: height(context: context) / 50,
-                        ),
-                        SizedBox(
-                          height: height(context: context) / 20,
-                        ),
-                      ],
-                    )
-                  : Container(
-                      height: 633,
-                      alignment: Alignment.center,
-                      child: Column(
+            )
+          ],
+        ),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: width(context: context) / 20,
+            ),
+            child: isLoading != true
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: height(context: context) / 8,
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          CupertinoActivityIndicator(),
-                          Text(
-                            "LOADING",
-                            style: TextStyle(fontSize: 12.0),
+                          Column(
+                            children: [
+                              ClipRRect(
+                                  borderRadius: BorderRadius.circular(1000),
+                                  child: imageFile != null
+                                      ? Image.file(
+                                          imageFile!,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              6.5,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              3,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : UserData.userProfile!.image != "0"
+                                          ? imageprofileupload()
+                                          : imageprofiletemp()),
+                            ],
                           ),
                         ],
                       ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      InkWell(
+                        onTap: () {
+                          _pickImage(ImageSource.gallery);
+                        },
+                        child: Text(
+                          "Change Profile Photo",
+                          style: TextStyle(
+                              color: Color(0xFF6F2DA8),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 50,
+                      ),
+                      profileboxlist(
+                          "Username", "${UserData.userProfile?.username}"),
+                      profileboxlist(
+                          "Firstname", "${UserData.userProfile?.name}"),
+                      profileboxlist(
+                          "Lastname", "${UserData.userProfile?.surname}"),
+                      profileboxlist("Email", "${UserData.userProfile?.email}"),
+                      profileboxlist("Phone", "${UserData.userProfile?.phone}"),
+                      profileboxlist(
+                          "Citizen ID", "${UserData.userProfile?.ctzid}"),
+                      SizedBox(
+                        height: height(context: context) / 20,
+                      ),
+                    ],
+                  )
+                : Container(
+                    height: 633,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CupertinoActivityIndicator(),
+                        Text(
+                          "LOADING",
+                          style: TextStyle(fontSize: 12.0),
+                        ),
+                      ],
                     ),
-            ),
-          ),
-        ));
-  }
-
-  Row profilebox(String titile, String des) {
-    return Row(
-      children: [
-        Container(
-          padding: const EdgeInsets.only(left: 16.0, top: 16.0, right: 16.0),
-          decoration: BoxDecoration(
-              color: Color(0xFFf0eff5),
-              borderRadius: new BorderRadius.only(
-                  bottomLeft: const Radius.circular(8.0),
-                  bottomRight: const Radius.circular(8.0),
-                  topLeft: const Radius.circular(8.0),
-                  topRight: const Radius.circular(8.0))),
-          width: width(context: context) * 0.9,
-          height: 80,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Text(
-                titile,
-                style: TextStyle(color: Colors.black, fontSize: 16),
-              ),
-              Divider(
-                color: Color(0xFF6F2DA8),
-                thickness: 1,
-                endIndent: 5,
-              ),
-              Text(
-                des,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
-            ],
+                  ),
           ),
         ),
-      ],
+      ),
     );
   }
 
-  Widget imageprofilezero() {
+  Widget profileboxlist(String titile, String detail) {
+    return Container(
+      margin: const EdgeInsets.only(top: 16),
+      height: 86,
+      decoration: BoxDecoration(
+        color: Color(0xFFEBEDF2),
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  children: [
+                    Text(
+                      titile,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+                Divider(
+                  color: Color(0xFF6F2DA8),
+                ),
+                Text(
+                  detail,
+                  style: TextStyle(fontSize: 16, color: Colors.black),
+                )
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget imageprofileupload() {
     return Image(
       image: NetworkImage(
           "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${UserData.userProfile!.image}"),
@@ -345,7 +327,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  Widget imageprofileone() {
+  Widget imageprofiletemp() {
     return Image(
       image: AssetImage('assets/images/profile_temp.jpg'),
       height: MediaQuery.of(context).size.height / 6.5,
