@@ -148,7 +148,7 @@ class _InterestedActivityUserPageState
   }
 
   Widget initiateThird() {
-    return Row(
+    return Column(
       children: [
         Container(
           height: 200,

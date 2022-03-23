@@ -134,7 +134,7 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
   }
 
   Widget initiateSecond() {
-    return Row(
+    return Column(
       children: [
         Container(
           height: 200,
