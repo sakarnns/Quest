@@ -52,7 +52,9 @@ Future createActivity(
   print("=============");
 
   var request = http.MultipartRequest('POST', Uri.parse(url));
-
+  // print("=====tierpoint=====");
+  // print(eventtier);
+  // print("=====tierpoint=====");
   request.fields.addAll({
     'Event_Name': eventname,
     'Event_Detail': eventdetail,
@@ -75,9 +77,13 @@ Future createActivity(
   http.StreamedResponse response = await request.send();
 
   status = response.statusCode;
-
+  print("=====500=====");
+  print(status);
+  print("=====500=====");
   if (response.statusCode == 201) {
     print("ยิงละ");
+    print(status);
+    print("ยิงแล้วอ่อ");
   } else {
     print(response.statusCode);
     print(response.stream);
@@ -610,25 +616,28 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: agreedterm != false
-          ? () {
-              createActivity(
-                  eventnamecheck!,
-                  eventstartdatecheck!.toString(),
-                  eventstarttimecheck!.toString(),
-                  eventenddatecheck!.toString(),
-                  eventendtimecheck!.toString(),
-                  eventtypecheck!,
-                  participantquantitycheck!,
-                  pointperpartcheck!,
-                  eventdetialcheck!,
-                  (
-                    eventlocation +
-                    "\nDetail : " +
-                    locationdetialcheck!),
-                  tierpointscheck!,
-                  latitude!,
-                  longitude!);
+          ? () async {
+              await createActivity(
+                eventnamecheck!,
+                eventstartdatecheck!.toString(),
+                eventstarttimecheck!.toString(),
+                eventenddatecheck!.toString(),
+                eventendtimecheck!.toString(),
+                eventtypecheck!,
+                participantquantitycheck!,
+                pointperpartcheck!,
+                eventdetialcheck!,
+                (eventlocation + "\nDetail : " + locationdetialcheck!),
+                tierpointscheck!,
+                latitude!,
+                longitude!,
+              );
               eventlocation = "";
+
+              // print("ให้ทายออกอะไร");
+              // print("====\/\/===");
+              // print(status);
+
               status == 201
                   ? Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(

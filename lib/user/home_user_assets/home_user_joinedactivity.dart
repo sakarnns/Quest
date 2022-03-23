@@ -11,7 +11,7 @@ import '../activity_details_user.dart';
 
 bool isLoading = true;
 Future getjoinedevent() async {
-  print("activitybrowse activate!");
+  print("activityjoined activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');

@@ -8,8 +8,8 @@ import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-
-import 'options/pending_activity_user.dart';
+import 'navigation_user/navigation_user.dart';
+import 'options/option.dart';
 
 bool isLoading = true;
 bool isBTNActive = true;
@@ -84,8 +84,8 @@ Future cancelact() async {
   print("check");
 
   if (res.statusCode == 204) {
-    print("objectwerfgvcsderthbvcfgtyhbvgyhjnbhjnb");
-    print(json.decode(res.body));
+    // print("objectwerfgvcsderthbvcfgtyhbvgyhjnbhjnb");
+    // print(json.decode(res.body));
     return jsonResponse;
   }
 }
@@ -115,14 +115,10 @@ class _MyActivityDetailsPendingPageState
           MaterialPageRoute(builder: (BuildContext context) => TimeOutPage()),
           (Route<dynamic> route) => false);
     }
-    Future.delayed(Duration(milliseconds: 300), () {
-      setState(() {
-        print("fetch 2 ");
-        isLoading = false;
-        isBTNActive = false;
-        setState(() {});
-      });
-    });
+    print("fetch 2 ");
+    isLoading = false;
+    isBTNActive = false;
+    setState(() {});
   }
 
   @override
@@ -615,8 +611,7 @@ class _MyActivityDetailsPendingPageState
         cancelact();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
-                builder: (BuildContext context) =>
-                    UserActivityPendingPage()),
+                builder: (BuildContext context) => NavigationUser()),
             (Route<dynamic> route) => false);
       },
       child: Text(

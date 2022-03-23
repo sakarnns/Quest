@@ -51,7 +51,10 @@ class _OptionPageState extends State<OptionPage> {
                   maxWidth: 28,
                   maxHeight: 28,
                 ),
-                child: SvgPicture.asset('assets/icons/profile_option.svg'),
+                child: SvgPicture.asset(
+                  'assets/icons/profile_option.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(
                 'Profile',
@@ -76,7 +79,10 @@ class _OptionPageState extends State<OptionPage> {
                   maxWidth: 28,
                   maxHeight: 28,
                 ),
-                child: SvgPicture.asset('assets/icons/verify_option.svg'),
+                child: SvgPicture.asset(
+                  'assets/icons/verify_option.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(
                 'Verify',
@@ -103,7 +109,10 @@ class _OptionPageState extends State<OptionPage> {
                   maxWidth: 28,
                   maxHeight: 28,
                 ),
-                child: SvgPicture.asset('assets/icons/activity_pending.svg'),
+                child: SvgPicture.asset(
+                  'assets/icons/activity_pending.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(
                 'Pending Activity',
@@ -130,7 +139,10 @@ class _OptionPageState extends State<OptionPage> {
                   maxWidth: 28,
                   maxHeight: 28,
                 ),
-                child: SvgPicture.asset('assets/icons/reward_pending.svg'),
+                child: SvgPicture.asset(
+                  'assets/icons/reward_pending.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(
                 'Pending Reward',
@@ -157,7 +169,10 @@ class _OptionPageState extends State<OptionPage> {
                   maxWidth: 28,
                   maxHeight: 28,
                 ),
-                child: SvgPicture.asset('assets/icons/logout_option.svg'),
+                child: SvgPicture.asset(
+                  'assets/icons/logout_option.svg',
+                  fit: BoxFit.contain,
+                ),
               ),
               title: Text(
                 'Logout',
