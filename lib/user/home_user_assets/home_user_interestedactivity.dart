@@ -152,7 +152,6 @@ class _InterestedActivityUserPageState
       children: [
         Container(
           height: 200,
-          width: 370,
           decoration: BoxDecoration(
             // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
@@ -160,13 +159,18 @@ class _InterestedActivityUserPageState
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Text(
-                "There is no activity in the list.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "There is no activity in the list.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               )
             ],
           ),

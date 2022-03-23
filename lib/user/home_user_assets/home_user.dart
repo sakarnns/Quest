@@ -366,8 +366,8 @@ class _UserHomePageState extends State<UserHomePage> {
           },
           child: Container(
             margin: EdgeInsets.only(right: 10),
-            height: height(context: context) / 3.8,
-            width: 300,
+            height: height(context: context) * 0.26,
+            width: width(context: context) * 0.9,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 image: DecorationImage(

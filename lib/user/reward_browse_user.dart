@@ -195,7 +195,7 @@ class _RewardUserBrowsePageState extends State<RewardUserBrowsePage> {
           },
           child: Container(
             margin: const EdgeInsets.only(top: 16),
-            height: 200,
+            height: height(context: context) * 0.23,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 image: DecorationImage(

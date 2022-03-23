@@ -240,7 +240,7 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
           },
           child: Container(
             margin: const EdgeInsets.only(top: 16),
-            height: 200,
+            height: height(context: context) * 0.23,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 image: DecorationImage(

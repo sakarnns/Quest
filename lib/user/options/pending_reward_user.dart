@@ -138,7 +138,6 @@ class _PendingRewadUserPageState extends State<PendingRewadUserPage> {
       children: [
         Container(
           height: 200,
-          width: 370,
           decoration: BoxDecoration(
             // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
@@ -146,13 +145,18 @@ class _PendingRewadUserPageState extends State<PendingRewadUserPage> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Text(
-                "No pending reward in history.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "No pending reward in history.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
