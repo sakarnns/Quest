@@ -733,7 +733,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                   !(eventDetailData.eventDetail!.eventPublisher ==
                       UserData.userProfile!.username)) &&
               !(eventDetailData.eventDetail!.participantLimit <=
-                  eventDetailData.eventDetail!.eventJoined))
+                  eventDetailData.eventDetail!.eventJoined) && !(UserData.userProfile!.tier! < eventDetailData.eventDetail!.eventTierPoints))
           ? () {
               setState(() {
                 joinbutton('${eventDetailData.eventDetail?.eventId}');
@@ -749,8 +749,11 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
             : eventDetailData.eventDetail!.participantLimit <=
                     eventDetailData.eventDetail!.eventJoined
                 ? "Full"
+                : UserData.userProfile!.tier! < eventDetailData.eventDetail!.eventTierPoints 
+                    ? "not enough t-point"
                 : isButtonActive && !isButtonActiveAPI
                     ? "Join"
+                    
                     : "Joined",
         style: TextStyle(color: Colors.white, fontSize: 16),
       ),
