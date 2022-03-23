@@ -114,7 +114,7 @@ class _ActivityUserHomePageState extends State<ActivityUserHomePage> {
                     Container(
                       child: CarouselSlider(
                         options: CarouselOptions(
-                          height: 190,
+                          height: height(context: context) / 4.9,
                           aspectRatio: 16 / 9,
                           enlargeCenterPage: true,
                           autoPlay: true,
@@ -272,7 +272,7 @@ class _ActivityUserHomePageState extends State<ActivityUserHomePage> {
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 10),
-                              height: 200,
+                              height: height(context: context) / 5.1,
                               width: 300,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.0),
@@ -421,7 +421,7 @@ class _ActivityUserHomePageState extends State<ActivityUserHomePage> {
                             },
                             child: Container(
                               margin: EdgeInsets.only(right: 10),
-                              height: 200,
+                              height: height(context: context) / 5.1,
                               width: 300,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(8.0),
