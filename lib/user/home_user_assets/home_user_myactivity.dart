@@ -148,20 +148,24 @@ class _MyActivityUserPageState extends State<MyActivityUserPage> {
       children: [
         Container(
           height: 200,
-          width: 370,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Text(
-                "There is no activity to show.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "There is no activity to show.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               )
             ],
           ),

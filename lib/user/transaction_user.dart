@@ -139,7 +139,6 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
       children: [
         Container(
           height: 200,
-          width: 370,
           decoration: BoxDecoration(
             // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
@@ -147,13 +146,18 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
           child: Stack(
             alignment: Alignment.center,
             children: [
-              Text(
-                "No transactions in history.",
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w700,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "No transactions in history.",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
               )
             ],
           ),
@@ -183,43 +187,41 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                 children: [
                   Row(
                     children: [
-                      transactionsData.transactions[index].type == "Reward" ?
-                      Text(
-                        "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ) 
-                      :Text(
-                        "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF6F2DA8),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ) ,
+                      transactionsData.transactions[index].type == "Reward"
+                          ? Text(
+                              "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )
+                          : Text(
+                              "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF6F2DA8),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                       Spacer(),
-                      transactionsData.transactions[index].type == "Reward" ?
-                      Text(
-                        "${transactionsData.transactions[index].points.toString()} Point(s)",
-                        style: TextStyle(
-
-                          fontSize: 16,
-                          color: Colors.red,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      )
-                      :Text(
-                        "+${transactionsData.transactions[index].points.toString()} Point(s)",
-                        style: TextStyle(
-
-                          fontSize: 16,
-                          color: Color(0xFF6F2DA8),
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
+                      transactionsData.transactions[index].type == "Reward"
+                          ? Text(
+                              "${transactionsData.transactions[index].points.toString()} Point(s)",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.red,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            )
+                          : Text(
+                              "${transactionsData.transactions[index].points.toString()} Point(s)",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Color(0xFF6F2DA8),
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
                     ],
                   ),
                   Divider(
