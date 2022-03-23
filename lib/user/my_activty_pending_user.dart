@@ -1,119 +1,119 @@
-import 'dart:io';
-import 'package:quest_2/serviecs/activity_location_map_service.dart';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:quest_2/user/create_activity_user.dart';
-import 'package:quest_2/user/preview_activty_user_done.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:quest_2/data/eventdetail.dart';
+import 'package:quest_2/models/event_detail.dart';
 import 'package:quest_2/styles/size.dart';
-import 'package:quest_2/initiate_app/terms_condition.dart';
-import 'package:quest_2/user/preview_activty_user_fail.dart';
+import 'package:quest_2/user/scan_qr_user.dart';
+import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../data/userdata.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-Future createActivity(
-    String eventname,
-    String eventstartdate,
-    String eventstarttime,
-    String eventenddate,
-    String eventendtime,
-    String eventtype,
-    String eventpaticipant,
-    String eventpoint,
-    String eventdetail,
-    String eventlocation,
-    String eventtier,
-    double la,
-    double ln) async {
+bool isLoading = true;
+bool isBTNActive = true;
+int? tokenexpire;
+
+Future getmyactivitydetail() async {
+  print("activitybrowse activate!");
   final prefs = await SharedPreferences.getInstance();
-  final token = prefs.getString('token');
 
+  final eventid = prefs.getString('selecteventid');
+  final val = prefs.getString('token');
+  print("-------------==========");
+  print(eventid);
+  print("-------------==========");
   String url =
-      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/sm_user_create_event";
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-  var requestHeaders = {
+      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
+  Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
-    'Authorization': (token) as String
+    'Authorization': (val) as String
   };
 
-  List<String> splitstartdata = eventstartdate.split(RegExp("/"));
-  eventstartdate =
-      splitstartdata[2] + "-" + splitstartdata[1] + "-" + splitstartdata[0];
-  List<String> splitenddata = eventenddate.split(RegExp("/"));
-  eventenddate =
-      splitenddata[2] + "-" + splitenddata[1] + "-" + splitenddata[0];
-  eventstarttime = eventstarttime + ":00";
-  eventendtime = eventendtime + ":00";
+  var jsonResponse;
+  var res = await http.get(
+    Uri.parse(url),
+    headers: requestHeaders,
+  );
+  tokenexpire = res.statusCode;
+  print(res.statusCode);
 
-  print("eventstartdate : " + eventstartdate);
-  print("eventstarttime : " + eventstarttime);
-  print("=============");
-  print(eventdetail);
-  print("=============");
-
-  var request = http.MultipartRequest('POST', Uri.parse(url));
-
-  request.fields.addAll({
-    'Event_Name': eventname,
-    'Event_Detail': eventdetail,
-    'Event_Location': eventlocation,
-    'Event_Start_Date': eventstartdate,
-    'Event_Start_Time': eventstarttime,
-    'Event_End_Date': eventenddate,
-    'Event_End_Time': eventendtime,
-    'Event_Tier_Points_Require': eventtier,
-    'Event_Type': eventtype,
-    'Participant_Limit': eventpaticipant,
-    'Event_Points': eventpoint,
-    'Event_Latitude': la.toString(),
-    'Event_Longitude': ln.toString()
-  });
-  request.files
-      .add(await http.MultipartFile.fromPath('image', imageFile!.path));
-  request.headers.addAll(requestHeaders);
-
-  http.StreamedResponse response = await request.send();
-
-  status = response.statusCode;
-
-  if (response.statusCode == 201) {
-    print("ยิงละ");
-  } else {
-    print(response.statusCode);
-    print(response.stream);
+  if (res.statusCode == 200) {
+    // print(json.decode(res.body));
+    eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
+    jsonResponse = json.decode(res.body);
+    // print("Response status; ${res.statusCode}");
+    // print("In");
+    // print(eventDetailData.eventDetail?.eventCheckInterest);
+    // print("j");
+    // print(eventDetailData.eventDetail?.eventCheckJoin);
+    // print("jd");
+    // print(eventDetailData.eventDetail?.eventCheckJoined);
+    // // print("Response status; ${res.body}");
+    return jsonResponse;
   }
 }
 
-class PreviewActivityUserPage extends StatefulWidget {
-  PreviewActivityUserPage({Key? key}) : super(key: key);
-  // final String name ;
+class MyActivityDetailsPendingPage extends StatefulWidget {
+  MyActivityDetailsPendingPage({Key? key}) : super(key: key);
 
   @override
-  _PreviewActivityUserPageState createState() =>
-      _PreviewActivityUserPageState();
+  State<MyActivityDetailsPendingPage> createState() =>
+      _MyActivityDetailsPendingPageState();
 }
 
-bool? isvalid;
-bool agreedterm = false;
-int? status;
+class _MyActivityDetailsPendingPageState
+    extends State<MyActivityDetailsPendingPage> {
+  void initState() {
+    fectc();
+    super.initState();
+  }
 
-class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
+  void fectc() async {
+    isLoading = true;
+    isBTNActive = true;
+    print("fetch 1 ");
+    await getmyactivitydetail();
+    if (tokenexpire == 401) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (BuildContext context) => TimeOutPage()),
+          (Route<dynamic> route) => false);
+    }
+    Future.delayed(Duration(milliseconds: 300), () {
+      setState(() {
+        print("fetch 2 ");
+        isLoading = false;
+        isBTNActive = false;
+        setState(() {});
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return GestureDetector(
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      behavior: HitTestBehavior.translucent,
+      child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
           title: Text(
-            'Preview Activity',
+            'My Activity',
             style: TextStyle(
               fontSize: 24.0,
               color: Color(0xFF6F2DA8),
             ),
           ),
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(16),
+            ),
+          ),
           // backgroundColor: Color(0xFFEBEDF2),
-          // backgroundColor: Colors.transparent,
           backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
@@ -122,85 +122,64 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
               Navigator.pop(context);
             },
           ),
+          actions: <Widget>[qrScanButton()],
         ),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
               horizontal: width(context: context) / 20,
             ),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: height(context: context) / 8,
-                ),
-                SizedBox(
-                  height: height(context: context) / 100,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: covereventarea(),
-                ),
-                SizedBox(
-                  height: height(context: context) / 50,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xFFf0eff5),
-                      borderRadius: new BorderRadius.all(Radius.circular(8.0))),
-                  child: detailsarea(),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
+            child: isLoading != true
+                ? Column(
+                    children: [
+                      SizedBox(
+                        height: height(context: context) / 8,
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(8.0))),
+                        child: covereventarea(),
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 50,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Color(0xFFf0eff5),
+                            borderRadius:
+                                new BorderRadius.all(Radius.circular(8.0))),
+                        child: myActivityarea(),
+                      ),
+                      SizedBox(
+                        height: height(context: context) / 20,
+                      ),
+                    ],
+                  )
+                : Container(
+                    height: 800,
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Transform.scale(
-                          scale: 1.0,
-                          child: Checkbox(
-                              activeColor: Color(0xFF6F2DA8),
-                              value: agreedterm,
-                              onChanged: (val) {
-                                setState(() {
-                                  agreedterm = val!;
-                                });
-                                print("have agree");
-                              }),
-                        ),
+                        CupertinoActivityIndicator(),
                         Text(
-                          'I have read and agreed with ',
-                          style: TextStyle(fontSize: 13.0),
+                          "LOADING",
+                          style: TextStyle(fontSize: 12.0),
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        TermsAndConditionPage()));
-                            // print('tap');
-                          },
-                          child: Text(
-                            "terms and conditions",
-                            style: TextStyle(
-                                color: Color(0xFF6F2DA8), fontSize: 13.0),
-                          ),
-                        )
                       ],
                     ),
-                  ],
-                ),
-                submitbtn(),
-                SizedBox(
-                  height: height(context: context) / 20,
-                ),
-              ],
-            ),
+                  ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
-  Widget detailsarea() {
+  Widget myActivityarea() {
     return Column(
       children: [
 /*=="Event Name"==============================================================*/
@@ -221,19 +200,19 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                activity.eventname.text,
+                "${eventDetailData.eventDetail?.eventName}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
+/*=="Event Organizer."========================================================*/
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: Divider(
             color: Color(0xFF6F2DA8),
           ),
         ),
-/*=="Event Organizer."========================================================*/
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -248,7 +227,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                "${UserData.userProfile?.username}",
+                "${eventDetailData.eventDetail?.eventPublisher}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -275,7 +254,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                eventstartdatecheck.toString(),
+                "${eventDetailData.eventDetail?.eventStartDate}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -302,7 +281,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                eventstarttimecheck.toString(),
+                "${eventDetailData.eventDetail?.eventStartTime}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -329,7 +308,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                eventenddatecheck.toString(),
+                "${eventDetailData.eventDetail?.eventEndDate}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -356,7 +335,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                eventendtimecheck.toString(),
+                "${eventDetailData.eventDetail?.eventEndTime}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -383,14 +362,13 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                eventtypecheck.toString(),
+                "${eventDetailData.eventDetail?.eventType}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
-
-/*=="Participants Quantity"===================================================*/
+/*=="Participants Limit"======================================================*/
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: Divider(
@@ -403,7 +381,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Participants Quantity",
+                "Participants Limit",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -411,13 +389,40 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                activity.eventquantity.text,
+                "${eventDetailData.eventDetail?.participantLimit}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
           ),
         ),
-/*=="Point/Participants"======================================================*/
+/*=="Participants Limit"======================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Participants Joined",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              Text(
+                "${eventDetailData.eventDetail?.eventJoined}",
+                style: TextStyle(color: Colors.black, fontSize: 16),
+              ),
+            ],
+          ),
+        ),
+/*=="Piont/Participants"======================================================*/
         Padding(
           padding: const EdgeInsets.only(left: 16),
           child: Divider(
@@ -438,7 +443,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                activity.eventpointquantity.text,
+                "${eventDetailData.eventDetail?.eventPoints} Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -465,7 +470,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                 ),
               ),
               Text(
-                activity.eventtierpoint.text,
+                "${eventDetailData.eventDetail?.eventPoints} Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -479,7 +484,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -499,7 +504,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              activity.eventdetial.text,
+              '${eventDetailData.eventDetail?.eventDetail}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,
@@ -515,7 +520,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -534,21 +539,12 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           width: MediaQuery.of(context).size.width,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Text(
-                  eventlocation,
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                Text(
-                  "lat : ${latitude.toString()}",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                Text(
-                  "long :${longitude.toString()}",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-              ],
+            child: Text(
+              '${eventDetailData.eventDetail?.eventLongitude}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
             ),
           ),
         ),
@@ -560,7 +556,7 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 8),
+          padding: const EdgeInsets.all(8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -580,8 +576,11 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              locationdetialcheck!,
-              style: TextStyle(color: Colors.black, fontSize: 16),
+              '${eventDetailData.eventDetail?.eventDetail}',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
             ),
           ),
         ),
@@ -597,78 +596,56 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
       height: 200,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
-          image:
-              DecorationImage(image: FileImage(imageFile!), fit: BoxFit.cover)),
+          image: DecorationImage(
+              image: NetworkImage(
+                  "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
+              fit: BoxFit.cover)),
     );
   }
 
-  Widget submitbtn() {
-    return MaterialButton(
-      color: Color(0xFF6F2DA8),
-      disabledColor: Colors.grey,
-      minWidth: 163,
-      height: 40,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      onPressed: agreedterm != false
+  Widget qrScanButton() {
+    return InkWell(
+      onTap: isBTNActive != true
           ? () {
-              createActivity(
-                  eventnamecheck!,
-                  eventstartdatecheck!.toString(),
-                  eventstarttimecheck!.toString(),
-                  eventenddatecheck!.toString(),
-                  eventendtimecheck!.toString(),
-                  eventtypecheck!,
-                  participantquantitycheck!,
-                  pointperpartcheck!,
-                  ("Event Detail : " +
-                      eventdetialcheck!)
-                      ,
-                      (
-                      eventlocation +
-                      "\n" +
-                      locationdetialcheck!),
-                  tierpointscheck!,
-                  latitude!,
-                  longitude!);
-              eventlocation = "";
-              status == 200
-                  ? Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              PreviewActivityUserPageDone()),
-                      (Route<dynamic> route) => false)
-                  : Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              PreviewActivityUserPageFail()),
-                      (Route<dynamic> route) => false);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ScanQrUserPage()));
             }
           : null,
-      child: Text(
-        'Submit',
-        style: TextStyle(color: Colors.white, fontSize: 16),
+      child: Container(
+        width: 28,
+        margin: const EdgeInsets.only(right: 16),
+        child: SvgPicture.asset(
+          'assets/icons/readerQR.svg',
+          fit: BoxFit.contain,
+          color: Color(0xFF6F2DA8),
+        ),
       ),
     );
   }
-}
-
-// Fuction bring (val) from CreateActivityUserPage to this Page
-Activity activity = Activity();
-
-class Activity {
-  TextEditingController eventname = TextEditingController();
-  TextEditingController eventstartdate = TextEditingController();
-  TextEditingController eventstarttime = TextEditingController();
-  TextEditingController eventenddate = TextEditingController();
-  TextEditingController eventendtime = TextEditingController();
-  TextEditingController eventtype = TextEditingController();
-  TextEditingController eventquantity = TextEditingController();
-  TextEditingController eventpointquantity = TextEditingController();
-  TextEditingController eventtierpoint = TextEditingController();
-  TextEditingController eventdetial = TextEditingController();
-  TextEditingController eventlocationdetail = TextEditingController();
-  TextEditingController eventlocation = TextEditingController();
-  TextEditingController latitude = TextEditingController();
-  TextEditingController longitude = TextEditingController();
-  File? imagefiledata;
+  // Widget qrButton() {
+  //   return MaterialButton(
+  //     disabledColor: Colors.grey,
+  //     color: Colors.white,
+  //     minWidth: 30,
+  //     // height: 40,
+  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //     onPressed: isBTNActive != true
+  //         ? () {
+  //             Navigator.push(context,
+  //                 MaterialPageRoute(builder: (context) => ScanQrUserPage()));
+  //           }
+  //         : null,
+  //     child: Container(
+  //       child: SvgPicture.asset(
+  //         'assets/icons/readerQR.svg',
+  //         fit: BoxFit.fill,
+  //         color: Colors.black,
+  //       ),
+  //       // child: Text(
+  //       //   "Scan QR",
+  //       //   style: TextStyle(color: Colors.white, fontSize: 16),
+  //       // ),
+  //     ),
+  //   );
+  // }
 }

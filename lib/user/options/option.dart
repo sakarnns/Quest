@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quest_2/initiate_app/login.dart';
+import 'package:quest_2/user/options/pending_activity_user.dart';
 import 'package:quest_2/user/options/profile.dart';
 import 'package:quest_2/user/options/verifyoption.dart';
-
 import 'pending_reward_user.dart';
 
 class OptionPage extends StatefulWidget {
@@ -80,6 +80,33 @@ class _OptionPageState extends State<OptionPage> {
               ),
               title: Text(
                 'Verify',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.only(left: 32.0),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserActivityPendingPage()));
+
+                print("into PendingActivity");
+              },
+              leading: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minWidth: 28,
+                  minHeight: 28,
+                  maxWidth: 28,
+                  maxHeight: 28,
+                ),
+                child: SvgPicture.asset('assets/icons/activity_pending.svg'),
+              ),
+              title: Text(
+                'Pending Reward',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal,

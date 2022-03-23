@@ -117,7 +117,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("My Activity");
                       },
                       child: Container(
-                        height: height(context: context) / 9,
+                        height: height(context: context) * 0.12,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
@@ -183,7 +183,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("into Joined Activty");
                       },
                       child: Container(
-                        height: height(context: context) / 9,
+                        height: height(context: context) * 0.12,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
@@ -249,7 +249,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("into Interested Activty");
                       },
                       child: Container(
-                        height: height(context: context) / 9,
+                        height: height(context: context) * 0.12,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             // color: Color(0xFFdcdfe6),
@@ -366,8 +366,8 @@ class _UserHomePageState extends State<UserHomePage> {
           },
           child: Container(
             margin: EdgeInsets.only(right: 10),
-            height: height(context: context) * 0.26,
-            width: width(context: context) * 0.9,
+            height: height(context: context) * 0.23,
+            width: width(context: context) * 0.85,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
                 image: DecorationImage(
@@ -390,7 +390,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     ),
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: 32,
+                  height: MediaQuery.of(context).size.height * 0.038,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
