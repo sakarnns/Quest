@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:quest_2/models/event_all.dart';
 import 'package:quest_2/serviecs/activity_location_map_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

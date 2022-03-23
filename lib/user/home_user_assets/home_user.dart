@@ -390,7 +390,7 @@ class _UserHomePageState extends State<UserHomePage> {
                     ),
                   ),
                   width: MediaQuery.of(context).size.width,
-                  height: 32,
+                  height: MediaQuery.of(context).size.height * 0.038,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
