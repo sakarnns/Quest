@@ -69,75 +69,81 @@ class _NavigationStaffState extends State<NavigationStaff> {
             StatusStaff(),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            backgroundColor: Color(0xFFf0eff5),
-            type: BottomNavigationBarType.fixed,
-            unselectedItemColor: Colors.grey,
-            fixedColor: Color(0xFF6F2DA8),
-            items: <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                // icon: Icon(Icons.home),
-                icon: Container(
-                  height: 28,
-                  width: 28,
-                  child: SvgPicture.asset(
-                    'assets/icons/activity_active.svg',
-                    color:
-                        _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.grey,
+        bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
+          child: BottomNavigationBar(
+              showSelectedLabels: true,
+              showUnselectedLabels: true,
+              backgroundColor: Color(0xFFf0eff5),
+              type: BottomNavigationBarType.fixed,
+              unselectedItemColor: Colors.grey,
+              fixedColor: Color(0xFF6F2DA8),
+              items: <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  // icon: Icon(Icons.home),
+                  icon: Container(
+                    height: 28,
+                    width: 28,
+                    child: SvgPicture.asset(
+                      'assets/icons/activity_active.svg',
+                      color:
+                          _selectedIndex == 0 ? Color(0xFF6F2DA8) : Colors.grey,
+                    ),
                   ),
+                  label: 'Active',
                 ),
-                label: 'Active',
-              ),
-              BottomNavigationBarItem(
-                icon: Container(
-                  height: 28,
-                  width: 28,
-                  child: SvgPicture.asset(
-                    'assets/icons/setting_page.svg',
-                    color:
-                        _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.grey,
+                BottomNavigationBarItem(
+                  icon: Container(
+                    height: 28,
+                    width: 28,
+                    child: SvgPicture.asset(
+                      'assets/icons/setting_page.svg',
+                      color:
+                          _selectedIndex == 4 ? Color(0xFF6F2DA8) : Colors.grey,
+                    ),
                   ),
+                  label: 'Setting',
                 ),
-                label: 'Setting',
-              ),
-            ],
-            currentIndex: _selectedIndex,
-            // selectedItemColor: Color(0xFF307BF6),
-            onTap: (int index) {
-              if (index == 1) {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => OptionsStaffPage()));
-                index = 0;
-              }
-              // if (index == 2) {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => CreateActivityUserPage()));
-              //   index = 0;
-              // }
+              ],
+              currentIndex: _selectedIndex,
+              // selectedItemColor: Color(0xFF307BF6),
+              onTap: (int index) {
+                if (index == 1) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => OptionsStaffPage()));
+                  index = 0;
+                }
+                // if (index == 2) {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => CreateActivityUserPage()));
+                //   index = 0;
+                // }
 
-              // if (index == 3) {
-              //   Navigator.push(
-              //       context,
-              //       MaterialPageRoute(
-              //           builder: (context) => RewardUserBrowsePage()));
-              //   index = 0;
-              // }
-              // if (index == 4) {
-              //   Navigator.push(context,
-              //       MaterialPageRoute(builder: (context) => OptionPage()));
-              //   index = 0;
-              // }
+                // if (index == 3) {
+                //   Navigator.push(
+                //       context,
+                //       MaterialPageRoute(
+                //           builder: (context) => RewardUserBrowsePage()));
+                //   index = 0;
+                // }
+                // if (index == 4) {
+                //   Navigator.push(context,
+                //       MaterialPageRoute(builder: (context) => OptionPage()));
+                //   index = 0;
+                // }
 
-              setState(() {
-                _selectedIndex = index;
-              });
-            }),
+                setState(() {
+                  _selectedIndex = index;
+                });
+              }),
+        ),
       ),
     );
   }
