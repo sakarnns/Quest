@@ -620,18 +620,16 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
                   eventtypecheck!,
                   participantquantitycheck!,
                   pointperpartcheck!,
-                  ("Event Detail : " +
-                      eventdetialcheck!)
-                      ,
-                      (
-                      eventlocation +
-                      "\n" +
-                      locationdetialcheck!),
+                  eventdetialcheck!,
+                  (
+                    eventlocation +
+                    "\nDetail : " +
+                    locationdetialcheck!),
                   tierpointscheck!,
                   latitude!,
                   longitude!);
               eventlocation = "";
-              status == 200
+              status == 201
                   ? Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                           builder: (BuildContext context) =>

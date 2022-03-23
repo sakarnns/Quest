@@ -106,7 +106,7 @@ class _OptionPageState extends State<OptionPage> {
                 child: SvgPicture.asset('assets/icons/activity_pending.svg'),
               ),
               title: Text(
-                'Pending Reward',
+                'Pending Activity',
                 style: TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal,

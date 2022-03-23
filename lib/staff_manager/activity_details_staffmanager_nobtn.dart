@@ -445,7 +445,7 @@ class _ActivityDetailsStaffManagerNobtnPageState
                 ),
               ),
               Text(
-                "null* Points",
+                "${eventDetailData.eventDetail!.eventTierPoints} Tier-Points",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],
@@ -480,6 +480,42 @@ class _ActivityDetailsStaffManagerNobtnPageState
             padding: const EdgeInsets.all(8.0),
             child: Text(
               eventDetailData.eventDetail!.eventDetail,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16,
+              ),
+            ),
+          ),
+        ),
+        /*=="Location"===========================================================*/
+        Padding(
+          padding: const EdgeInsets.only(left: 16),
+          child: Divider(
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "Location",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
+          ),
+        ),
+        SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              '${eventDetailData.eventDetail?.eventLocation}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,

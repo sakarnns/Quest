@@ -32,7 +32,7 @@ Future pendingdata() async {
   final val = prefs.getString('token');
   print(val);
   String urlProfile =
-      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/sm_pending_event";
+      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/user_pending_event";
   Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
     'Authorization': (val) as String
