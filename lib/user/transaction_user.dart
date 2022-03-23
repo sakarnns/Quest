@@ -212,7 +212,7 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                         ),
                       )
                       :Text(
-                        "${transactionsData.transactions[index].points.toString()} Point(s)",
+                        "+${transactionsData.transactions[index].points.toString()} Point(s)",
                         style: TextStyle(
 
                           fontSize: 16,

@@ -20,7 +20,7 @@ class EventDetail {
     required this.eventJoined,
     required this.participantLimit,
     required this.eventPoints,
-    // required this.eventTierPoints,
+    required this.eventTierPoints,
     required this.eventLatitude,
     required this.eventLongitude,
     required this.eventApprove,
@@ -45,7 +45,7 @@ class EventDetail {
   int eventJoined;
   int participantLimit;
   int eventPoints;
-  // int eventTierPoints;
+  int eventTierPoints;
   double eventLatitude;
   double eventLongitude;
   bool eventApprove;
@@ -70,7 +70,7 @@ class EventDetail {
         eventJoined: json["Event_Joined"],
         participantLimit: json["Participant_Limit"],
         eventPoints: json["Event_Points"],
-        // eventTierPoints: json["Event_Tier_Points_Require"],
+        eventTierPoints: json["Event_Tier_Points_Require"],
         eventLatitude: json["Event_Latitude"].toDouble(),
         eventLongitude: json["Event_Longitude"].toDouble(),
         eventApprove: json["Event_Approve"],
@@ -96,7 +96,7 @@ class EventDetail {
         "Event_Joined": eventJoined,
         "Participant_Limit": participantLimit,
         "Event_Points": eventPoints,
-        // "Event_Tier_Points_Require": eventTierPoints,
+        "Event_Tier_Points_Require": eventTierPoints,
         "Event_Latitude": eventLatitude,
         "Event_Longitude": eventLongitude,
         "Event_Approve": eventApprove,

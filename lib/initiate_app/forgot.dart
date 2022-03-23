@@ -15,7 +15,8 @@ Future forgetpass(String email) async {
 
   var res = await http.post(Uri.parse(url), body: body);
 
-  if (res.statusCode == 200) {
+  print(res.statusCode);
+    if (res.statusCode == 200) {
     print("mail sent");
   }
 }

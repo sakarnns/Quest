@@ -548,7 +548,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Tier-Points",
+                "Tier-Points require",
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16,
@@ -556,7 +556,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                 ),
               ),
               Text(
-                "${eventDetailData.eventDetail?.eventPoints}",
+                "${eventDetailData.eventDetail?.eventTierPoints}",
                 style: TextStyle(color: Colors.black, fontSize: 16),
               ),
             ],

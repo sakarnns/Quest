@@ -116,7 +116,7 @@ class _StatusUserState extends State<StatusUser> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          "500",
+                          UserData.userProfile!.tier.toString(),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
