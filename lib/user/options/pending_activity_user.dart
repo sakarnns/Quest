@@ -8,7 +8,9 @@ import 'package:quest_2/models/staff_home.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'activity_details_staffmanager_nobtn.dart';
+
+import '../my_activty_pending_user.dart';
+// import 'activity_details_staffmanager_nobtn.dart';
 
 bool isLoading = true;
 int? tokenexpire;
@@ -52,15 +54,15 @@ Future pendingdata() async {
   }
 }
 
-class StaffManagerPendingPage extends StatefulWidget {
-  StaffManagerPendingPage({Key? key}) : super(key: key);
+class UserActivityPendingPage extends StatefulWidget {
+  UserActivityPendingPage({Key? key}) : super(key: key);
 
   @override
-  State<StaffManagerPendingPage> createState() =>
-      _StaffManagerPendingPageState();
+  State<UserActivityPendingPage> createState() =>
+      _UserActivityPendingPageState();
 }
 
-class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
+class _UserActivityPendingPageState extends State<UserActivityPendingPage> {
   @override
   void initState() {
     fectc();
@@ -83,48 +85,62 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: width(context: context) / 50,
+    return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        title: Text(
+          'Pending Activity',
+          style: TextStyle(
+            fontSize: 24,
+            color: Color(0xFF6F2DA8),
+          ),
+        ),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
+        // backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white.withOpacity(0.8),
+        elevation: 0.0,
+        leading: BackButton(
+          color: Color(0xFF6F2DA8),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      // \/ Card Activity \/
-      child: isLoading != true
-          ? Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    Text(
-                      "Pending Event ",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w700,
-                      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: width(context: context) / 50,
+          ),
+          // \/ Card pending  Activity \/
+          child: isLoading != true
+              ? Column(
+                  children: [
+                    SizedBox(
+                      height: height(context: context) / 9,
                     ),
+                    Container(
+                        child: pendingData.staffHome.isEmpty
+                            ? initiateFirst()
+                            : pendingActivity())
                   ],
-                ),
-                SizedBox(
-                  height: height(context: context) / 100,
-                ),
-                Container(
-                    child: pendingData.staffHome.isEmpty
-                        ? initiateFirst()
-                        : pendingActivity())
-              ],
-            )
-          : Container(
-              height: 633,
-              alignment: Alignment.center,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CupertinoActivityIndicator(),
-                  Text(
-                    "LOADING",
-                    style: TextStyle(fontSize: 12.0),
+                )
+              : Container(
+                  height: 633,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CupertinoActivityIndicator(),
+                      Text(
+                        "LOADING",
+                        style: TextStyle(fontSize: 12.0),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+        ),
+      ),
     );
   }
 
@@ -133,7 +149,6 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
       children: [
         Container(
           height: 200,
-          width: 370,
           decoration: BoxDecoration(
             // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
@@ -145,7 +160,7 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "There is no pending event to show,\n  reject event automatically delete.",
+                    "There is no pending activity to show,\n  reject activity automatically delete.",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.black,
@@ -171,8 +186,7 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) =>
-                        ActivityDetailsStaffManagerNobtnPage()));
+                    builder: (context) => MyActivityDetailsPendingPage()));
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 8, bottom: 8),
@@ -183,8 +197,6 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
                   image: DecorationImage(
                       image: NetworkImage(
                           "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${pendingData.staffHome[index].eventImage}"), // Add Path image
-                      // image: AssetImage(
-                      //     'assets/images/Beach_4.jpg'), // Add Path image
                       fit: BoxFit.cover)),
               child: Stack(
                 alignment: Alignment.center,
