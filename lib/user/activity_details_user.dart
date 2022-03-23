@@ -626,7 +626,7 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              '${eventDetailData.eventDetail?.eventLongitude}',
+              '${eventDetailData.eventDetail?.eventLocation}',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16,

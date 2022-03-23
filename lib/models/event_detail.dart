@@ -23,6 +23,7 @@ class EventDetail {
     required this.eventTierPoints,
     required this.eventLatitude,
     required this.eventLongitude,
+    required this.eventLocation,
     required this.eventApprove,
     required this.eventStatus,
     required this.eventSponsered,
@@ -48,6 +49,7 @@ class EventDetail {
   int eventTierPoints;
   double eventLatitude;
   double eventLongitude;
+  String eventLocation;
   bool eventApprove;
   bool eventStatus;
   bool eventSponsered;
@@ -73,6 +75,7 @@ class EventDetail {
         eventTierPoints: json["Event_Tier_Points_Require"],
         eventLatitude: json["Event_Latitude"].toDouble(),
         eventLongitude: json["Event_Longitude"].toDouble(),
+        eventLocation: json["Event_Location"],
         eventApprove: json["Event_Approve"],
         eventStatus: json["Event_Status"],
         eventSponsered: json["Event_Sponsered"],
@@ -99,6 +102,7 @@ class EventDetail {
         "Event_Tier_Points_Require": eventTierPoints,
         "Event_Latitude": eventLatitude,
         "Event_Longitude": eventLongitude,
+        "Event_Location": eventLocation,
         "Event_Approve": eventApprove,
         "Event_Status": eventStatus,
         "Event_Sponsered": eventSponsered,
