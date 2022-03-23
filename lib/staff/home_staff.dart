@@ -101,7 +101,9 @@ class _StaffHomePageState extends State<StaffHomePage> {
                 SizedBox(
                   height: height(context: context) / 100,
                 ),
-                activeActivity()
+                staffHomeData.staffHome.isEmpty
+                    ? initiateFirst()
+                    : activeActivity()
               ],
             )
           : Container(
@@ -118,6 +120,34 @@ class _StaffHomePageState extends State<StaffHomePage> {
                 ],
               ),
             ),
+    );
+  }
+
+  Widget initiateFirst() {
+    return Column(
+      children: [
+        Container(
+          height: 200,
+          width: 370,
+          decoration: BoxDecoration(
+            // color: Color(0xFFEBEDF2),
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              Text(
+                "There is no event active to show.",
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w700,
+                ),
+              )
+            ],
+          ),
+        ),
+      ],
     );
   }
 
