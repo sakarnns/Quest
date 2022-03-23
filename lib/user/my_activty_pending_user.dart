@@ -1,12 +1,9 @@
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:quest_2/data/eventdetail.dart';
 import 'package:quest_2/models/event_detail.dart';
 import 'package:quest_2/styles/size.dart';
-import 'package:quest_2/user/scan_qr_user.dart';
 import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -122,7 +119,6 @@ class _MyActivityDetailsPendingPageState
               Navigator.pop(context);
             },
           ),
-          actions: <Widget>[qrScanButton()],
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -154,6 +150,10 @@ class _MyActivityDetailsPendingPageState
                                 new BorderRadius.all(Radius.circular(8.0))),
                         child: myActivityarea(),
                       ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      deleteButton(),
                       SizedBox(
                         height: height(context: context) / 20,
                       ),
@@ -567,49 +567,24 @@ class _MyActivityDetailsPendingPageState
     );
   }
 
-  Widget qrScanButton() {
-    return InkWell(
-      onTap: isBTNActive != true
-          ? () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ScanQrUserPage()));
-            }
-          : null,
-      child: Container(
-        width: 28,
-        margin: const EdgeInsets.only(right: 16),
-        child: SvgPicture.asset(
-          'assets/icons/readerQR.svg',
-          fit: BoxFit.contain,
-          color: Color(0xFF6F2DA8),
-        ),
+  Widget deleteButton() {
+    return MaterialButton(
+      disabledColor: Colors.grey,
+      color: Color(0xFF6F2DA8),
+      minWidth: 150,
+      height: 40,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+      onPressed: () {
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(
+                builder: (BuildContext context) =>
+                    MyActivityDetailsPendingPage()),
+            (Route<dynamic> route) => false);
+      },
+      child: Text(
+        "Cancel",
+        style: TextStyle(color: Colors.white, fontSize: 16),
       ),
     );
   }
-  // Widget qrButton() {
-  //   return MaterialButton(
-  //     disabledColor: Colors.grey,
-  //     color: Colors.white,
-  //     minWidth: 30,
-  //     // height: 40,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-  //     onPressed: isBTNActive != true
-  //         ? () {
-  //             Navigator.push(context,
-  //                 MaterialPageRoute(builder: (context) => ScanQrUserPage()));
-  //           }
-  //         : null,
-  //     child: Container(
-  //       child: SvgPicture.asset(
-  //         'assets/icons/readerQR.svg',
-  //         fit: BoxFit.fill,
-  //         color: Colors.black,
-  //       ),
-  //       // child: Text(
-  //       //   "Scan QR",
-  //       //   style: TextStyle(color: Colors.white, fontSize: 16),
-  //       // ),
-  //     ),
-  //   );
-  // }
 }
