@@ -117,7 +117,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("My Activity");
                       },
                       child: Container(
-                        height: 100,
+                        height: height(context: context) / 9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
@@ -183,7 +183,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("into Joined Activty");
                       },
                       child: Container(
-                        height: 100,
+                        height: height(context: context) / 9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             image: DecorationImage(
@@ -194,7 +194,7 @@ class _UserHomePageState extends State<UserHomePage> {
                           alignment: Alignment.center,
                           children: [
                             Container(
-                              height: 100,
+                              height: height(context: context) / 1,
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(8.0),
                                 color: Color.fromRGBO(0, 0, 0, 0.4),
@@ -249,7 +249,7 @@ class _UserHomePageState extends State<UserHomePage> {
                         print("into Interested Activty");
                       },
                       child: Container(
-                        height: 100,
+                        height: height(context: context) / 9,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
                             // color: Color(0xFFdcdfe6),
@@ -366,7 +366,7 @@ class _UserHomePageState extends State<UserHomePage> {
           },
           child: Container(
             margin: EdgeInsets.only(right: 10),
-            height: 200,
+            height: height(context: context) / 3.8,
             width: 300,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8.0),
