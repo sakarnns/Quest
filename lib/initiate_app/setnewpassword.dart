@@ -2,6 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quest_2/initiate_app/setnewpassword_done.dart';
+import 'package:quest_2/initiate_app/setnewpassword_fail.dart';
 import 'package:quest_2/styles/input_border.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -192,13 +194,19 @@ class _SetNewPasswordState extends State<SetNewPassword> {
                           passwordOnForgot != " " &&
                           confirmpasswordOnForgot != " " &&
                           isPasswordMatch == true
-                      ? () {
-                          setnewpass(confirmpasswordOnForgot);
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      LoginPage()),
-                              (Route<dynamic> route) => false);
+                      ? () async {
+                          await setnewpass(confirmpasswordOnForgot);
+                          passchange == true
+                              ? Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          SetNewPasswordDone()),
+                                  (Route<dynamic> route) => false)
+                              : Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          SetNewpasswordFail()),
+                                  (Route<dynamic> route) => false);
                         }
                       : null,
                   child: Text(
