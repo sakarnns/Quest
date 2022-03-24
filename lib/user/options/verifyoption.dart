@@ -1,8 +1,39 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quest_2/data/userdata.dart';
+import 'package:quest_2/models/user.dart';
 import 'package:quest_2/user/options/verifycitizen.dart';
 import 'package:quest_2/user/options/verifyphone.dart';
 import 'package:quest_2/styles/size.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import '../activity_browse_user.dart';
+
+Future setuserStatus() async {
+    print("set user status activated!");
+    final prefs = await SharedPreferences.getInstance();
+
+    final val = prefs.getString('token');
+    String urlProfile =
+        "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/profile";
+    Map<String, String> requestHeaders = {
+      'Content-type': 'application/json',
+      'Authorization': (val) as String
+    };
+    var resProfile = await http.get(
+      Uri.parse(urlProfile),
+      headers: requestHeaders,
+    );
+    tokenexpire = resProfile.statusCode;
+
+    if (resProfile.statusCode == 200) {
+      // print(json.decode(resProfile.body));
+      UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
+      // print(UserData.userProfile!.image);
+    }
+  }
 
 class VerifyPage extends StatefulWidget {
   VerifyPage({Key? key}) : super(key: key);
@@ -13,6 +44,19 @@ class VerifyPage extends StatefulWidget {
 
 class _VerifyPageState extends State<VerifyPage> {
   @override
+  void initState() {
+    fectc();
+    super.initState();
+  }
+
+  void fectc() async {
+    isLoading = true;
+    print("fetch 1 ");
+    setuserStatus();
+    print("fetch 2 ");
+    setState(() {});
+  }
+  
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -54,7 +98,7 @@ class _VerifyPageState extends State<VerifyPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Please verify with citizen ID for unlock more features",
+                      "Please verify with citizen ID",
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
                   ],
@@ -69,12 +113,12 @@ class _VerifyPageState extends State<VerifyPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: () {
+                  onPressed: UserData.userProfile!.ctzid == "" ? () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => VerifyCitizenPage()));
-                  },
+                  }: null,
                   child: Text(
                     'Verify',
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -90,7 +134,7 @@ class _VerifyPageState extends State<VerifyPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Please verify with Phone Number for unlock more features",
+                      "Please verify with Phone Number",
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
                   ],
@@ -105,12 +149,12 @@ class _VerifyPageState extends State<VerifyPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: () {
+                  onPressed: UserData.userProfile!.phone == "" ? () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => VerifyPhonePage()));
-                  },
+                  }:null,
                   child: Text(
                     'Verify',
                     style: TextStyle(color: Colors.white, fontSize: 16),
