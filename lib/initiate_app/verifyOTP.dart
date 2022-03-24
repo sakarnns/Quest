@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quest_2/initiate_app/forgot.dart';
+import 'package:quest_2/initiate_app/setnewpassword.dart';
 import 'package:quest_2/styles/size.dart';
+import 'package:http/http.dart' as http;
 
 class VerifyOTP extends StatefulWidget {
   VerifyOTP({Key? key}) : super(key: key);
@@ -9,6 +14,29 @@ class VerifyOTP extends StatefulWidget {
   _VerifyOTPState createState() => _VerifyOTPState();
 }
 
+Future verify(otp) async {
+    String url =
+        "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/check_OTP";
+    print(emailaddress);
+    Map body = {
+      "otpnum": otp,
+      "email": emailaddress,
+    };
+
+    var res = await http.post(Uri.parse(url), body: body);
+    print(res.statusCode);
+    print(res.body);
+
+    if (res.statusCode == 200) {
+      print("raw");
+      print(verified);
+      verified = true;
+    } else {
+      print("verify failed : " + res.statusCode.toString() + "\n" + res.body);
+    }
+  }
+
+bool verified = false;
 bool? isvalid;
 bool agreedterm = false;
 List otpcheck = new List.filled(4, "", growable: false);
@@ -16,6 +44,18 @@ String otp = "";
 bool isOtpFilled = false;
 
 class _VerifyOTPState extends State<VerifyOTP> {
+  void fectc() async {
+    print("fetch 1 ");
+    verified = false;
+    setState(() {});
+    print("fetch 2 ");
+  }
+
+  void initState() {
+    fectc();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -72,6 +112,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                           fontWeight: FontWeight.w200,
                         ),
                       ),
+                      buildTimer(),
                     ],
                   ),
                 ),
@@ -117,19 +158,21 @@ class _VerifyOTPState extends State<VerifyOTP> {
     );
   }
 
-  void verifyOtp() {
+  void verifyOtp() async{
     otpcheck.forEach(
       (element) {
         otp += element;
       },
     );
     print(otp);
-    otp = "";
-
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(builder: (context) => VerifyOTP()),
-    // );
+    await verify(otp);
+    print(verified);
+    verified == true ? 
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SetNewPassword()),
+      )
+      :null;
   }
 
   void checkIsOtpFilled() {
@@ -191,4 +234,23 @@ class _VerifyOTPState extends State<VerifyOTP> {
       ),
     );
   }
+}
+
+Row buildTimer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("This code will expired in "),
+        TweenAnimationBuilder(
+          tween: Tween(begin: 60.0, end: 0.0),
+          duration: Duration(seconds: 60),
+          builder: (_, dynamic value, child) => Text(
+            value > 10 ?
+            "00:${value.toInt()}"
+            :"00:0${value.toInt()}",
+            style: TextStyle(color: Colors.purple),
+          ),
+        ),
+      ],
+    );
 }
