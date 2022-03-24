@@ -1,7 +1,10 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quest_2/styles/input_border.dart';
 import 'package:quest_2/styles/size.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'login.dart';
 
 class SetNewPassword extends StatefulWidget {
@@ -15,6 +18,29 @@ bool? isvalid;
 String? confirmpasswordOnForgot;
 String? passwordOnForgot;
 bool? isPasswordMatch;
+bool passchange = false;
+
+Future setnewpass(newpass) async {
+  print("setnewpass activated!");
+  final prefs = await SharedPreferences.getInstance();
+  final val = prefs.getString('token');
+  String url =
+      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/set_new_password";
+  Map<String, String> requestHeaders = {
+    'Content-type': 'application/json',
+    'Authorization': (val) as String
+  };
+  Map body = {"newpassword": newpass};
+
+  var res = await http.patch(Uri.parse(url),
+      body: jsonEncode(body), headers: requestHeaders);
+
+  print(res.statusCode);
+
+  if (res.statusCode == 201) {
+    passchange = true;
+  }
+}
 
 class _SetNewPasswordState extends State<SetNewPassword> {
   @override
@@ -165,9 +191,9 @@ class _SetNewPasswordState extends State<SetNewPassword> {
                           confirmpasswordOnForgot != "" &&
                           passwordOnForgot != " " &&
                           confirmpasswordOnForgot != " " &&
-                          isPasswordMatch != null &&
-                          isPasswordMatch!
+                          isPasswordMatch == true
                       ? () {
+                          setnewpass(confirmpasswordOnForgot);
                           Navigator.of(context).pushAndRemoveUntil(
                               MaterialPageRoute(
                                   builder: (BuildContext context) =>
