@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:quest_2/styles/input_border.dart';
 import 'package:quest_2/styles/size.dart';
+import 'package:quest_2/user/navigation_user/navigation_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future verifyphonenumber(String number) async {
@@ -136,13 +137,13 @@ class _VerifyPhonePageState extends State<VerifyPhonePage> {
                   onPressed:
                       verifyphonenumberyes != null && verifyphonenumberyes != ""
                           ? () {
-                              Navigator.pop(context);
                               verifyphonenumber(verifyphonenumberyes!);
-                              // Navigator.of(context).pushAndRemoveUntil(
-                              //     MaterialPageRoute(
-                              //         builder: (context) => OptionPage()),
-                              //     (Route<dynamic> route) => true);
                               print(verifyphonenumberyes);
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                          NavigationUser()),
+                                  (Route<dynamic> route) => false);
                             }
                           : null,
                   child: Text(

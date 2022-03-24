@@ -39,11 +39,11 @@ class _LoginPageState extends State<LoginPage> {
     print("fetch 2 ");
   }
 
-
   void initState() {
     fectc();
     super.initState();
   }
+
   //API-Login Function//
   Future signIn(String username, String pass) async {
     String url =
@@ -205,11 +205,6 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.person,
                           color: Color(0xFF6F2DA8),
                         ),
-                        //     errorText: isvalid == null
-                        //         ? null
-                        //         : isvalid!
-                        //             ? null
-                        //             : "Please enter a valid email",
                         focusedBorder: outlineInputBorder(),
                         filled: true,
                         fillColor: Colors.transparent,
@@ -217,21 +212,10 @@ class _LoginPageState extends State<LoginPage> {
                         contentPadding: EdgeInsets.all(8.0),
                         border: outlineInputBorder()),
                     onChanged: (val) {
-                      // if (val.isEmpty ||
-                      //     EmailValidator.validate(
-                      //       val,
-                      //     )) {
                       setState(() {
                         usernameOnlogin = val;
-                        // isvalid = true;
                         loginfail = false;
                       });
-                      // } else {
-                      //   setState(() {
-                      //     isvalid = false;
-                      //   });
-                      // }
-                      // print(isvalid);
                     },
                   ),
                 ),
@@ -284,20 +268,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-                    // Row(
-                    //   children: [
-                    //     Checkbox(
-                    //         value: remembermecheck,
-                    //         onChanged: (val) {
-                    //           setState(() {
-                    //             remembermecheck = val!;
-                    //             loginfail = false;
-                    //           });
-                    //           print(val);
-                    //         }),
-                    //     Text('Remember me'),
-                    //   ],
-                    // ),
                   ],
                 ),
                 SizedBox(
@@ -310,17 +280,16 @@ class _LoginPageState extends State<LoginPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: 
-                          // usernameOnlogin != null ||
-                          // passOnlogin != null 
-                          usernameOnlogin != "" &&
-                          passOnlogin != "" 
+                  onPressed:
+                      // usernameOnlogin != null ||
+                      // passOnlogin != null
+                      usernameOnlogin != "" && passOnlogin != ""
                           // usernameOnlogin != " " ||
                           // passOnlogin != " "
-                      ? () {
-                          signIn(usernameOnlogin, passOnlogin);
-                        }
-                      : null,
+                          ? () {
+                              signIn(usernameOnlogin, passOnlogin);
+                            }
+                          : null,
                   child: Text(
                     'LOGIN',
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -353,7 +322,6 @@ class _LoginPageState extends State<LoginPage> {
                         "Register",
                         style: TextStyle(
                           color: Color(0xFF6F2DA8),
-                          // decoration: TextDecoration.underline
                         ),
                       ),
                     )
