@@ -1,9 +1,17 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:quest_2/components/otp_form.dart';
 import 'package:quest_2/initiate_app/forgot.dart';
 import 'package:quest_2/initiate_app/setnewpassword.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+String? otpverificationcheck;
+int? rescode;
+bool otpstatuscheck = false;
 
 class VerifyOTP extends StatefulWidget {
   VerifyOTP({Key? key}) : super(key: key);
@@ -24,31 +32,36 @@ Future verify(otp) async {
   var res = await http.post(Uri.parse(url), body: body);
   print(res.statusCode);
   print(res.body);
-
+  rescode = res.statusCode;
   if (res.statusCode == 200) {
-    print("raw");
-    print(verified);
-    verified = true;
+    var jsonResponse = json.decode(res.body);
+    setToken(jsonResponse['token']);
   } else {
     print("check");
-    otpnotificationone = true;
     print("verify failed : " + res.statusCode.toString() + "\n" + res.body);
   }
 }
 
-bool verified = false;
+setToken(String token) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  prefs.setString('token', token);
+}
+
 bool? isvalid;
-bool agreedterm = false;
-List otpcheck = new List.filled(4, "", growable: false);
-String otp = "";
 bool isOtpFilled = false;
-bool otpnotificationone = false;
 
 class _VerifyOTPState extends State<VerifyOTP> {
   void fectc() async {
     print("fetch 1 ");
-    verified = false;
-    otpnotificationone = false;
+    otpgroup.otpfirst.clear();
+    otpgroup.otpsecond.clear();
+    otpgroup.otpthird.clear();
+    otpgroup.otpfourth.clear();
+    otponecheck = "";
+    otpsecondcheck = "";
+    otpthirdcheck = "";
+    otpfourthcheck = "";
+    otpstatuscheck = false;
     setState(() {});
     print("fetch 2 ");
   }
@@ -102,7 +115,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      top: MediaQuery.of(context).size.height / 50),
+                      top: MediaQuery.of(context).size.height / 30),
                   child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -120,25 +133,18 @@ class _VerifyOTPState extends State<VerifyOTP> {
                   ),
                 ),
                 SizedBox(
-                  height: height(context: context) / 50,
+                  height: height(context: context) / 20,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: height(context: context) / 50,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _textFieldOTP(first: true, last: false, index: 0),
-                      _textFieldOTP(first: true, last: false, index: 1),
-                      _textFieldOTP(first: true, last: false, index: 2),
-                      _textFieldOTP(first: true, last: true, index: 3),
-                    ],
-                  ),
+                  padding: const EdgeInsets.only(right: 30, left: 30),
+                  child: OtpForm(),
+                ),
+                SizedBox(
+                  height: height(context: context) / 90,
                 ),
                 notificationOTP(),
                 SizedBox(
-                  height: height(context: context) / 50,
+                  height: height(context: context) / 20,
                 ),
                 Text(
                   "This code will expired in ",
@@ -149,7 +155,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                 ),
                 buildTimer(),
                 SizedBox(
-                  height: height(context: context) / 20,
+                  height: height(context: context) / 15,
                 ),
                 MaterialButton(
                   color: Color(0xFF6F2DA8),
@@ -158,7 +164,36 @@ class _VerifyOTPState extends State<VerifyOTP> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: isOtpFilled ? verifyOtp : null,
+                  onPressed: !(otponecheck == "" ||
+                          otpsecondcheck == "" ||
+                          otpthirdcheck == "" ||
+                          otpfourthcheck == "")
+                      ? () async {
+                          otpverificationcheck = (otponecheck! +
+                              otpsecondcheck! +
+                              otpthirdcheck! +
+                              otpfourthcheck!);
+                          await verify(otpverificationcheck);
+                          if (rescode == 200) {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        SetNewPassword()),
+                                (Route<dynamic> route) => false);
+                          } else {
+                            otponecheck = "";
+                            otpsecondcheck = "";
+                            otpthirdcheck = "";
+                            otpfourthcheck = "";
+                            otpgroup.otpfirst.clear();
+                            otpgroup.otpsecond.clear();
+                            otpgroup.otpthird.clear();
+                            otpgroup.otpfourth.clear();
+                            otpstatuscheck = false;
+                            setState(() {});
+                          }
+                        }
+                      : null,
                   child: Text(
                     'Verify',
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -172,124 +207,55 @@ class _VerifyOTPState extends State<VerifyOTP> {
     );
   }
 
-  void verifyOtp() async {
-    otpcheck.forEach(
-      (element) {
-        otp += element;
-      },
-    );
-    print(otp);
-    await verify(otp);
-    print(verified);
-    verified == true
-        ? Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => SetNewPassword()),
-          )
-        : otpnotificationone = true;
-  }
-
-  void checkIsOtpFilled() {
-    print("Invoked checkIsOtpFilled().");
-    print(otpcheck);
-    setState(() {
-      isOtpFilled = isOtpFilledAll();
-    });
-  }
-
-  bool isOtpFilledAll() {
-    for (int i = 0; i < otpcheck.length; i++) {
-      if (otpcheck[i] == "") {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  _textFieldOTP({
-    required bool first,
-    last,
-    required int index,
-  }) {
-    return Container(
-      height: 72,
-      child: AspectRatio(
-        aspectRatio: 1.0,
-        child: TextField(
-          autofocus: true,
-          onChanged: (value) {
-            if (value.length == 1 && last == false) {
-              FocusScope.of(context).nextFocus();
-            }
-            if (value.length == 0 && first == false) {
-              FocusScope.of(context).previousFocus();
-            }
-            otpcheck[index] = value;
-            checkIsOtpFilled();
-            otpnotificationone = false;
-          },
-          showCursor: false,
-          readOnly: false,
-          textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 24),
-          keyboardType: TextInputType.number,
-          maxLength: 1,
-          decoration: InputDecoration(
-              hintText: '.',
-              counter: Offstage(),
-              enabledBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.black12),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(width: 2, color: Colors.black),
-                borderRadius: BorderRadius.circular(8),
-              )),
-        ),
-      ),
-    );
-  }
-}
-
-Row buildTimer() {
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      TweenAnimationBuilder(
-        tween: Tween(begin: 300.0, end: 0.0),
-        duration: Duration(seconds: 300),
-        builder: (_, dynamic value, child) => Text(
-          value > 60 && value % 60 < 10
-              ? "0${(value / 60).toInt()}:0${(value % 60).toInt()}"
-              : value > 60
-                  ? "0${(value / 60).toInt()}:${(value % 60).toInt()}"
-                  : value > 10
-                      ? "00:${value.toInt()}"
-                      : "00:0${value.toInt()}",
-          style: TextStyle(color: Colors.purple),
-        ),
-      ),
-    ],
-  );
-}
-
-Widget notificationOTP() {
-  return Visibility(
-    visible: otpnotificationone,
-    child: Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            "OTP failed",
-            style: TextStyle(
-              color: Colors.red,
-              fontSize: 14.0,
-              fontWeight: FontWeight.w200,
-            ),
+  Row buildTimer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TweenAnimationBuilder(
+          tween: Tween(begin: 300.0, end: 0.0),
+          duration: Duration(seconds: 300),
+          builder: (_, dynamic value, child) => Text(
+            value > 60 && value % 60 < 10
+                ? "0${(value / 60).toInt()}:0${(value % 60).toInt()}"
+                : value > 60
+                    ? "0${(value / 60).toInt()}:${(value % 60).toInt()}"
+                    : value > 10
+                        ? "00:${value.toInt()}"
+                        : "00:0${value.toInt()}",
+            style: TextStyle(color: Colors.purple),
           ),
-        ],
+        ),
+      ],
+    );
+  }
+
+  Widget notificationOTP() {
+    return Visibility(
+      visible: otpstatuscheck,
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Code was invilid please try again.",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 14.0,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ],
+        ),
       ),
-    ),
-  );
+    );
+  }
+}
+
+OtpNumber otpgroup = OtpNumber();
+
+class OtpNumber {
+  TextEditingController otpfirst = TextEditingController();
+  TextEditingController otpsecond = TextEditingController();
+  TextEditingController otpthird = TextEditingController();
+  TextEditingController otpfourth = TextEditingController();
 }

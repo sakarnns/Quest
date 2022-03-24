@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quest_2/styles/input_border.dart';
 import 'package:quest_2/styles/size.dart';
-
 import 'login.dart';
 
 class SetNewPassword extends StatefulWidget {
@@ -26,10 +25,6 @@ class _SetNewPasswordState extends State<SetNewPassword> {
       },
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: EdgeInsets.symmetric(
@@ -37,6 +32,32 @@ class _SetNewPasswordState extends State<SetNewPassword> {
             ),
             child: Column(
               children: [
+                SizedBox(
+                  height: height(context: context) / 16,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (BuildContext context) => LoginPage()),
+                            (Route<dynamic> route) => false);
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: TextStyle(
+                            color: Color(0xFF007AFF),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: height(context: context) / 16,
+                ),
                 Container(
                   height: 100,
                   width: 166.66,
@@ -51,7 +72,7 @@ class _SetNewPasswordState extends State<SetNewPassword> {
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 50),
                   child: Text(
-                    'Create new password',
+                    'Set new password',
                     style: TextStyle(
                       fontSize: 32.0,
                       fontWeight: FontWeight.w700,
