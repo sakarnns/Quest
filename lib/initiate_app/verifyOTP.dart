@@ -177,6 +177,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
           keyboardType: TextInputType.number,
           maxLength: 1,
           decoration: InputDecoration(
+              hintText: '.',
               counter: Offstage(),
               enabledBorder: OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Colors.black12),

@@ -63,7 +63,7 @@ class _SetNewPasswordState extends State<SetNewPassword> {
                   padding: EdgeInsets.only(
                       top: MediaQuery.of(context).size.height / 70),
                   child: Text(
-                    'Your new password must be different from previous used \n                                               passwords.',
+                    'Your new password should be different from previous used \n                                               passwords.',
                     style: TextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w200,
