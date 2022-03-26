@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quest_2/data/staffhome.dart';
 import 'package:quest_2/models/staff_home.dart';
+import 'package:quest_2/staff_manager/pending_activity_details_staffmanager.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'activity_details_staffmanager_nobtn.dart';
 
 bool isLoading = true;
 int? tokenexpire;
@@ -172,7 +172,7 @@ class _StaffManagerPendingPageState extends State<StaffManagerPendingPage> {
                 context,
                 MaterialPageRoute(
                     builder: (context) =>
-                        ActivityDetailsStaffManagerNobtnPage()));
+                        PendingActivityDetailsStaffManagerNobtnPage()));
           },
           child: Padding(
             padding: const EdgeInsets.only(top: 8, bottom: 8),

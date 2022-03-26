@@ -36,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
     usernameOnlogin = "";
     passOnlogin = "";
     setState(() {});
-    print("Welcome");
+    print("Welcome 2");
   }
 
   void initState() {
@@ -67,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
           isLoading = false;
         });
       }
-      print("opop2");
 
       sharedPreferences.setString('token', jsonResponse['token']);
       String urlProfile =
@@ -80,9 +79,8 @@ class _LoginPageState extends State<LoginPage> {
         Uri.parse(urlProfile),
         headers: requestHeaders,
       );
-      print("opop");
-      print(res.statusCode);
-      print(resProfile);
+      // print(res.statusCode);
+      // print(resProfile);
 
       if (usertype == "User") {
         Navigator.of(context).pushAndRemoveUntil(
