@@ -32,11 +32,11 @@ class _LoginPageState extends State<LoginPage> {
 
   void fectc() async {
     isLoading = true;
-    print("fetch 1 ");
+    print("Welcome 1");
     usernameOnlogin = "";
     passOnlogin = "";
     setState(() {});
-    print("fetch 2 ");
+    print("Welcome");
   }
 
   void initState() {
@@ -205,6 +205,11 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.person,
                           color: Color(0xFF6F2DA8),
                         ),
+                        //     errorText: isvalid == null
+                        //         ? null
+                        //         : isvalid!
+                        //             ? null
+                        //             : "Please enter a valid email",
                         focusedBorder: outlineInputBorder(),
                         filled: true,
                         fillColor: Colors.transparent,
