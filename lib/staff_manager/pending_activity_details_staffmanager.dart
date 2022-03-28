@@ -45,6 +45,41 @@ Future getactivitydetail() async {
   }
 }
 
+Future cancelact() async {
+  print("cancelact activate!");
+  final prefs = await SharedPreferences.getInstance();
+  final eventid = prefs.getString('selecteventid');
+
+  final val = prefs.getString('token');
+  String url =
+      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/sm_cancel_event";
+  Map<String, String> requestHeaders = {
+    'Content-type': 'application/json',
+    'Authorization': (val) as String
+  };
+
+  Map body = {
+    "event_id": eventid,
+  };
+
+  print(body);
+
+  final jsonbody = jsonEncode(body);
+  var jsonResponse;
+  var res =
+      await http.post(Uri.parse(url), headers: requestHeaders, body: jsonbody);
+  print("check");
+  print(res.body);
+  print(res.statusCode);
+  print("check");
+
+  if (res.statusCode == 204) {
+    // print("objectwerfgvcsderthbvcfgtyhbvgyhjnbhjnb");
+    // print(json.decode(res.body));
+    return jsonResponse;
+  }
+}
+
 class PendingActivityDetailsStaffManagerNobtnPage extends StatefulWidget {
   PendingActivityDetailsStaffManagerNobtnPage({Key? key}) : super(key: key);
 
@@ -553,7 +588,7 @@ class _PendingActivityDetailsStaffManagerNobtnPageState
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: () {
-        // cancelact();
+        cancelact();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => NavigationStaffmanager()),
