@@ -12,13 +12,11 @@ import 'navigation_staffmanager/navigation_staffmanager.dart';
 
 Future createstaff(String username, String firstname, String lastname,
     String email, String pass) async {
+  print("createstaff activated");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  print("createstaff activated");
-
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/create_staff";
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
   Map<String, String> requestHeaders = {
     'Content-type': 'application/json',
@@ -35,21 +33,8 @@ Future createstaff(String username, String firstname, String lastname,
 
   var res = await http.post(Uri.parse(url),
       headers: requestHeaders, body: json.encode(body));
-  print("=============");
-  print(res.statusCode);
-  print(res.body);
-  print("===============");
-
-  // if (res.statusCode == 200) {
-  //   jsonResponse = json.decode(res.body);
-  //   print("Response status; ${res.statusCode}");
-  //   print("already have this username");
-  //   return jsonResponse;
-  // }
   if (res.statusCode == 201) {
     jsonResponse = json.decode(res.body);
-    print("Response status; ${res.statusCode}");
-    // print("Response status; ${res.body}");
     return jsonResponse;
   }
 }
@@ -210,8 +195,6 @@ class _CreateStaffManagerPageState extends State<CreateStaffManagerPage> {
                             isvalid = false;
                           });
                         }
-
-                        // print(isvalid);
                       }),
                 ),
                 Padding(

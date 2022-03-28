@@ -79,8 +79,6 @@ class _LoginPageState extends State<LoginPage> {
         Uri.parse(urlProfile),
         headers: requestHeaders,
       );
-      // print(res.statusCode);
-      // print(resProfile);
 
       if (usertype == "User") {
         Navigator.of(context).pushAndRemoveUntil(
@@ -104,35 +102,26 @@ class _LoginPageState extends State<LoginPage> {
         UserData.userProfile =
             UserProfile.fromJson(json.decode(resProfile.body));
       }
-    } else {
-      // setState(() {
-      //   isLoading = false;
-      // });
-      // print("Response status; ${res.body}");
     }
     if (res.statusCode == 403) {
       setState(() {
         loginfail = true;
       });
-      // print("Login fail");
     }
     if (res.statusCode == 404) {
       setState(() {
         loginfail = true;
       });
-      // print("Login fail");
     }
     if (res.statusCode == 400) {
       setState(() {
         loginfail = true;
       });
-      // print("Login fail");
     }
     if (res.statusCode == 401) {
       setState(() {
         loginfail = true;
       });
-      // print("Login fail");
     }
   }
 
@@ -203,11 +192,6 @@ class _LoginPageState extends State<LoginPage> {
                           Icons.person,
                           color: Color(0xFF6F2DA8),
                         ),
-                        //     errorText: isvalid == null
-                        //         ? null
-                        //         : isvalid!
-                        //             ? null
-                        //             : "Please enter a valid email",
                         focusedBorder: outlineInputBorder(),
                         filled: true,
                         fillColor: Colors.transparent,
@@ -283,16 +267,11 @@ class _LoginPageState extends State<LoginPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed:
-                      // usernameOnlogin != null ||
-                      // passOnlogin != null
-                      usernameOnlogin != "" && passOnlogin != ""
-                          // usernameOnlogin != " " ||
-                          // passOnlogin != " "
-                          ? () {
-                              signIn(usernameOnlogin, passOnlogin);
-                            }
-                          : null,
+                  onPressed: usernameOnlogin != "" && passOnlogin != ""
+                      ? () {
+                          signIn(usernameOnlogin, passOnlogin);
+                        }
+                      : null,
                   child: Text(
                     'LOGIN',
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -318,8 +297,6 @@ class _LoginPageState extends State<LoginPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => SignupPage()));
-
-                        // print('tap');
                       },
                       child: Text(
                         "Register",

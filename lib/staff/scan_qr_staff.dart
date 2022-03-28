@@ -154,7 +154,6 @@ class _ScanQrStaffPageState extends State<ScanQrStaffPage> {
                   builder: (BuildContext context) => ScanConfirmStaffPage()),
               (Route<dynamic> route) => false);
         }
-        // else {}
       },
     );
   }

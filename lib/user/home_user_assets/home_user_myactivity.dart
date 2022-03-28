@@ -12,7 +12,7 @@ import '../my_activity_user.dart';
 bool isLoading = true;
 
 Future getmyevent() async {
-  print("activitybrowse activate!");
+  print("myactivity activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -32,25 +32,9 @@ Future getmyevent() async {
   print(res.statusCode);
 
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
-    print("yeah");
-
     List data = json.decode(res.body);
-    // List _list = await HTTP.getList('faq');
-
     myEventData.myEvent = data.map((p) => MyEvent.fromJson(p)).toList();
-
-    print("eventBrowseData.eventBrowse ${myEventData.myEvent}");
-    // liist.forEach((data) {
-    //   print("${data.sId} ${data.eventName} ${data.eventType}");
-    // });
-    // EventBrowseData.eventBrowse = eventbrowsedata[0];
-
     jsonResponse = json.decode(res.body);
-    print("Response status: ${res.statusCode}");
-    // print(eventBrowseData.homeData!.event10.length);
-    // print("Response status; ${res.body}");
-
     return jsonResponse;
   }
 }
@@ -92,8 +76,6 @@ class _MyActivityUserPageState extends State<MyActivityUserPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Color(0xFFEBEDF2),
-        // backgroundColor: Colors.transparent,
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(

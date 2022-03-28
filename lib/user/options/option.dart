@@ -24,7 +24,6 @@ class _OptionPageState extends State<OptionPage> {
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
         appBar: AppBar(
-          // title: const Text('', style: TextStyle(color: Colors.black)),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           leading: BackButton(
@@ -130,7 +129,7 @@ class _OptionPageState extends State<OptionPage> {
                     MaterialPageRoute(
                         builder: (context) => PendingRewadUserPage()));
 
-                print("into PendingRewad");
+                print("into PendingReward");
               },
               leading: ConstrainedBox(
                 constraints: BoxConstraints(
@@ -188,4 +187,3 @@ class _OptionPageState extends State<OptionPage> {
     );
   }
 }
-// ActivityLocationMapPage

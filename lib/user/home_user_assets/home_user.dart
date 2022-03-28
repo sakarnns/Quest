@@ -34,14 +34,10 @@ Future homebrowse() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
     List data = json.decode(res.body);
     getHomeData.homeData = data.map((p) => HomeData.fromJson(p)).toList();
-    // print("Home Data ${getHomeData.homeData}");
     jsonResponse = json.decode(res.body);
-    // print("Response status: ${res.statusCode}");
     return jsonResponse;
   }
 }
@@ -53,8 +49,6 @@ Future selectRewardId(id) async {
 setIdReward(String selectreward) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selectrewardid', selectreward);
-
-  // print(selectreward);
 }
 
 class UserHomePage extends StatefulWidget {
@@ -252,7 +246,6 @@ class _UserHomePageState extends State<UserHomePage> {
                         height: height(context: context) * 0.12,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            // color: Color(0xFFdcdfe6),
                             image: DecorationImage(
                                 image: AssetImage(
                                     'assets/images/ActivityBanner_3.jpg'), // Add Path image

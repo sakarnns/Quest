@@ -35,7 +35,6 @@ class _ScanQrStaffManagerPageState extends State<ScanQrStaffManagerPage> {
     LocationPermission permission;
 
     permission = await Geolocator.checkPermission();
-    print(permission);
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
 

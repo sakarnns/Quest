@@ -121,8 +121,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            // backgroundColor: Color(0xFFEBEDF2),
-            // backgroundColor: Colors.transparent,
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
@@ -159,9 +157,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       ),
                     ],
                   ),
-                  // SizedBox(
-                  //   height: height(context: context) / 100,
-                  // ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       vertical: height(context: context) / 500,
@@ -835,7 +830,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),
-
                   SizedBox(
                     height: height(context: context) / 20,
                   ),
@@ -892,7 +886,6 @@ class _CreateActivityUserPageState extends State<CreateActivityUserPage> {
         height: 180,
         child: CupertinoPicker(
           scrollController: scrollController,
-          // looping: true,
           itemExtent: 64,
           children: items
               .map((item) => Center(

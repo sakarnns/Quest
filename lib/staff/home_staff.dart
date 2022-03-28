@@ -20,15 +20,12 @@ Future selectEventId(id) async {
 setIdEvent(String selectevent) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selecteventid', selectevent);
-
-  print(selectevent);
 }
 
 Future staffhome() async {
   print("staff home activated!");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  print(val);
   String urlProfile =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/staff_home";
   Map<String, String> requestHeaders = {
@@ -40,14 +37,9 @@ Future staffhome() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-  print(res.body);
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     List data = json.decode(res.body);
-
     staffHomeData.staffHome = data.map((p) => StaffHome.fromJson(p)).toList();
-    // print(UserData.userProfile!.image);
   }
 }
 
@@ -130,7 +122,6 @@ class _StaffHomePageState extends State<StaffHomePage> {
           height: 200,
           width: 370,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(
@@ -172,8 +163,6 @@ class _StaffHomePageState extends State<StaffHomePage> {
                   image: DecorationImage(
                       image: NetworkImage(
                           "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${staffHomeData.staffHome[index].eventImage}"), // Add Path image
-                      // image: AssetImage(
-                      //     'assets/images/Beach_4.jpg'), // Add Path image
                       fit: BoxFit.cover)),
               child: Stack(
                 alignment: Alignment.center,

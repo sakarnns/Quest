@@ -9,21 +9,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'navigation_user/navigation_user.dart';
-import 'options/option.dart';
 
 bool isLoading = true;
 bool isBTNActive = true;
 int? tokenexpire;
 
 Future getmyactivitydetail() async {
-  print("activitybrowse activate!");
+  print("pending my activity activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -37,20 +33,9 @@ Future getmyactivitydetail() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
-    // print("Response status; ${res.statusCode}");
-    // print("In");
-    // print(eventDetailData.eventDetail?.eventCheckInterest);
-    // print("j");
-    // print(eventDetailData.eventDetail?.eventCheckJoin);
-    // print("jd");
-    // print(eventDetailData.eventDetail?.eventCheckJoined);
-    // // print("Response status; ${res.body}");
     return jsonResponse;
   }
 }
@@ -71,21 +56,11 @@ Future cancelact() async {
   Map body = {
     "event_id": eventid,
   };
-
-  print(body);
-
   final jsonbody = jsonEncode(body);
   var jsonResponse;
   var res =
       await http.post(Uri.parse(url), headers: requestHeaders, body: jsonbody);
-  print("check");
-  print(res.body);
-  print(res.statusCode);
-  print("check");
-
   if (res.statusCode == 204) {
-    // print("objectwerfgvcsderthbvcfgtyhbvgyhjnbhjnb");
-    // print(json.decode(res.body));
     return jsonResponse;
   }
 }
@@ -143,7 +118,6 @@ class _MyActivityDetailsPendingPageState
               bottom: Radius.circular(16),
             ),
           ),
-          // backgroundColor: Color(0xFFEBEDF2),
           backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(

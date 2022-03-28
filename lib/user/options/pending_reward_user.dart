@@ -12,7 +12,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future transaction() async {
-  print("transaction activate!");
+  print("pending reward user activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -29,20 +29,12 @@ Future transaction() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
 
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
-
     List data = json.decode(res.body);
-
     transactionsData.transactions =
         data.map((p) => Transactions.fromJson(p)).toList();
-
-    // print("transactions ${transactionsData.transactions}");
-
     jsonResponse = json.decode(res.body);
-    print("Response status: ${res.statusCode}");
     return jsonResponse;
   } else {}
 }
@@ -89,7 +81,6 @@ class _PendingRewadUserPageState extends State<PendingRewadUserPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Colors.transparent,
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
@@ -139,7 +130,6 @@ class _PendingRewadUserPageState extends State<PendingRewadUserPage> {
         Container(
           height: 200,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(

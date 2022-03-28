@@ -59,8 +59,8 @@ class _ScanQrUserPageState extends State<ScanQrUserPage> {
         _currentAddress = 'Latitude:$latitude, Longitude:$longitude';
         lati = latitude;
         long = longitude;
-        print("latitude: $latitude");
-        print("longitude: $longitude");
+        // print("latitude: $latitude");
+        // print("longitude: $longitude");
       });
     } catch (e) {
       print(e);
@@ -165,7 +165,6 @@ class _ScanQrUserPageState extends State<ScanQrUserPage> {
                   builder: (BuildContext context) => ScanConfirmUserPage()),
               (Route<dynamic> route) => false);
         }
-        // else {}
       },
     );
   }

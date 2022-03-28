@@ -13,14 +13,11 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future getactivitydetail() async {
-  print("activityDetail Staffmanager activate!");
+  print("activity detail Staffmanager activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -35,10 +32,7 @@ Future getactivitydetail() async {
   );
 
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
     return jsonResponse;
@@ -61,21 +55,12 @@ Future cancelact() async {
   Map body = {
     "event_id": eventid,
   };
-
-  print(body);
-
   final jsonbody = jsonEncode(body);
   var jsonResponse;
   var res =
       await http.post(Uri.parse(url), headers: requestHeaders, body: jsonbody);
-  print("check");
-  print(res.body);
-  print(res.statusCode);
-  print("check");
 
   if (res.statusCode == 204) {
-    // print("objectwerfgvcsderthbvcfgtyhbvgyhjnbhjnb");
-    // print(json.decode(res.body));
     return jsonResponse;
   }
 }
@@ -573,7 +558,6 @@ class _PendingActivityDetailsStaffManagerNobtnPageState
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           image: DecorationImage(
-              // image: AssetImage('assets/images/Beach_4.jpg')
               image: NetworkImage(
                   "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
               fit: BoxFit.cover)),

@@ -14,7 +14,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future getrewardall() async {
-  print("rewardbrowse activate!");
+  print("reward browse activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -31,20 +31,11 @@ Future getrewardall() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  // print(res.statusCode);
 
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
-    // print("yeah");
-
     List data = json.decode(res.body);
-
     rewardAllData.rewardAll = data.map((p) => RewardAll.fromJson(p)).toList();
-
-    // print("eventBrowseData.eventBrowse ${rewardAllData.rewardAll}");
     jsonResponse = json.decode(res.body);
-    // print("Response status: ${res.statusCode}");
-
     return jsonResponse;
   }
 }
@@ -56,8 +47,6 @@ Future selectRewardId(id) async {
 setIdReward(String selectreward) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selectrewardid', selectreward);
-
-  // print(selectreward);
 }
 
 class RewardUserBrowsePage extends StatefulWidget {

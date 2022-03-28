@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
   get jsonResponse => null;
 
   Future setuserStatus() async {
-    print("set user status activated!");
+    print("profile user activated!");
     final prefs = await SharedPreferences.getInstance();
 
     final val = prefs.getString('token');
@@ -44,9 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
     tokenexpire = resProfile.statusCode;
 
     if (resProfile.statusCode == 200) {
-      // print(json.decode(resProfile.body));
       UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
-      // print(UserData.userProfile!.image);
     }
   }
 
@@ -81,16 +79,12 @@ class _ProfilePageState extends State<ProfilePage> {
     request.files
         .add(await http.MultipartFile.fromPath('image', imageFile!.path));
     request.headers.addAll(requestHeaders);
-
     http.StreamedResponse response = await request.send();
-
-    print(response.statusCode);
-
     if (response.statusCode == 200) {
-      print(await response.stream.bytesToString());
+      // print(await response.stream.bytesToString());
       // imagePath = jsonResponse['imagePath'];
     } else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
     }
   }
 

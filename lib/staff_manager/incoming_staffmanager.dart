@@ -20,15 +20,12 @@ Future selectEventId(id) async {
 setIdEvent(String selectevent) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selecteventid', selectevent);
-
-  print(selectevent);
 }
 
 Future incomingdata() async {
-  print("incoming data activated!");
+  print("incoming staffmanager data activated!");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  print(val);
   String urlProfile =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/staff_home_incoming";
   Map<String, String> requestHeaders = {
@@ -39,16 +36,10 @@ Future incomingdata() async {
     Uri.parse(urlProfile),
     headers: requestHeaders,
   );
-
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-  print(res.body);
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     List data = json.decode(res.body);
-
     incomingData.staffHome = data.map((p) => StaffHome.fromJson(p)).toList();
-    // print(UserData.userProfile!.image);
   }
 }
 
@@ -70,7 +61,6 @@ class _StaffManagerPendingPageState extends State<StaffManagerIncomingPage> {
   void fectc() async {
     isLoading = true;
     print("fetch 1 ");
-    // _runFilter("");
     await incomingdata().then((value) => setState(() {}));
     if (tokenexpire == 401) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -135,7 +125,6 @@ class _StaffManagerPendingPageState extends State<StaffManagerIncomingPage> {
           height: 200,
           width: 370,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(
@@ -178,8 +167,6 @@ class _StaffManagerPendingPageState extends State<StaffManagerIncomingPage> {
                   image: DecorationImage(
                       image: NetworkImage(
                           "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${incomingData.staffHome[index].eventImage}"), // Add Path image
-                      // image: AssetImage(
-                      //     'assets/images/Beach_4.jpg'), // Add Path image
                       fit: BoxFit.cover)),
               child: Stack(
                 alignment: Alignment.center,

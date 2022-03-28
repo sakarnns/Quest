@@ -16,7 +16,6 @@ bool isLoading = true;
 Future getsavedaddress() async {
   print("getsaved activate!");
   final prefs = await SharedPreferences.getInstance();
-
   final val = prefs.getString('token');
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/get_save_address";
@@ -29,19 +28,14 @@ Future getsavedaddress() async {
     Uri.parse(url),
     headers: requestHeaders,
   );
-
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     var resdecode = json.decode(res.body);
     if (resdecode['Address'] == "") {
       savedaddr = "nodata";
     } else {
       savedaddr = resdecode['Address'];
     }
-
     return jsonResponse;
   }
 }
@@ -70,7 +64,6 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
 
   void initState() {
     fectc();
-
     super.initState();
   }
 
@@ -109,8 +102,6 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            // backgroundColor: Colors.transparent,
-            // backgroundColor: Color(0xFFEBEDF2),
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
@@ -153,8 +144,6 @@ class _ConfirmRewardUserPageState extends State<ConfirmRewardUserPage> {
                           height: 200,
                           decoration: BoxDecoration(
                               borderRadius: new BorderRadius.only(
-                                // bottomLeft: const Radius.circular(8.0),
-                                // bottomRight: const Radius.circular(8.0),
                                 topLeft: const Radius.circular(8.0),
                                 topRight: const Radius.circular(8.0),
                               ),

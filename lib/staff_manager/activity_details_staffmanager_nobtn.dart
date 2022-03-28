@@ -12,14 +12,10 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future getactivitydetail() async {
-  print("activityDetail Staffmanager activate!");
+  print("activity Detail Staffmanager activate!");
   final prefs = await SharedPreferences.getInstance();
-
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -32,10 +28,7 @@ Future getactivitydetail() async {
     Uri.parse(url),
     headers: requestHeaders,
   );
-
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
     print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
@@ -92,7 +85,6 @@ class _ActivityDetailsStaffManagerNobtnPageState
           ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          // backgroundColor: Color(0xFFEBEDF2),
           backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
@@ -533,7 +525,6 @@ class _ActivityDetailsStaffManagerNobtnPageState
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           image: DecorationImage(
-              // image: AssetImage('assets/images/Beach_4.jpg')
               image: NetworkImage(
                   "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
               fit: BoxFit.cover)),

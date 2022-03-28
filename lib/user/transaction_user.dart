@@ -29,20 +29,12 @@ Future transaction() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
 
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
-
     List data = json.decode(res.body);
-
     transactionsData.transactions =
         data.map((p) => Transactions.fromJson(p)).toList();
-
-    // print("transactions ${transactionsData.transactions}");
-
     jsonResponse = json.decode(res.body);
-    print("Response status: ${res.statusCode}");
     return jsonResponse;
   } else {}
 }
@@ -89,8 +81,6 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Colors.transparent,
-        // backgroundColor: Color(0xFFEBEDF2),
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
@@ -140,7 +130,6 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
         Container(
           height: 200,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(

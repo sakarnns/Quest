@@ -13,7 +13,7 @@ var responsebody;
 int? tokenexpire;
 
 Future scanconfirm() async {
-  print("scanconfirm activate!!");
+  print("staff scanconfirm activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -34,8 +34,6 @@ Future scanconfirm() async {
   var res = await http.post(Uri.parse(url),
       headers: requestHeaders, body: jsonEncode(body));
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-  print(res.body);
   if (res.statusCode == 201) {
     responsebody = "Success";
   } else if (res.statusCode == 400) {

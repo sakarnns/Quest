@@ -32,27 +32,11 @@ Future interestedbrowse() async {
   print(res.statusCode);
 
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
-    print("yeah");
-
     List data = json.decode(res.body);
-    // List _list = await HTTP.getList('faq');
-
     interestedEventData.interestedEvent =
         data.map((p) => InterestedEvent.fromJson(p)).toList();
-    // homeBrowseData.homeBrowse = HomeBrowse.fromJson(jsonDecode(res.body));
-
     print("Interested ${interestedEventData.interestedEvent}");
-    // liist.forEach((data) {
-    //   print("${data.sId} ${data.eventName} ${data.eventType}");
-    // });
-    // EventBrowseData.eventBrowse = eventbrowsedata[0];
-
     jsonResponse = json.decode(res.body);
-    print("Response status: ${res.statusCode}");
-    // print(eventBrowseData.homeData!.event10.length);
-    // print("Response status; ${res.body}");
-
     return jsonResponse;
   }
 }
@@ -96,8 +80,6 @@ class _InterestedActivityUserPageState
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Color(0xFFEBEDF2),
-        // backgroundColor: Colors.transparent,
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
@@ -153,7 +135,6 @@ class _InterestedActivityUserPageState
         Container(
           height: 200,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(

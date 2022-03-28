@@ -33,7 +33,7 @@ class _PreviewActivityStaffManagerPageFailState
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "Failed on retrievering data please try again later. \n                                     [Error 200]",
+                    "Failed on retrievering data please try again later.",
                     style: TextStyle(color: Colors.black, fontSize: 16),
                   ),
                 ],

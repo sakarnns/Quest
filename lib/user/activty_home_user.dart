@@ -16,7 +16,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future activitybrowse() async {
-  print("activitybrowse activate!");
+  print("activity home activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -33,17 +33,10 @@ Future activitybrowse() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
 
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
-
     eventBrowseData.eventBrowse = EventBrowse.fromJson(jsonDecode(res.body));
-
-    // print("eventBrowseData.eventBrowse ${eventBrowseData.eventBrowse}");
-
     jsonResponse = json.decode(res.body);
-    // print("Response status; ${res.statusCode}");
     return jsonResponse;
   } else {}
 }
@@ -55,8 +48,6 @@ Future selectEventId(id) async {
 setIdEvent(String selectevent) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selecteventid', selectevent);
-
-  // print(selectevent);
 }
 
 class ActivityUserHomePage extends StatefulWidget {

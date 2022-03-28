@@ -15,7 +15,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future setuserStatus() async {
-  print("set user status activated!");
+  print("user status activated!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -30,21 +30,15 @@ Future setuserStatus() async {
     headers: requestHeaders,
   );
   if (resProfile.statusCode == 200) {
-    // print(json.decode(resProfile.body));
     UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
-    // print(UserData.userProfile!.image);
   }
 }
 
 Future getrewarddetail() async {
-  print("rewarddetails activate!");
+  print("reward details user activate!");
   final prefs = await SharedPreferences.getInstance();
-
   final rewardid = prefs.getString('selectrewardid');
   final val = prefs.getString('token');
-  // print("-------------==========");
-  // print(rewardid);
-  // print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/reward_detail/$rewardid";
   Map<String, String> requestHeaders = {
@@ -58,11 +52,7 @@ Future getrewarddetail() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     rewardDetailData.rewardDetail =
         RewardDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
@@ -112,8 +102,6 @@ class _RewardDetailsPageState extends State<RewardDetailsPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Colors.transparent,
-        // backgroundColor: Color(0xFFEBEDF2),
         backgroundColor: Colors.white.withOpacity(0.1),
         elevation: 0.0,
         leading: BackButton(

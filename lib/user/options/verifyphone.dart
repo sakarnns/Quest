@@ -9,7 +9,7 @@ import 'package:quest_2/user/navigation_user/navigation_user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future verifyphonenumber(String number) async {
-  print("verifyphonenumber activate!");
+  print("verify phonenumber activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -22,12 +22,9 @@ Future verifyphonenumber(String number) async {
 
   Map body = {"Phone_Number": number};
 
-  print(jsonEncode(body));
-
   var jsonResponse;
   var res = await http.post(Uri.parse(url),
       body: jsonEncode(body), headers: requestHeaders);
-  print(res.statusCode);
   if (res.statusCode == 201) {
     jsonResponse = json.decode(res.body);
     print(jsonResponse);

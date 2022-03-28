@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quest_2/staff_manager/navigation_staffmanager/staffmanager_status.dart';
 import 'package:quest_2/styles/size.dart';
-
 import '../create_activity_staffmanager.dart';
 import '../home_staffmanager.dart';
 import '../incoming_staffmanager.dart';
@@ -76,7 +75,6 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
               fixedColor: Color(0xFF6F2DA8),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  // icon: Icon(Icons.home),
                   icon: Container(
                     height: 28,
                     width: 28,
@@ -138,7 +136,6 @@ class _NavigationStaffmanagerState extends State<NavigationStaffmanager> {
                 ),
               ],
               currentIndex: _selectedIndex,
-              // selectedItemColor: Color(0xFF307BF6),
               onTap: (int index) {
                 if (index == 2) {
                   Navigator.push(

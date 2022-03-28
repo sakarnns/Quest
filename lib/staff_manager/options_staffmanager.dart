@@ -23,7 +23,6 @@ class _OptionsStaffManagerPageState extends State<OptionsStaffManagerPage> {
       behavior: HitTestBehavior.translucent,
       child: Scaffold(
           appBar: AppBar(
-            // title: const Text('', style: TextStyle(color: Colors.black)),
             backgroundColor: Colors.transparent,
             elevation: 0.0,
             leading: BackButton(

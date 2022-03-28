@@ -12,14 +12,11 @@ import 'genertorqr_user.dart';
 bool isLoading = true;
 
 Future getactivitydetail() async {
-  print("activitybrowse activate!");
+  print("activity details activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -33,20 +30,9 @@ Future getactivitydetail() async {
     headers: requestHeaders,
   );
 
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
-    // print("Response status; ${res.statusCode}");
-    // print("In");
-    // print(eventDetailData.eventDetail?.eventCheckInterest);
-    // print("j");
-    // print(eventDetailData.eventDetail?.eventCheckJoin);
-    // print("jd");
-    // print(eventDetailData.eventDetail?.eventCheckJoined);
-    // print("Response status; ${res.body}");
     return jsonResponse;
   }
 }
@@ -65,27 +51,17 @@ Future interestbutton(eventid) async {
   };
   Map body = {"event": eventid};
 
-  print(jsonEncode(body));
-
   var jsonResponse;
   var res = await http.post(Uri.parse(url),
       body: jsonEncode(body), headers: requestHeaders);
-
-  // print(res.statusCode);
-  // print(res.body);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     jsonResponse = json.decode(res.body);
-    // print("response interest status");
-    // print("Response status; ${res.statusCode}");
-    // print("Response status; ${res.body}");
     return jsonResponse;
   }
 }
 
 Future joinbutton(eventid) async {
-  print("interest button activated!");
+  print("join button activated!");
   final prefs = await SharedPreferences.getInstance();
 
   final eventid = prefs.getString('selecteventid');
@@ -102,15 +78,9 @@ Future joinbutton(eventid) async {
   var res = await http.post(Uri.parse(url),
       body: jsonEncode(body), headers: requestHeaders);
 
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
-    // print("response join status");
-    // print("Response status; ${res.statusCode}");
-    // print("Response status; ${res.body}");
     return jsonResponse;
   }
 }
@@ -123,14 +93,10 @@ class ActivityDetailsPage extends StatefulWidget {
 }
 
 class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
-  // iterestButton
   bool isButtonInterestActive = true;
   bool isButtonInterestActiveAPI = true;
-
-  // Join Button
   bool isButtonActive = true;
   bool isButtonActiveAPI = false;
-
   bool isButtonJoinChange = false;
   bool isButtonQRActive = false;
 
@@ -139,25 +105,6 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
     isButtonActive = true;
     super.initState();
   }
-
-  // void fectc() async {
-  //   isLoading = true;
-  //   print("fetch 1 ");
-  //   await getactivitydetail();
-  //   if (eventDetailData.eventDetail != null) {
-  //     isButtonActiveAPI = eventDetailData.eventDetail!.eventCheckJoin;
-  //     isButtonQRActive = eventDetailData.eventDetail!.eventCheckJoined;
-  //     isButtonInterestActiveAPI =
-  //         eventDetailData.eventDetail!.eventCheckInterest;
-  //   }
-  //   Future.delayed(Duration(milliseconds: 300), () {
-  //     setState(() {
-  //       isLoading = false;
-  //       setState(() {});
-  //       print("fetch 2 ");
-  //     });
-  //   });
-  // }
 
   void fectc() async {
     isLoading = true;
@@ -196,8 +143,6 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                 bottom: Radius.circular(16),
               ),
             ),
-            // backgroundColor: Colors.transparent,
-            // backgroundColor: Color(0xFFEBEDF2),
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
@@ -697,7 +642,9 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                   !(eventDetailData.eventDetail!.eventPublisher ==
                       UserData.userProfile!.username)) &&
               !(eventDetailData.eventDetail!.participantLimit <=
-                  eventDetailData.eventDetail!.eventJoined) && !(UserData.userProfile!.tier! < eventDetailData.eventDetail!.eventTierPoints))
+                  eventDetailData.eventDetail!.eventJoined) &&
+              !(UserData.userProfile!.tier! <
+                  eventDetailData.eventDetail!.eventTierPoints))
           ? () {
               setState(() {
                 joinbutton('${eventDetailData.eventDetail?.eventId}');
@@ -713,12 +660,12 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
             : eventDetailData.eventDetail!.participantLimit <=
                     eventDetailData.eventDetail!.eventJoined
                 ? "Full"
-                : UserData.userProfile!.tier! < eventDetailData.eventDetail!.eventTierPoints 
+                : UserData.userProfile!.tier! <
+                        eventDetailData.eventDetail!.eventTierPoints
                     ? "not enough t-point"
-                : isButtonActive && !isButtonActiveAPI
-                    ? "Join"
-                    
-                    : "Joined",
+                    : isButtonActive && !isButtonActiveAPI
+                        ? "Join"
+                        : "Joined",
         style: TextStyle(color: Colors.white, fontSize: 16),
       ),
     );

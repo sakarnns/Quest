@@ -27,7 +27,6 @@ Future verifycitizen(String ctzid) async {
   var jsonResponse;
   var res = await http.post(Uri.parse(url),
       body: jsonEncode(body), headers: requestHeaders);
-  print(res.statusCode);
   if (res.statusCode == 201) {
     jsonResponse = json.decode(res.body);
     print(jsonResponse);

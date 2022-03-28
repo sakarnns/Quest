@@ -30,7 +30,6 @@ Future createActivity(
 
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/sm_user_create_event";
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   var requestHeaders = {
     'Content-type': 'application/json',
     'Authorization': (token) as String
@@ -44,17 +43,7 @@ Future createActivity(
       splitenddata[2] + "-" + splitenddata[1] + "-" + splitenddata[0];
   eventstarttime = eventstarttime + ":00";
   eventendtime = eventendtime + ":00";
-
-  print("eventstartdate : " + eventstartdate);
-  print("eventstarttime : " + eventstarttime);
-  print("=============");
-  print(eventdetail);
-  print("=============");
-
   var request = http.MultipartRequest('POST', Uri.parse(url));
-  // print("=====tierpoint=====");
-  // print(eventtier);
-  // print("=====tierpoint=====");
   request.fields.addAll({
     'Event_Name': eventname,
     'Event_Detail': eventdetail,
@@ -77,17 +66,9 @@ Future createActivity(
   http.StreamedResponse response = await request.send();
 
   status = response.statusCode;
-  print("=====500=====");
-  print(status);
-  print("=====500=====");
   if (response.statusCode == 201) {
-    print("ยิงละ");
     print(status);
-    print("ยิงแล้วอ่อ");
-  } else {
-    print(response.statusCode);
-    print(response.stream);
-  }
+  } else {}
 }
 
 class PreviewActivityUserPage extends StatefulWidget {
@@ -118,8 +99,6 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
           ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          // backgroundColor: Color(0xFFEBEDF2),
-          // backgroundColor: Colors.transparent,
           backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
@@ -544,14 +523,6 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
               children: [
                 Text(
                   eventlocation,
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                Text(
-                  "lat : ${latitude.toString()}",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                Text(
-                  "long :${longitude.toString()}",
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
               ],

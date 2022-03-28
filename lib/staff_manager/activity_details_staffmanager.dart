@@ -15,14 +15,11 @@ bool isBTNActive = true;
 int? tokenexpire;
 
 Future getactivitydetail() async {
-  print("activitybrowse activate!");
+  print("activity detail staffmanager activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -36,10 +33,7 @@ Future getactivitydetail() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
     return jsonResponse;
@@ -102,7 +96,6 @@ class _ActivityDetailsStaffManagerPageState
               shape: RoundedRectangleBorder(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(16))),
-              // backgroundColor: Color(0xFFEBEDF2),
               backgroundColor: Colors.white.withOpacity(0.8),
               elevation: 0.0,
               leading: BackButton(

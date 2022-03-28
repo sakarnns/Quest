@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quest_2/staff/navigation_staff/staff_status.dart';
 import 'package:quest_2/styles/size.dart';
-
 import '../home_staff.dart';
 import '../options_staff.dart';
 
@@ -20,26 +19,10 @@ class _NavigationStaffState extends State<NavigationStaff> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   List<Widget> _widgetOptions = <Widget>[
     StaffHomePage(),
-    // Text(
-    //   'Home Staff',
-    //   style: optionStyle,
-    // ),
     Text(
-      '2',
+      '',
       style: optionStyle,
     ),
-    // Text(
-    //   '3',
-    //   style: optionStyle,
-    // ),
-    // Text(
-    //   '4',
-    //   style: optionStyle,
-    // ),
-    // Text(
-    //   '5',
-    //   style: optionStyle,
-    // ),
   ];
 
   @override
@@ -83,7 +66,6 @@ class _NavigationStaffState extends State<NavigationStaff> {
               fixedColor: Color(0xFF6F2DA8),
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  // icon: Icon(Icons.home),
                   icon: Container(
                     height: 28,
                     width: 28,
@@ -109,7 +91,6 @@ class _NavigationStaffState extends State<NavigationStaff> {
                 ),
               ],
               currentIndex: _selectedIndex,
-              // selectedItemColor: Color(0xFF307BF6),
               onTap: (int index) {
                 if (index == 1) {
                   Navigator.push(
@@ -118,27 +99,6 @@ class _NavigationStaffState extends State<NavigationStaff> {
                           builder: (context) => OptionsStaffPage()));
                   index = 0;
                 }
-                // if (index == 2) {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => CreateActivityUserPage()));
-                //   index = 0;
-                // }
-
-                // if (index == 3) {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => RewardUserBrowsePage()));
-                //   index = 0;
-                // }
-                // if (index == 4) {
-                //   Navigator.push(context,
-                //       MaterialPageRoute(builder: (context) => OptionPage()));
-                //   index = 0;
-                // }
-
                 setState(() {
                   _selectedIndex = index;
                 });

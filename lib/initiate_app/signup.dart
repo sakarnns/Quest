@@ -324,13 +324,11 @@ class _SignupPageState extends State<SignupPage> {
                                 MaterialPageRoute(
                                     builder: (context) =>
                                         TermsAndConditionPage()));
-                            // print('tap');
                           },
                           child: Text(
                             "terms and conditions",
                             style: TextStyle(
                               color: Color(0xFF6F2DA8),
-                              // decoration: TextDecoration.underline
                             ),
                           ),
                         )
@@ -402,16 +400,11 @@ class _SignupPageState extends State<SignupPage> {
                     InkWell(
                       onTap: () {
                         Navigator.pop(context);
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => LoginPage()),
-                        //     (Route<dynamic> route) => false);
                       },
                       child: Text(
                         "Login",
                         style: TextStyle(
                           color: Color(0xFF6F2DA8),
-                          // decoration: TextDecoration.underline
                         ),
                       ),
                     )

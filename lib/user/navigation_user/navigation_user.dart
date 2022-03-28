@@ -73,10 +73,8 @@ class _NavigationUserState extends State<NavigationUser> {
               unselectedItemColor: Colors.grey,
               fixedColor: Color(0xFF6F2DA8),
               type: BottomNavigationBarType.fixed,
-              // unselectedItemColor: Colors.black,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  // icon: Icon(Icons.home),
                   icon: Container(
                     height: 28,
                     width: 28,
@@ -138,15 +136,7 @@ class _NavigationUserState extends State<NavigationUser> {
                 ),
               ],
               currentIndex: _selectedIndex,
-              // selectedItemColor: Color(0xFF307BF6),
               onTap: (int index) {
-                // if (index == 1) {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => ActivityUserBrowsePage()));
-                //   index = 0;
-                // }
                 if (index == 2) {
                   Navigator.push(
                       context,
@@ -154,14 +144,6 @@ class _NavigationUserState extends State<NavigationUser> {
                           builder: (context) => CreateActivityUserPage()));
                   index = 0;
                 }
-
-                // if (index == 3) {
-                //   Navigator.push(
-                //       context,
-                //       MaterialPageRoute(
-                //           builder: (context) => RewardUserBrowsePage()));
-                //   index = 0;
-                // }
                 if (index == 4) {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => OptionPage()));

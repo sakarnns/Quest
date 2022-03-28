@@ -30,7 +30,6 @@ Future createActivity(
 
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/sm_user_create_event";
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
   var requestHeaders = {
     'Content-type': 'application/json',
     'Authorization': (token) as String
@@ -44,12 +43,6 @@ Future createActivity(
       splitenddata[2] + "-" + splitenddata[1] + "-" + splitenddata[0];
   eventstarttime = eventstarttime + ":00";
   eventendtime = eventendtime + ":00";
-
-  print("eventstartdate : " + eventstartdate);
-  print("eventstarttime : " + eventstarttime);
-  print("=============");
-  print(eventdetail);
-  print("=============");
 
   var request = http.MultipartRequest('POST', Uri.parse(url));
 
@@ -111,8 +104,6 @@ class _PreviewActivityStaffManagerPageState
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            // backgroundColor: Color(0xFFEBEDF2),
-            // backgroundColor: Colors.transparent,
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
@@ -623,10 +614,7 @@ class _PreviewActivityStaffManagerPageState
                   participantquantitycheck!,
                   pointperpartcheck!,
                   eventdetialcheck!,
-                  (
-                    eventlocation +
-                    "\nDetail : " +
-                    locationdetialcheck!),
+                  (eventlocation + "\nDetail : " + locationdetialcheck!),
                   tierpointscheck!,
                   latitude!,
                   longitude!);

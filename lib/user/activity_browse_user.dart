@@ -14,7 +14,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future geteventall() async {
-  print("activityBrowse activate!");
+  print("activity browse activate!");
   final prefs = await SharedPreferences.getInstance();
 
   final val = prefs.getString('token');
@@ -31,20 +31,11 @@ Future geteventall() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  // print(res.statusCode);
 
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
-    // print("yeah");
-
     List data = json.decode(res.body);
-
     eventAllData.eventAll = data.map((p) => EventAll.fromJson(p)).toList();
-    // print(res.body);
-    // print("eventBrowseData.eventBrowse ${rewardAllData.rewardAll}");
     jsonResponse = json.decode(res.body);
-    // print("Response status: ${res.statusCode}");
-
     return jsonResponse;
   }
 }
@@ -81,7 +72,6 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
   void fectc() async {
     isLoading = true;
     print("fetch 1 ");
-    // _runFilter("");
     await geteventall().then((value) => setState(() {}));
     if (tokenexpire == 401) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -138,8 +128,6 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
           ),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-          // backgroundColor: Color(0xFFEBEDF2),
-          // backgroundColor: Colors.transparent,
           backgroundColor: Colors.white.withOpacity(0.8),
           elevation: 0.0,
           leading: BackButton(
@@ -213,7 +201,6 @@ class _ActivityUserBrowsePageState extends State<ActivityUserBrowsePage> {
   Widget searchEventAll() {
     return TextFormField(
       controller: _searchController,
-      // textInputAction: TextInputAction.search,
       decoration: InputDecoration(
         focusedBorder: outlineInputBorder(),
         border: outlineInputBorder(),

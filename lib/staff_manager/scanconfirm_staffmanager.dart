@@ -30,14 +30,10 @@ Future scanconfirm() async {
     "latitude": lati,
     "longitude": long
   };
-  print(hash);
   var res = await http.post(Uri.parse(url),
       headers: requestHeaders, body: jsonEncode(body));
 
   tokenexpire = res.statusCode;
-
-  print(res.statusCode);
-  print(res.body);
 
   if (res.statusCode == 201) {
     responsebody = "Success";

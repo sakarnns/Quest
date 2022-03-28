@@ -15,10 +15,9 @@ class StatusStaff extends StatefulWidget {
 }
 
 Future setstaffStatus() async {
-  print("set staff status activated!");
+  print("staff status activated!");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  print(val);
   String urlProfile =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/staff_main_page";
   Map<String, String> requestHeaders = {
@@ -29,14 +28,9 @@ Future setstaffStatus() async {
     Uri.parse(urlProfile),
     headers: requestHeaders,
   );
-
-  print(resProfile.statusCode);
-  print(resProfile.body);
   if (resProfile.statusCode == 200) {
-    print(json.decode(resProfile.body));
     StaffData.staffProfile =
         StaffProfile.fromJson(json.decode(resProfile.body));
-    // print(UserData.userProfile!.image);
   }
 }
 

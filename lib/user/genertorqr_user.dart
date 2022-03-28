@@ -17,7 +17,7 @@ bool isLoading = true;
 int? tokenexpire;
 
 Future getqr() async {
-  print("activitybrowse activate!");
+  print("get QR user activate!");
   final prefs = await SharedPreferences.getInstance();
 
   Position? _currentPosition;
@@ -50,10 +50,8 @@ Future getqr() async {
     "latitude": _currentPosition.latitude,
     "longitude": _currentPosition.longitude
   };
-
   print(_currentPosition.latitude);
   print(_currentPosition.longitude);
-  print(jsonEncode(body));
 
   var jsonResponse;
   var res = await http.post(
@@ -62,15 +60,9 @@ Future getqr() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-
-  print(res.statusCode);
-  print(res.body);
-
   if (res.statusCode == 201) {
     qrGenData.qrGen = QrGen.fromJson(json.decode(res.body));
-
     jsonResponse = res.body;
-    print("Response status: ${res.statusCode}");
     return jsonResponse;
   } else {}
 }

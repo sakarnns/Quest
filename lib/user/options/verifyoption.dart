@@ -12,28 +12,26 @@ import 'package:http/http.dart' as http;
 import '../activity_browse_user.dart';
 
 Future setuserStatus() async {
-    print("set user status activated!");
-    final prefs = await SharedPreferences.getInstance();
+  print("verify option activated!");
+  final prefs = await SharedPreferences.getInstance();
 
-    final val = prefs.getString('token');
-    String urlProfile =
-        "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/profile";
-    Map<String, String> requestHeaders = {
-      'Content-type': 'application/json',
-      'Authorization': (val) as String
-    };
-    var resProfile = await http.get(
-      Uri.parse(urlProfile),
-      headers: requestHeaders,
-    );
-    tokenexpire = resProfile.statusCode;
+  final val = prefs.getString('token');
+  String urlProfile =
+      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/profile";
+  Map<String, String> requestHeaders = {
+    'Content-type': 'application/json',
+    'Authorization': (val) as String
+  };
+  var resProfile = await http.get(
+    Uri.parse(urlProfile),
+    headers: requestHeaders,
+  );
+  tokenexpire = resProfile.statusCode;
 
-    if (resProfile.statusCode == 200) {
-      // print(json.decode(resProfile.body));
-      UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
-      // print(UserData.userProfile!.image);
-    }
+  if (resProfile.statusCode == 200) {
+    UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
   }
+}
 
 class VerifyPage extends StatefulWidget {
   VerifyPage({Key? key}) : super(key: key);
@@ -56,7 +54,7 @@ class _VerifyPageState extends State<VerifyPage> {
     print("fetch 2 ");
     setState(() {});
   }
-  
+
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
@@ -113,12 +111,14 @@ class _VerifyPageState extends State<VerifyPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: UserData.userProfile!.ctzid == "" ? () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyCitizenPage()));
-                  }: null,
+                  onPressed: UserData.userProfile!.ctzid == ""
+                      ? () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VerifyCitizenPage()));
+                        }
+                      : null,
                   child: Text(
                     'Verify',
                     style: TextStyle(color: Colors.white, fontSize: 16),
@@ -149,12 +149,14 @@ class _VerifyPageState extends State<VerifyPage> {
                   height: 40,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8)),
-                  onPressed: UserData.userProfile!.phone == "" ? () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VerifyPhonePage()));
-                  }:null,
+                  onPressed: UserData.userProfile!.phone == ""
+                      ? () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VerifyPhonePage()));
+                        }
+                      : null,
                   child: Text(
                     'Verify',
                     style: TextStyle(color: Colors.white, fontSize: 16),

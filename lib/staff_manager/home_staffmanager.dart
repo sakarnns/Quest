@@ -20,15 +20,12 @@ Future selectEventId(id) async {
 setIdEvent(String selectevent) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selecteventid', selectevent);
-
-  print(selectevent);
 }
 
 Future staffhome() async {
-  print("staff manager home activated!");
+  print("staffmanager home activated!");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  // print(val);
   String urlProfile =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/staff_home";
   Map<String, String> requestHeaders = {
@@ -40,15 +37,9 @@ Future staffhome() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  // print(res.statusCode);
-  // print(res.body);
-
   if (res.statusCode == 200) {
-    // print(json.decode(res.body));
     List data = json.decode(res.body);
-
     staffHomeData.staffHome = data.map((p) => StaffHome.fromJson(p)).toList();
-    // print(UserData.userProfile!.image);
   }
 }
 

@@ -124,8 +124,6 @@ class _CreateActivityStaffManagerPageState
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
-            // backgroundColor: Color(0xFFEBEDF2),
-            // backgroundColor: Colors.transparent,
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
@@ -882,7 +880,6 @@ class _CreateActivityStaffManagerPageState
         height: 180,
         child: CupertinoPicker(
           scrollController: scrollController,
-          // looping: true,
           itemExtent: 64,
           children: items
               .map((item) => Center(

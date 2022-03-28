@@ -17,7 +17,7 @@ class StatusUser extends StatefulWidget {
 
 class _StatusUserState extends State<StatusUser> {
   Future setuserStatus() async {
-    print("set user status activated!");
+    print("userstatus activated!");
     final prefs = await SharedPreferences.getInstance();
 
     final val = prefs.getString('token');
@@ -32,9 +32,7 @@ class _StatusUserState extends State<StatusUser> {
       headers: requestHeaders,
     );
     if (resProfile.statusCode == 200) {
-      print(json.decode(resProfile.body));
       UserData.userProfile = UserProfile.fromJson(json.decode(resProfile.body));
-      // print(UserData.userProfile!.image);
     }
   }
 

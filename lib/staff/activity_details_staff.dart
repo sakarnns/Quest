@@ -15,14 +15,10 @@ bool isBTNActive = true;
 int? tokenexpire;
 
 Future getactivitydetail() async {
-  print("activitybrowse activate!");
+  print("activity detail activate!");
   final prefs = await SharedPreferences.getInstance();
-
   final eventid = prefs.getString('selecteventid');
   final val = prefs.getString('token');
-  print("-------------==========");
-  print(eventid);
-  print("-------------==========");
   String url =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/event_detail/$eventid";
   Map<String, String> requestHeaders = {
@@ -36,10 +32,7 @@ Future getactivitydetail() async {
     headers: requestHeaders,
   );
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     eventDetailData.eventDetail = EventDetail.fromJson(json.decode(res.body));
     jsonResponse = json.decode(res.body);
     return jsonResponse;
@@ -480,7 +473,6 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
             ],
           ),
         ),
-        
         SizedBox(
           width: MediaQuery.of(context).size.width,
           child: Padding(
@@ -540,10 +532,8 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8.0),
           image: DecorationImage(
-              image:
-                  // AssetImage('assets/images/Beach_4.jpg')
-                  NetworkImage(
-                      "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
+              image: NetworkImage(
+                  "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${eventDetailData.eventDetail?.eventImage}"),
               fit: BoxFit.cover)),
     );
   }
@@ -567,30 +557,4 @@ class _ActivityDetailsStaffPageState extends State<ActivityDetailsStaffPage> {
       ),
     );
   }
-  // Widget qrButton() {
-  //   return MaterialButton(
-  //     disabledColor: Colors.grey,
-  //     color: Colors.white,
-  //     minWidth: 30,
-  //     // height: 40,
-  //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-  //     onPressed: isBTNActive != true
-  //         ? () {
-  //             Navigator.push(context,
-  //                 MaterialPageRoute(builder: (context) => ScanQrStaffPage()));
-  //           }
-  //         : null,
-  //     child: Container(
-  //       child: SvgPicture.asset(
-  //         'assets/icons/readerQR.svg',
-  //         fit: BoxFit.fill,
-  //         color: Colors.black,
-  //       ),
-  //     ),
-  //     // child: Text(
-  //     //   "Scan QR",
-  //     //   style: TextStyle(color: Colors.white, fontSize: 16),
-  //     // ),
-  //   );
-  // }
 }

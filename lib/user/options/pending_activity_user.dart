@@ -8,9 +8,7 @@ import 'package:quest_2/models/staff_home.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:quest_2/user/timeout.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../my_activty_pending_user.dart';
-// import 'activity_details_staffmanager_nobtn.dart';
 
 bool isLoading = true;
 int? tokenexpire;
@@ -22,15 +20,12 @@ Future selectEventId(id) async {
 setIdEvent(String selectevent) async {
   SharedPreferences prefs = await SharedPreferences.getInstance();
   prefs.setString('selecteventid', selectevent);
-
-  print(selectevent);
 }
 
 Future pendingdata() async {
-  print("pending data activated!");
+  print("pending activity user activated!");
   final prefs = await SharedPreferences.getInstance();
   final val = prefs.getString('token');
-  print(val);
   String urlProfile =
       "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/user_pending_event";
   Map<String, String> requestHeaders = {
@@ -43,14 +38,9 @@ Future pendingdata() async {
   );
 
   tokenexpire = res.statusCode;
-  print(res.statusCode);
-  print(res.body);
   if (res.statusCode == 200) {
-    print(json.decode(res.body));
     List data = json.decode(res.body);
-
     pendingData.staffHome = data.map((p) => StaffHome.fromJson(p)).toList();
-    // print(UserData.userProfile!.image);
   }
 }
 
@@ -71,8 +61,7 @@ class _UserActivityPendingPageState extends State<UserActivityPendingPage> {
 
   void fectc() async {
     isLoading = true;
-    print("fetch 1 ");
-    // _runFilter("");
+    print("fetch 1");
     await pendingdata().then((value) => setState(() {}));
     if (tokenexpire == 401) {
       Navigator.of(context).pushAndRemoveUntil(
@@ -80,7 +69,7 @@ class _UserActivityPendingPageState extends State<UserActivityPendingPage> {
           (Route<dynamic> route) => false);
     }
     isLoading = false;
-    print("fetch 2 event");
+    print("fetch 2");
   }
 
   @override
@@ -97,7 +86,6 @@ class _UserActivityPendingPageState extends State<UserActivityPendingPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Colors.transparent,
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(

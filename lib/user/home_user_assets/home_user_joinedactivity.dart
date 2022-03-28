@@ -84,8 +84,6 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
         ),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(bottom: Radius.circular(16))),
-        // backgroundColor: Color(0xFFEBEDF2),
-        // backgroundColor: Colors.transparent,
         backgroundColor: Colors.white.withOpacity(0.8),
         elevation: 0.0,
         leading: BackButton(
@@ -139,7 +137,6 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
         Container(
           height: 200,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(
@@ -183,7 +180,6 @@ class _JoinedActivityUserPageState extends State<JoinedActivityUserPage> {
                 image: DecorationImage(
                     image: NetworkImage(
                         "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/image_display/${joinedEventData.joinedEvent[index].eventImage}"), // Add Path image
-                    // image: AssetImage('assets/images/Beach_3.jpg'),
                     fit: BoxFit.cover)),
             child: Stack(
               alignment: Alignment.bottomCenter,
