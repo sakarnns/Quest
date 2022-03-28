@@ -131,7 +131,7 @@ class _ScanConfirmUserPage extends State<ScanConfirmUserPage> {
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: () {
-        // scanconfirm();
+        scanconfirm();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => NavigationUser()),

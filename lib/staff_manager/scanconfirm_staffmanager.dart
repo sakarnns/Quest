@@ -131,7 +131,7 @@ class _ScanConfirmStaffManagerPage extends State<ScanConfirmStaffManagerPage> {
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: () {
-        // scanconfirm();
+        scanconfirm();
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(
                 builder: (BuildContext context) => NavigationStaffmanager()),

@@ -138,7 +138,6 @@ class _UserActivityPendingPageState extends State<UserActivityPendingPage> {
         Container(
           height: 200,
           decoration: BoxDecoration(
-            // color: Color(0xFFEBEDF2),
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Stack(
