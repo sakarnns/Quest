@@ -47,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
   //API-Login Function//
   Future signIn(String username, String pass) async {
     String url =
-        "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/user_login";
+        "http://ec2-13-229-230-197.ap-southeast-1.compute.amazonaws.com/api/Quest/login";
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     Map body = {"Username": username, "Password": pass};
     var jsonResponse;
