@@ -187,6 +187,17 @@ class _ActivityDetailsPageState extends State<ActivityDetailsPage> {
                                 new BorderRadius.all(Radius.circular(8.0))),
                         child: activityDetailArea(),
                       ),
+                      SizedBox(
+                        height: height(context: context) / 100,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "*When you join this activity. You can't unjoin.",
+                            style: TextStyle(color: Colors.red),
+                          )
+                        ],
+                      ),
                       functionbtn(),
                     ],
                   )
