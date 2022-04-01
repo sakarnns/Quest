@@ -189,7 +189,7 @@ class _VerifyOTPState extends State<VerifyOTP> {
                             otpgroup.otpsecond.clear();
                             otpgroup.otpthird.clear();
                             otpgroup.otpfourth.clear();
-                            otpstatuscheck = false;
+                            otpstatuscheck = true;
                             setState(() {});
                           }
                         }

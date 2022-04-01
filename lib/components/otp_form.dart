@@ -145,6 +145,8 @@ class _OtpFormState extends State<OtpForm> {
                       print(otpfourthcheck);
                       if (value.length == 1) {
                         pin4FocusNode!.unfocus();
+                        otpstatuscheck = false;
+                        setState(() {});
                         // Then you need to check is the code is correct or not
                       }
                     },

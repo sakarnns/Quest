@@ -6,6 +6,9 @@ import 'package:quest_2/styles/size.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:http/http.dart' as http;
 
+bool forgotstatuscheck = false;
+int? rescode;
+
 Future forgetpass(String email) async {
   print("forget password activate!");
   String url =
@@ -14,9 +17,9 @@ Future forgetpass(String email) async {
   Map body = {"email": email};
 
   var res = await http.post(Uri.parse(url), body: body);
-
+  rescode = res.statusCode;
   print(res.statusCode);
-    if (res.statusCode == 200) {
+  if (res.statusCode == 200) {
     print("mail sent");
   }
 }
@@ -46,6 +49,9 @@ class _ForgotPageState extends State<ForgotPage> {
             color: Colors.black,
             onPressed: () {
               Navigator.pop(context);
+              setState(() {
+                forgotstatuscheck = false;
+              });
             },
           ),
           backgroundColor: Colors.transparent,
@@ -113,6 +119,9 @@ class _ForgotPageState extends State<ForgotPage> {
                           contentPadding: EdgeInsets.all(8.0),
                           border: outlineInputBorder()),
                       onChanged: (val) {
+                        setState(() {
+                          forgotstatuscheck = false;
+                        });
                         if (val.isEmpty ||
                             EmailValidator.validate(
                               val,
@@ -127,10 +136,9 @@ class _ForgotPageState extends State<ForgotPage> {
                             isvalid = false;
                           });
                         }
-
-                        // print(isvalid);
                       }),
                 ),
+                notificationForgot(),
                 SizedBox(
                   height: height(context: context) / 20,
                 ),
@@ -145,14 +153,19 @@ class _ForgotPageState extends State<ForgotPage> {
                           emailaddress != null &&
                           emailaddress != "" &&
                           emailaddress != " "
-                      ? () {
-                          forgetpass(emailaddress!);
-                          print(emailaddress);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => VerifyOTP()),
-                          );
+                      ? () async {
+                          await forgetpass(emailaddress!);
+                          if (rescode == 200) {
+                            print(emailaddress);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => VerifyOTP()),
+                            );
+                          } else if (rescode == 401) {
+                            forgotstatuscheck = true;
+                            setState(() {});
+                          }
                         }
                       : null,
                   child: Text(
@@ -163,6 +176,28 @@ class _ForgotPageState extends State<ForgotPage> {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget notificationForgot() {
+    return Visibility(
+      visible: forgotstatuscheck,
+      child: Container(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Email address not found.",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 14.0,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            // Text(emailaddress.toString()),
+          ],
         ),
       ),
     );
