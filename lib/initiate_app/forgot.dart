@@ -155,7 +155,7 @@ class _ForgotPageState extends State<ForgotPage> {
                           emailaddress != " "
                       ? () async {
                           await forgetpass(emailaddress!);
-                          if (rescode == 200) {
+                          if (rescode == 201) {
                             print(emailaddress);
                             Navigator.push(
                               context,
