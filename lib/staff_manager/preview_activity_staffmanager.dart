@@ -5,6 +5,7 @@ import 'package:quest_2/initiate_app/terms_condition.dart';
 import 'package:quest_2/serviecs/activity_location_map_service.dart';
 import 'package:quest_2/staff_manager/preview_act_staffmanager_done.dart';
 import 'package:quest_2/staff_manager/preview_act_staffmanager_fail.dart';
+import 'package:quest_2/staff_manager/preview_act_staffmanager_fail500.dart';
 import 'package:quest_2/styles/size.dart';
 import 'dart:io';
 import 'package:http/http.dart' as http;
@@ -67,9 +68,7 @@ Future createActivity(
 
   http.StreamedResponse response = await request.send();
 
-  if (response.statusCode == 201) {
-    print("ยิงละ");
-  }
+  status = response.statusCode;
 }
 
 class PreviewActivityStaffManagerPage extends StatefulWidget {
@@ -83,6 +82,7 @@ class PreviewActivityStaffManagerPage extends StatefulWidget {
 bool? isvalid;
 bool agreedterm = false;
 int? status;
+String? responsebody;
 
 class _PreviewActivityStaffManagerPageState
     extends State<PreviewActivityStaffManagerPage> {
@@ -533,14 +533,14 @@ class _PreviewActivityStaffManagerPageState
                   eventlocation,
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
-                Text(
-                  "lat : ${latitude.toString()}",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
-                Text(
-                  "long :${longitude.toString()}",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
-                ),
+                // Text(
+                //   "lat : ${latitude.toString()}",
+                //   style: TextStyle(color: Colors.black, fontSize: 16),
+                // ),
+                // Text(
+                //   "long :${longitude.toString()}",
+                //   style: TextStyle(color: Colors.black, fontSize: 16),
+                // ),
               ],
             ),
           ),
@@ -603,8 +603,8 @@ class _PreviewActivityStaffManagerPageState
       height: 40,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: agreedterm != false
-          ? () {
-              createActivity(
+          ? () async {
+              await createActivity(
                   eventnamecheck!,
                   eventstartdatecheck!.toString(),
                   eventstarttimecheck!.toString(),
@@ -620,16 +620,22 @@ class _PreviewActivityStaffManagerPageState
                   longitude!);
               eventlocation = "";
               status == 201
-                  ? Navigator.push(
-                      context,
+                  ? Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
-                          builder: (context) =>
-                              PreviewActivityStaffManagerPageDone()))
-                  : Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) =>
-                              PreviewActivityStaffManagerPageFail()));
+                          builder: (BuildContext context) =>
+                              PreviewActivityStaffManagerPageDone()),
+                      (Route<dynamic> route) => false)
+                  : status == 500
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  PreviewActivityStaffManagerPageFail500()),
+                          (Route<dynamic> route) => false)
+                      : Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  PreviewActivityStaffManagerPageFail()),
+                          (Route<dynamic> route) => false);
             }
           : null,
       child: Text(

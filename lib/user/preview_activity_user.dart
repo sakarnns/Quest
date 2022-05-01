@@ -8,6 +8,7 @@ import 'package:quest_2/user/preview_activty_user_done.dart';
 import 'package:quest_2/styles/size.dart';
 import 'package:quest_2/initiate_app/terms_condition.dart';
 import 'package:quest_2/user/preview_activty_user_fail.dart';
+import 'package:quest_2/user/preview_activty_user_fail500.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../data/userdata.dart';
 
@@ -66,9 +67,6 @@ Future createActivity(
   http.StreamedResponse response = await request.send();
 
   status = response.statusCode;
-  if (response.statusCode == 201) {
-    print(status);
-  } else {}
 }
 
 class PreviewActivityUserPage extends StatefulWidget {
@@ -83,6 +81,7 @@ class PreviewActivityUserPage extends StatefulWidget {
 bool? isvalid;
 bool agreedterm = false;
 int? status;
+String? responsebody;
 
 class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
   @override
@@ -589,37 +588,37 @@ class _PreviewActivityUserPageState extends State<PreviewActivityUserPage> {
       onPressed: agreedterm != false
           ? () async {
               await createActivity(
-                eventnamecheck!,
-                eventstartdatecheck!.toString(),
-                eventstarttimecheck!.toString(),
-                eventenddatecheck!.toString(),
-                eventendtimecheck!.toString(),
-                eventtypecheck!,
-                participantquantitycheck!,
-                pointperpartcheck!,
-                eventdetialcheck!,
-                (eventlocation + "\nDetail : " + locationdetialcheck!),
-                tierpointscheck!,
-                latitude!,
-                longitude!,
-              );
+                  eventnamecheck!,
+                  eventstartdatecheck!.toString(),
+                  eventstarttimecheck!.toString(),
+                  eventenddatecheck!.toString(),
+                  eventendtimecheck!.toString(),
+                  eventtypecheck!,
+                  participantquantitycheck!,
+                  pointperpartcheck!,
+                  eventdetialcheck!,
+                  (eventlocation + "\nDetail : " + locationdetialcheck!),
+                  tierpointscheck!,
+                  latitude!,
+                  longitude!);
               eventlocation = "";
-
-              // print("ให้ทายออกอะไร");
-              // print("====\/\/===");
-              // print(status);
-
               status == 201
                   ? Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
                           builder: (BuildContext context) =>
                               PreviewActivityUserPageDone()),
                       (Route<dynamic> route) => false)
-                  : Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                              PreviewActivityUserPageFail()),
-                      (Route<dynamic> route) => false);
+                  : status == 500
+                      ? Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  PreviewActivityUserPageFail500()),
+                          (Route<dynamic> route) => false)
+                      : Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  PreviewActivityUserPageFail()),
+                          (Route<dynamic> route) => false);
             }
           : null,
       child: Text(
