@@ -20,15 +20,20 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
       child: Scaffold(
           extendBodyBehindAppBar: true,
           appBar: AppBar(
-            title: Text('Terms & Conditions',
-                style: TextStyle(fontSize: 28, color: Colors.black)),
+            title: Text(
+              'Terms & Conditions',
+              style: TextStyle(
+                fontSize: 24,
+                color: Color(0xFF6F2DA8),
+              ),
+            ),
             shape: RoundedRectangleBorder(
                 borderRadius:
                     BorderRadius.vertical(bottom: Radius.circular(16))),
             backgroundColor: Colors.white.withOpacity(0.8),
             elevation: 0.0,
             leading: BackButton(
-              color: Colors.black,
+              color: Color(0xFF6F2DA8),
               onPressed: () {
                 Navigator.pop(context);
               },
@@ -46,7 +51,7 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
                   ),
                   updateArea(),
                   SizedBox(
-                    height: height(context: context) / 50,
+                    height: height(context: context) / 100,
                   ),
                   generalTermsHeader(),
                   generalTermsDetails(),
@@ -101,7 +106,7 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
         Text(
           "General Terms",
           style: TextStyle(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
@@ -133,7 +138,7 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
         Text(
           "License",
           style: TextStyle(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
@@ -165,7 +170,7 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
         Text(
           "Your Consent",
           style: TextStyle(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
@@ -197,7 +202,7 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
         Text(
           "Contact Us",
           style: TextStyle(
-            color: Colors.black,
+            color: Color(0xFF6F2DA8),
             fontSize: 18,
             fontWeight: FontWeight.w700,
           ),
