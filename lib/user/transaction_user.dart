@@ -180,7 +180,7 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                           ? Text(
                               "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: Colors.red,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -188,7 +188,7 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                           : Text(
                               "${transactionsData.transactions[index].type} : ${transactionsData.transactions[index].name}",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: Color(0xFF6F2DA8),
                                 fontWeight: FontWeight.w700,
                               ),
@@ -198,7 +198,7 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                           ? Text(
                               "${transactionsData.transactions[index].points.toString()} Point(s)",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: Colors.red,
                                 fontWeight: FontWeight.w700,
                               ),
@@ -206,7 +206,7 @@ class _LogTransactionPageState extends State<LogTransactionPage> {
                           : Text(
                               "${transactionsData.transactions[index].points.toString()} Point(s)",
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 15,
                                 color: Color(0xFF6F2DA8),
                                 fontWeight: FontWeight.w700,
                               ),

@@ -45,10 +45,10 @@ Future getqr() async {
   };
   Map body = {
     "idevent": eventDetailData.eventDetail?.eventId,
-    // "latitude": 13.89729217570833,
-    // "longitude": 100.58572663072604
-    "latitude": _currentPosition.latitude,
-    "longitude": _currentPosition.longitude
+    "latitude": 13.89729217570833,
+    "longitude": 100.58572663072604
+    // "latitude": _currentPosition.latitude,
+    // "longitude": _currentPosition.longitude
   };
   print(_currentPosition.latitude);
   print(_currentPosition.longitude);
