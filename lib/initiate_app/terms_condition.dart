@@ -64,6 +64,9 @@ class _TermsAndConditionPageState extends State<TermsAndConditionPage> {
                     height: height(context: context) / 50,
                   ),
                   contactHeader(),
+                  SizedBox(
+                    height: height(context: context) / 100,
+                  ),
                   contactDetails(),
                   SizedBox(
                     height: height(context: context) / 20,
