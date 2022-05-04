@@ -82,20 +82,12 @@ class _StatusUserState extends State<StatusUser> {
                     height: MediaQuery.of(context).size.height / 8,
                     width: MediaQuery.of(context).size.width / 2.8,
                     margin: EdgeInsets.only(left: 8, bottom: 32),
-                    child: InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => LogTransactionPage()));
-                      },
-                      child: Text(
-                        "${UserData.userProfile?.username}",
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.w700),
-                      ),
+                    child: Text(
+                      "${UserData.userProfile?.username}",
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
